@@ -28,14 +28,23 @@ protocol HttpGetClient {
 class RemoteGetListEventsTests: XCTestCase {
     func test_getListEvents_should_call_httpClient_correct_url() throws {
         let url = URL(string: "http://any-url.com")!
-        let httpGetClientSpy = HttpGetClientSpy()
-        let sut = RemoteGetListEvents(url: url, httpGetClient: httpGetClientSpy)
+        let (sut, httpGetClientSpy) = makeSut(url: url)
         sut.getListEvents()
         XCTAssertEqual(httpGetClientSpy.url, url)
+    }
+    
+    func test_getListEvents_should_with_error_if_api_complete_with_error() throws {
+        
     }
 }
 
 extension RemoteGetListEventsTests {
+    func makeSut(url: URL = URL(string: "http://any-url.com")!) -> (sut: RemoteGetListEvents, HttpGetClientSpy: HttpGetClientSpy) {
+        let httpGetClientSpy = HttpGetClientSpy()
+        let sut = RemoteGetListEvents(url: url, httpGetClient: httpGetClientSpy)
+        return (sut, httpGetClientSpy)
+    }
+    
     class HttpGetClientSpy: HttpGetClient {
         var url: URL?
         
