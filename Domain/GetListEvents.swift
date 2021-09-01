@@ -10,13 +10,3 @@ import Foundation
 public protocol GetListEvents {
     func getListEvents(completion: @escaping (Result<EventModel, Error>) -> Void)
 }
-
-public struct EventModel {
-    var id: String
-    var date: Date
-    var description: String
-    var latitude: Double
-    var longitude: Double
-    var pricce: Double
-    var title: String
-}
