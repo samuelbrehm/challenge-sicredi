@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol GetListEvents {
-    func getListEvents(completion: @escaping (Result<EventModel, Error>) -> Void)
+    func getListEvents(completion: @escaping (Result<EventModel, DomainError>) -> Void)
 }

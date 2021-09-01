@@ -20,8 +20,12 @@ class RemoteGetListEventsTests: XCTestCase {
     func test_getListEvents_should_complete_with_error_if_api_complete_with_error() throws {
         let (sut, httpGetClientSpy) = makeSut()
         let exp = expectation(description: "waiting")
-        sut.getListEvents() { error in
-            XCTAssertEqual(error, .unexpected)
+        sut.getListEvents() { result in
+            switch result {
+            case .failure(let error): XCTAssertEqual(error, .unexpected)
+            case .success(_): XCTFail("Expected error receive \(result) instead")
+            }
+            
             exp.fulfill()
         }
         httpGetClientSpy.completeWithError(.noConnectivity)
@@ -38,15 +42,15 @@ extension RemoteGetListEventsTests {
     
     class HttpGetClientSpy: HttpGetClient {
         var url: URL?
-        var completion: ((HttpError) -> Void)?
+        var completion: ((Result<Data, HttpError>) -> Void)?
         
-        func get(to url: URL, completion: @escaping (HttpError) -> Void) {
+        func get(to url: URL, completion: @escaping (Result<Data, HttpError>) -> Void) {
             self.url = url
             self.completion = completion
         }
         
         func completeWithError(_ error: HttpError) {
-            completion?(error)
+            completion?(.failure(error))
         }
     }
 }
