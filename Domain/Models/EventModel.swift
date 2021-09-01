@@ -8,11 +8,13 @@
 import Foundation
 
 public struct EventModel {
-    var id: String
+    var Peoples: [PeopleModel]
     var date: Date
     var description: String
+    var image: String
     var latitude: Double
     var longitude: Double
-    var pricce: Double
+    var price: Double
     var title: String
+    var id: String
 }
