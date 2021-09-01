@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import Domain
+import Data
 
 class RemoteGetListEvents {
     private let url: URL
@@ -16,25 +18,34 @@ class RemoteGetListEvents {
         self.httpGetClient = httpGetClient
     }
     
-    func getListEvents() {
-        httpGetClient.get(url: url)
+    func getListEvents(completion: @escaping (DomainError) -> Void) {
+        httpGetClient.get(url: url) { error in
+            completion(.unexpected)
+        }
     }
 }
 
 protocol HttpGetClient {
-    func get(url: URL)
+    func get(url: URL, completion: @escaping (HttpError) -> Void)
 }
 
 class RemoteGetListEventsTests: XCTestCase {
     func test_getListEvents_should_call_httpClient_correct_url() throws {
         let url = URL(string: "http://any-url.com")!
         let (sut, httpGetClientSpy) = makeSut(url: url)
-        sut.getListEvents()
+        sut.getListEvents() { _ in }
         XCTAssertEqual(httpGetClientSpy.url, url)
     }
     
     func test_getListEvents_should_with_error_if_api_complete_with_error() throws {
-        
+        let (sut, httpGetClientSpy) = makeSut()
+        let exp = expectation(description: "waiting")
+        sut.getListEvents() { error in
+            XCTAssertEqual(error, .unexpected)
+            exp.fulfill()
+        }
+        httpGetClientSpy.completeWithError(.noConnectivity)
+        wait(for: [exp], timeout: 1)
     }
 }
 
@@ -47,9 +58,15 @@ extension RemoteGetListEventsTests {
     
     class HttpGetClientSpy: HttpGetClient {
         var url: URL?
+        var completion: ((HttpError) -> Void)?
         
-        func get(url: URL) {
+        func get(url: URL, completion: @escaping (HttpError) -> Void) {
             self.url = url
+            self.completion = completion
+        }
+        
+        func completeWithError(_ error: HttpError) {
+            completion?(error)
         }
     }
 }
