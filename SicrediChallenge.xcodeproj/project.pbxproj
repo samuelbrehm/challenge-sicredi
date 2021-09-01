@@ -6,9 +6,14 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78B26DFC591000D45E8 /* GetListEvents.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		62A2A78326DFB4BD000D45E8 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A2A78626DFB4BD000D45E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62A2A78B26DFC591000D45E8 /* GetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEvents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				62A2A78626DFB4BD000D45E8 /* Info.plist */,
+				62A2A78B26DFC591000D45E8 /* GetListEvents.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -87,6 +93,7 @@
 				TargetAttributes = {
 					62A2A78226DFB4BD000D45E8 = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -123,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +262,7 @@
 		62A2A78826DFB4BD000D45E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -273,6 +282,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -280,6 +290,7 @@
 		62A2A78926DFB4BD000D45E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
