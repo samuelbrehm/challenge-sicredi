@@ -10,6 +10,7 @@
 		62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78B26DFC591000D45E8 /* GetListEvents.swift */; };
 		62A2A78E26DFEBA6000D45E8 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78D26DFEBA6000D45E8 /* EventModel.swift */; };
 		62A2A79126DFEC65000D45E8 /* PeopleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A79026DFEC65000D45E8 /* PeopleModel.swift */; };
+		62A2A79326DFEE29000D45E8 /* GetDetailsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A79226DFEE29000D45E8 /* GetDetailsEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		62A2A78B26DFC591000D45E8 /* GetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEvents.swift; sourceTree = "<group>"; };
 		62A2A78D26DFEBA6000D45E8 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		62A2A79026DFEC65000D45E8 /* PeopleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModel.swift; sourceTree = "<group>"; };
+		62A2A79226DFEE29000D45E8 /* GetDetailsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEvent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				62A2A78626DFB4BD000D45E8 /* Info.plist */,
-				62A2A78B26DFC591000D45E8 /* GetListEvents.swift */,
+				62A2A79426DFEE34000D45E8 /* UseCases */,
 				62A2A78F26DFEC17000D45E8 /* Models */,
 			);
 			path = Domain;
@@ -64,6 +66,15 @@
 				62A2A79026DFEC65000D45E8 /* PeopleModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		62A2A79426DFEE34000D45E8 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				62A2A79226DFEE29000D45E8 /* GetDetailsEvent.swift */,
+				62A2A78B26DFC591000D45E8 /* GetListEvents.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A2A79326DFEE29000D45E8 /* GetDetailsEvent.swift in Sources */,
 				62A2A78E26DFEBA6000D45E8 /* EventModel.swift in Sources */,
 				62A2A79126DFEC65000D45E8 /* PeopleModel.swift in Sources */,
 				62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */,
