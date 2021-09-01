@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78B26DFC591000D45E8 /* GetListEvents.swift */; };
 		62A2A78E26DFEBA6000D45E8 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78D26DFEBA6000D45E8 /* EventModel.swift */; };
+		62A2A79126DFEC65000D45E8 /* PeopleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A79026DFEC65000D45E8 /* PeopleModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +17,7 @@
 		62A2A78626DFB4BD000D45E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62A2A78B26DFC591000D45E8 /* GetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEvents.swift; sourceTree = "<group>"; };
 		62A2A78D26DFEBA6000D45E8 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		62A2A79026DFEC65000D45E8 /* PeopleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +52,18 @@
 			children = (
 				62A2A78626DFB4BD000D45E8 /* Info.plist */,
 				62A2A78B26DFC591000D45E8 /* GetListEvents.swift */,
-				62A2A78D26DFEBA6000D45E8 /* EventModel.swift */,
+				62A2A78F26DFEC17000D45E8 /* Models */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		62A2A78F26DFEC17000D45E8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				62A2A78D26DFEBA6000D45E8 /* EventModel.swift */,
+				62A2A79026DFEC65000D45E8 /* PeopleModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62A2A78E26DFEBA6000D45E8 /* EventModel.swift in Sources */,
+				62A2A79126DFEC65000D45E8 /* PeopleModel.swift in Sources */,
 				62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
