@@ -19,14 +19,14 @@ class RemoteGetListEvents {
     }
     
     func getListEvents(completion: @escaping (DomainError) -> Void) {
-        httpGetClient.get(url: url) { error in
+        httpGetClient.get(to: url) { error in
             completion(.unexpected)
         }
     }
 }
 
 protocol HttpGetClient {
-    func get(url: URL, completion: @escaping (HttpError) -> Void)
+    func get(to url: URL, completion: @escaping (HttpError) -> Void)
 }
 
 class RemoteGetListEventsTests: XCTestCase {
@@ -60,7 +60,7 @@ extension RemoteGetListEventsTests {
         var url: URL?
         var completion: ((HttpError) -> Void)?
         
-        func get(url: URL, completion: @escaping (HttpError) -> Void) {
+        func get(to url: URL, completion: @escaping (HttpError) -> Void) {
             self.url = url
             self.completion = completion
         }
