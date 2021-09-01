@@ -35,10 +35,13 @@ class RemoteGetListEventsTests: XCTestCase {
     }
 }
 
-class HttpGetClientSpy: HttpGetClient {
-    var url: URL?
-    
-    func get(url: URL) {
-        self.url = url
+extension RemoteGetListEventsTests {
+    class HttpGetClientSpy: HttpGetClient {
+        var url: URL?
+        
+        func get(url: URL) {
+            self.url = url
+        }
     }
 }
+
