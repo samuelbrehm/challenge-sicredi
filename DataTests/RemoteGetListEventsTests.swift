@@ -9,26 +9,6 @@ import XCTest
 import Domain
 import Data
 
-class RemoteGetListEvents {
-    private let url: URL
-    private let httpGetClient: HttpGetClient
-    
-    init(url: URL, httpGetClient: HttpGetClient) {
-        self.url = url
-        self.httpGetClient = httpGetClient
-    }
-    
-    func getListEvents(completion: @escaping (DomainError) -> Void) {
-        httpGetClient.get(to: url) { error in
-            completion(.unexpected)
-        }
-    }
-}
-
-protocol HttpGetClient {
-    func get(to url: URL, completion: @escaping (HttpError) -> Void)
-}
-
 class RemoteGetListEventsTests: XCTestCase {
     func test_getListEvents_should_call_httpClient_correct_url() throws {
         let url = URL(string: "http://any-url.com")!
@@ -37,7 +17,7 @@ class RemoteGetListEventsTests: XCTestCase {
         XCTAssertEqual(httpGetClientSpy.url, url)
     }
     
-    func test_getListEvents_should_with_error_if_api_complete_with_error() throws {
+    func test_getListEvents_should_complete_with_error_if_api_complete_with_error() throws {
         let (sut, httpGetClientSpy) = makeSut()
         let exp = expectation(description: "waiting")
         sut.getListEvents() { error in
