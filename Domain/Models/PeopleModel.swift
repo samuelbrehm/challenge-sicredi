@@ -7,9 +7,16 @@
 
 import Foundation
 
-struct PeopleModel {
-    var id: String
-    var eventId: String
-    var name: String
-    var email: String
+public struct PeopleModel: Model {
+    public var id: String
+    public var eventId: String
+    public var name: String
+    public var email: String
+    
+    public init(id: String, eventId: String, name: String, email: String) {
+        self.id = id
+        self.eventId = eventId
+        self.name = name
+        self.email = email
+    }
 }
