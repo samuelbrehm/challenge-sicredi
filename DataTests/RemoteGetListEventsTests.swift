@@ -65,13 +65,32 @@ class RemoteGetListEventsTests: XCTestCase {
         httpGetClientSpy.completeWithData(expectedsEventToData)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_add_should_not_complete_if_sut_has_been_deallocated_memory() throws {
+        let httpGetClientSpy = HttpGetClientSpy()
+        let url: URL = URL(string: "http://any-url.com")!
+        var sut: RemoteGetListEvents? = RemoteGetListEvents(url: url, httpGetClient: httpGetClientSpy)
+        var resultExpected: Result<[EventModel], DomainError>?
+        sut?.getListEvents() { resultExpected = $0}
+        sut = nil
+        httpGetClientSpy.completeWithError(.noConnectivity)
+        XCTAssertNil(resultExpected)
+    }
 }
 
 extension RemoteGetListEventsTests {
-    func makeSut(url: URL = URL(string: "http://any-url.com")!) -> (sut: RemoteGetListEvents, HttpGetClientSpy: HttpGetClientSpy) {
+    func makeSut(url: URL = URL(string: "http://any-url.com")!, file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteGetListEvents, HttpGetClientSpy: HttpGetClientSpy) {
         let httpGetClientSpy = HttpGetClientSpy()
         let sut = RemoteGetListEvents(url: url, httpGetClient: httpGetClientSpy)
+        checkMemoryLeak(for: sut, file: file, line: line)
+        checkMemoryLeak(for: httpGetClientSpy, file: file, line: line)
         return (sut, httpGetClientSpy)
+    }
+    
+    func checkMemoryLeak(for instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, file: file, line: line)
+        }
     }
     
     func makeEventModel() -> EventModel {
