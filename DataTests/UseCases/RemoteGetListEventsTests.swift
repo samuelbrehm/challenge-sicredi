@@ -11,7 +11,7 @@ import Data
 
 class RemoteGetListEventsTests: XCTestCase {
     func test_getListEvents_should_call_httpClient_correct_url() throws {
-        let url = URL(string: "http://any-url.com")!
+        let url = makeURL()
         let (sut, httpGetClientSpy) = makeSut(url: url)
         sut.getListEvents() { _ in }
         XCTAssertEqual(httpGetClientSpy.url, url)
@@ -68,7 +68,7 @@ class RemoteGetListEventsTests: XCTestCase {
     
     func test_add_should_not_complete_if_sut_has_been_deallocated_memory() throws {
         let httpGetClientSpy = HttpGetClientSpy()
-        let url: URL = URL(string: "http://any-url.com")!
+        let url: URL = makeURL()
         var sut: RemoteGetListEvents? = RemoteGetListEvents(url: url, httpGetClient: httpGetClientSpy)
         var resultExpected: Result<[EventModel], DomainError>?
         sut?.getListEvents() { resultExpected = $0}
@@ -79,47 +79,12 @@ class RemoteGetListEventsTests: XCTestCase {
 }
 
 extension RemoteGetListEventsTests {
-    func makeSut(url: URL = URL(string: "http://any-url.com")!, file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteGetListEvents, HttpGetClientSpy: HttpGetClientSpy) {
+    func makeSut(url: URL = makeURL(), file: StaticString = #filePath, line: UInt = #line) -> (sut: RemoteGetListEvents, HttpGetClientSpy: HttpGetClientSpy) {
         let httpGetClientSpy = HttpGetClientSpy()
         let sut = RemoteGetListEvents(url: url, httpGetClient: httpGetClientSpy)
         checkMemoryLeak(for: sut, file: file, line: line)
         checkMemoryLeak(for: httpGetClientSpy, file: file, line: line)
         return (sut, httpGetClientSpy)
-    }
-    
-    func checkMemoryLeak(for instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, file: file, line: line)
-        }
-    }
-    
-    func makeEventModel() -> EventModel {
-        var peoples: [PeopleModel] = []
-        peoples.append(makePeopleModel())
-        return EventModel(peoples: peoples, date: Date(), description: "any-description", image: "any-url-image", latitude: Double.zero, longitude: Double.zero, price: Double.zero, title: "any-title", id: "any-id")
-        
-    }
-    
-    func makePeopleModel() -> PeopleModel {
-        return PeopleModel(id: "any-id", eventId: "any-eventId", name: "any-name", email: "any@email.com")
-    }
-    
-    class HttpGetClientSpy: HttpGetClient {        
-        var url: URL?
-        var completion: ((Result<[Data], HttpError>) -> Void)?
-        
-        func get(to url: URL, completion: @escaping (Result<[Data], HttpError>) -> Void) {
-            self.url = url
-            self.completion = completion
-        }
-        
-        func completeWithError(_ error: HttpError) {
-            completion?(.failure(error))
-        }
-        
-        func completeWithData(_ data: [Data]) {
-            completion?(.success(data))
-        }
     }
 }
 

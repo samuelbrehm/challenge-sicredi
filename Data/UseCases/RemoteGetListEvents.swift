@@ -18,7 +18,7 @@ public class RemoteGetListEvents: GetListEvents {
     }
     
     public func getListEvents(completion: @escaping (Result<[EventModel], DomainError>) -> Void) {
-        httpGetClient.get(to: url) { [weak self] result in
+        httpGetClient.get(to: url, with: nil) { [weak self] result in
             guard self != nil else { return }
             switch result {
             case .success(let data):         
