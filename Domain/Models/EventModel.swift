@@ -8,15 +8,15 @@
 import Foundation
 
 public struct EventModel: Model {
-    public var peoples: [PeopleModel]
-    public var date: Date
-    public var description: String
-    public var image: String
-    public var latitude: Double
-    public var longitude: Double
-    public var price: Double
-    public var title: String
-    public var id: String
+    public var peoples: [PeopleModel]?
+    public var date: Date?
+    public var description: String?
+    public var image: String?
+    public var latitude: Double?
+    public var longitude: Double?
+    public var price: Double?
+    public var title: String?
+    public var id: String?
     
     public init(peoples: [PeopleModel], date: Date, description: String, image: String, latitude: Double, longitude: Double, price: Double, title: String, id: String) {
         self.peoples = peoples

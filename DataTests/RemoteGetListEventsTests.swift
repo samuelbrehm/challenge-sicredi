@@ -32,10 +32,10 @@ class RemoteGetListEventsTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_getListEvents_should_complete_with_event_if_api_complete_with_data() throws {
+    func test_getListEvents_should_complete_with_array_event_if_api_complete_with_data() throws {
         let (sut, httpGetClientSpy) = makeSut()
         let exp = expectation(description: "waiting")
-        let expectedsEvent = makeEventModel() 
+        let expectedsEvent: [EventModel] = [makeEventModel(), makeEventModel()]
         sut.getListEvents() { result in
             switch result {
             case .failure(_): XCTFail("Expected success receive \(result) instead")
@@ -44,7 +44,8 @@ class RemoteGetListEventsTests: XCTestCase {
             
             exp.fulfill()
         }
-        httpGetClientSpy.completeWithData(expectedsEvent.toData()!)
+        let expectedsEventToData = expectedsEvent.compactMap({ $0.toData() })
+        httpGetClientSpy.completeWithData(expectedsEventToData)
         wait(for: [exp], timeout: 1)
     }
 }
@@ -67,11 +68,11 @@ extension RemoteGetListEventsTests {
         return PeopleModel(id: "any-id", eventId: "any-eventId", name: "any-name", email: "any@email.com")
     }
     
-    class HttpGetClientSpy: HttpGetClient {
+    class HttpGetClientSpy: HttpGetClient {        
         var url: URL?
-        var completion: ((Result<Data, HttpError>) -> Void)?
+        var completion: ((Result<[Data], HttpError>) -> Void)?
         
-        func get(to url: URL, completion: @escaping (Result<Data, HttpError>) -> Void) {
+        func get(to url: URL, completion: @escaping (Result<[Data], HttpError>) -> Void) {
             self.url = url
             self.completion = completion
         }
@@ -80,7 +81,7 @@ extension RemoteGetListEventsTests {
             completion?(.failure(error))
         }
         
-        func completeWithData(_ data: Data) {
+        func completeWithData(_ data: [Data]) {
             completion?(.success(data))
         }
     }
