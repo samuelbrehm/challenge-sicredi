@@ -48,6 +48,23 @@ class RemoteGetListEventsTests: XCTestCase {
         httpGetClientSpy.completeWithData(expectedsEventToData)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_getListEvents_should_complete_with_empty_array_if_api_complete_with_empty_data() throws {
+        let (sut, httpGetClientSpy) = makeSut()
+        let exp = expectation(description: "waiting")
+        let expectedsEvent: [EventModel] = []
+        sut.getListEvents() { result in
+            switch result {
+            case .failure(_): XCTFail("Expected success receive \(result) instead")
+            case .success(let receivedEvent): XCTAssertEqual(receivedEvent, expectedsEvent)
+            }
+            
+            exp.fulfill()
+        }
+        let expectedsEventToData = expectedsEvent.compactMap({ $0.toData() })
+        httpGetClientSpy.completeWithData(expectedsEventToData)
+        wait(for: [exp], timeout: 1)
+    }
 }
 
 extension RemoteGetListEventsTests {
