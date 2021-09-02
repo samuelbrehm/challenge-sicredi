@@ -8,9 +8,9 @@
 import Foundation
 
 public protocol GetDetailsEvent {
-    func getDetailsEvent(detailsEventParam: DetailsEventParam, completion: @escaping (Result<EventModel, Error>) -> Void)
+    func getDetailsEvent(detailsEventParam: DetailsEventParam, completion: @escaping (Result<EventModel, DomainError>) -> Void)
 }
 
 public struct DetailsEventParam {
-    var idEvent: String
+    public var idEvent: String
 }
