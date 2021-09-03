@@ -8,15 +8,16 @@
 import Foundation
 
 public protocol CreateCheckIn {
-    func addCheckIn(addCheckInParam: AddCheckInParam, completion: @escaping (Result<StatusResponse, Error>) -> Void)
+    func addCheckIn(addCheckInParam: AddCheckInParam, completion: @escaping (Result<StatusResponse, DomainError>) -> Void)
 }
 
 public enum StatusResponse {
-    case ok
+    case success
+    case failure
 }
 
 public struct AddCheckInParam {
-    var eventId: String
-    var name: String
-    var email: String
+    public var eventId: String
+    public var name: String
+    public var email: String
 }

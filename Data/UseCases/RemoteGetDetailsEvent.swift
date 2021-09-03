@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public class RemoteGetDetailsEvent {
+public class RemoteGetDetailsEvent: GetDetailsEvent {
     private let url: URL
     private let httpGetClient: HttpGetClient
     
