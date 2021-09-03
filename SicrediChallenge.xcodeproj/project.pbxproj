@@ -12,6 +12,7 @@
 		628537C326E1625000C82896 /* EventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C226E1625000C82896 /* EventFactory.swift */; };
 		628537C526E1629B00C82896 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		628537C726E1652B00C82896 /* FactoriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C626E1652B00C82896 /* FactoriesTest.swift */; };
+		62933AAA26E25B390096EBCB /* EventDetailsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AA926E25B390096EBCB /* EventDetailsFactory.swift */; };
 		62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78B26DFC591000D45E8 /* GetListEvents.swift */; };
 		62A2A78E26DFEBA6000D45E8 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78D26DFEBA6000D45E8 /* EventModel.swift */; };
 		62A2A79126DFEC65000D45E8 /* PeopleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A79026DFEC65000D45E8 /* PeopleModel.swift */; };
@@ -66,6 +67,7 @@
 		628537C226E1625000C82896 /* EventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFactory.swift; sourceTree = "<group>"; };
 		628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
 		628537C626E1652B00C82896 /* FactoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoriesTest.swift; sourceTree = "<group>"; };
+		62933AA926E25B390096EBCB /* EventDetailsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsFactory.swift; sourceTree = "<group>"; };
 		62A2A78326DFB4BD000D45E8 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A2A78626DFB4BD000D45E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62A2A78B26DFC591000D45E8 /* GetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEvents.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				628537C226E1625000C82896 /* EventFactory.swift */,
 				628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */,
 				628537C626E1652B00C82896 /* FactoriesTest.swift */,
+				62933AA926E25B390096EBCB /* EventDetailsFactory.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62933AAA26E25B390096EBCB /* EventDetailsFactory.swift in Sources */,
 				628537C726E1652B00C82896 /* FactoriesTest.swift in Sources */,
 				628537C526E1629B00C82896 /* XCTestCase+MemoryLeak.swift in Sources */,
 				628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */,
