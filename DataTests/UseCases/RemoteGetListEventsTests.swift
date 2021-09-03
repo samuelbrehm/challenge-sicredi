@@ -66,7 +66,7 @@ class RemoteGetListEventsTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_add_should_not_complete_if_sut_has_been_deallocated_memory() throws {
+    func test_getListEvents_should_not_complete_if_sut_has_been_deallocated_memory() throws {
         let httpGetClientSpy = HttpGetClientSpy()
         let url: URL = makeURL()
         var sut: RemoteGetListEvents? = RemoteGetListEvents(url: url, httpGetClient: httpGetClientSpy)

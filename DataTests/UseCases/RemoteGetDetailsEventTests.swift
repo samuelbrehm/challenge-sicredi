@@ -41,7 +41,7 @@ class RemoteGetDetailsEventTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_getDetailsEvent_should_complete_with_array_event_if_api_complete_with_data() throws {
+    func test_getDetailsEvent_should_complete_with_event_if_api_complete_with_data() throws {
         let (sut, httpGetClientSpy) = makeSut()
         let exp = expectation(description: "waiting")
         let expectedEvent: EventModel = makeEventModel()
@@ -54,6 +54,17 @@ class RemoteGetDetailsEventTests: XCTestCase {
         }
         httpGetClientSpy.completeWithDataOne(expectedEvent.toData()!)
         wait(for: [exp], timeout: 1)
+    }
+    
+    func test_getDetailsEvent_should_not_complete_if_sut_has_been_deallocated_memory() throws {
+        let httpGetClientSpy = HttpGetClientSpy()
+        let url: URL = makeURL()
+        var sut: RemoteGetDetailsEvent? = RemoteGetDetailsEvent(url: url, httpGetClient: httpGetClientSpy)
+        var resultExpected: Result<EventModel, DomainError>?
+        sut?.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { resultExpected = $0}
+        sut = nil
+        httpGetClientSpy.completeWithErrorOne(.noConnectivity)
+        XCTAssertNil(resultExpected)
     }
 }
 
