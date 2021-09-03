@@ -15,8 +15,17 @@ class RemoteGetDetailsEventTests: XCTestCase {
     func test_getDetailsEvent_should_call_httpClient_correct_url() throws {
         let url = makeURL()
         let (sut, httpGetClientSpy) = makeSut(url: url)
-        sut.getDetailsEvent()
+        let expectDetailsEventParam = DetailsEventParam(idEvent: "any-id")
+        sut.getDetailsEvent(detailsEventParam: expectDetailsEventParam)
         XCTAssertEqual(httpGetClientSpy.url, url)
+    }
+    
+    func test_getDetailsEvent_should_call_httpClient_correct_data_param() throws {
+        let url = makeURL()
+        let (sut, httpGetClientSpy) = makeSut(url: url)
+        let expectDetailsEventParam = DetailsEventParam(idEvent: "any-id")
+        sut.getDetailsEvent(detailsEventParam: expectDetailsEventParam)
+        XCTAssertEqual(httpGetClientSpy.data, expectDetailsEventParam.toData())
     }
 }
 
@@ -40,8 +49,8 @@ class RemoteGetDetailsEvent {
         self.httpGetClient = httpGetClient
     }
     
-    func getDetailsEvent() {
-        httpGetClient.get(to: url, with: nil) { _ in }
+    func getDetailsEvent(detailsEventParam: DetailsEventParam) {
+        httpGetClient.get(to: url, with: detailsEventParam.toData()) { _ in }
     }
 }
 

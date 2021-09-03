@@ -11,10 +11,12 @@ import Data
 class HttpGetClientSpy: HttpGetClient {
     var url: URL?
     var completion: ((Result<[Data], HttpError>) -> Void)?
+    var data: Data?
     
     func get(to url: URL, with data: Data?, completion: @escaping (Result<[Data], HttpError>) -> Void) {
         self.url = url
         self.completion = completion
+        self.data = data        
     }
     
     func completeWithError(_ error: HttpError) {
