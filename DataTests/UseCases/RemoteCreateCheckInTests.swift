@@ -17,8 +17,14 @@ class RemoteCreateChekInTests: XCTestCase {
     func test_addCheckIn_should_call_httpClient_with_correct_url() throws {
         let url = makeURL()
         let (sut, httpPostClientSpy) = makeSut(url: url)
-        sut.addCheckIn()
+        sut.addCheckIn(addCheckInParam: makeAddCheckInParam())
         XCTAssertEqual(httpPostClientSpy.url, url)
+    }
+    
+    func test_addCheckIn_should_call_httpClient_correct_data_param() throws {
+        let (sut, httpGetClientSpy) = makeSut()
+        sut.addCheckIn(addCheckInParam: makeAddCheckInParam())
+        XCTAssertEqual(httpGetClientSpy.data, makeAddCheckInParam().toData())
     }
 }
 
@@ -33,34 +39,14 @@ extension RemoteCreateChekInTests {
     
     class HttpPostClientSpy: HttpPostClient {
         var url: URL?
+        var data: Data?
         
-        func post(to url: URL, with: Data?, completion: @escaping (Result<HttpStatusResponse, HttpError>) -> Void) {
+        func post(to url: URL, with data: Data?, completion: @escaping (Result<HttpStatusResponse, HttpError>) -> Void) {
             self.url = url
+            self.data = data
         }
         
         
     }
 }
 
-class RemoteCreateCheckIn {
-    private let httpPostClient: HttpPostClient
-    private let url: URL
-    
-    public init(httpPostClient: HttpPostClient, url: URL) {
-        self.httpPostClient = httpPostClient
-        self.url = url
-    }
-    
-    func addCheckIn() {
-        httpPostClient.post(to: url, with: nil) { _ in }
-    }
-}
-
-protocol HttpPostClient {
-    func post(to url: URL, with: Data?, completion: @escaping (Result<HttpStatusResponse, HttpError>) -> Void)
-}
-
-enum HttpStatusResponse {
-    case ok
-    case fail
-}

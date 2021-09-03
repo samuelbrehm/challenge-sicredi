@@ -16,8 +16,14 @@ public enum StatusResponse {
     case failure
 }
 
-public struct AddCheckInParam {
+public struct AddCheckInParam: Model {
     public var eventId: String
     public var name: String
     public var email: String
+    
+    public init(eventId: String, name: String, email: String) {
+        self.eventId = eventId
+        self.name = name
+        self.email = email
+    }
 }
