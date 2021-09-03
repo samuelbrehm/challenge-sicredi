@@ -40,6 +40,21 @@ class RemoteGetDetailsEventTests: XCTestCase {
         httpGetClientSpy.completeWithErrorOne(.noConnectivity)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_getDetailsEvent_should_complete_with_array_event_if_api_complete_with_data() throws {
+        let (sut, httpGetClientSpy) = makeSut()
+        let exp = expectation(description: "waiting")
+        let expectedEvent: EventModel = makeEventModel()
+        sut.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { result in
+            switch result {
+            case .failure(_): XCTFail("Expected success receive \(result) instead")
+            case .success(let receivedEvent): XCTAssertEqual(receivedEvent, expectedEvent)
+            }
+            exp.fulfill()
+        }
+        httpGetClientSpy.completeWithDataOne(expectedEvent.toData()!)
+        wait(for: [exp], timeout: 1)
+    }
 }
 
 extension RemoteGetDetailsEventTests {
@@ -49,26 +64,6 @@ extension RemoteGetDetailsEventTests {
         checkMemoryLeak(for: sut, file: file, line: line)
         checkMemoryLeak(for: httpGetClientSpy, file: file, line: line)
         return (sut, httpGetClientSpy)
-    }
-}
-
-
-class RemoteGetDetailsEvent {
-    private let url: URL
-    private let httpGetClient: HttpGetClient
-    
-    public init(url: URL, httpGetClient: HttpGetClient) {
-        self.url = url
-        self.httpGetClient = httpGetClient
-    }
-    
-    func getDetailsEvent(detailsEventParam: DetailsEventParam, completion: @escaping (Result<EventModel, DomainError>) -> Void) {
-        httpGetClient.getOne(to: url, with: detailsEventParam.toData()) { result in
-            switch result {
-            case .failure: completion(.failure(.unexpected))
-            case .success(_): break
-            }
-        }
     }
 }
 
