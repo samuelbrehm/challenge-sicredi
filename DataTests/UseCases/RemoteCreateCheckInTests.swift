@@ -56,6 +56,16 @@ class RemoteCreateChekInTests: XCTestCase {
         httpPostClientSpy.completeWithSuccess(.ok)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_addCheckIn_should_not_complete_if_sut_has_been_deallocated_memory() throws {
+        let httpPostClientSpy = HttpPostClientSpy()
+        var sut: RemoteCreateCheckIn? = RemoteCreateCheckIn(httpPostClient: httpPostClientSpy, url: makeURL())
+        var resultExpected: Result<StatusResponse, DomainError>?
+        sut?.addCheckIn(addCheckInParam: makeAddCheckInParam()) { resultExpected = $0}
+        sut = nil
+        httpPostClientSpy.completeWithError(.noConnectivity)
+        XCTAssertNil(resultExpected)
+    }
 }
 
 extension RemoteCreateChekInTests {

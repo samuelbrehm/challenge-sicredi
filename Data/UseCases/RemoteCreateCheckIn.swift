@@ -18,7 +18,8 @@ public class RemoteCreateCheckIn: CreateCheckIn {
     }
     
     public func addCheckIn(addCheckInParam: AddCheckInParam, completion: @escaping (Result<StatusResponse, DomainError>) -> Void) {
-        httpPostClient.post(to: url, with: addCheckInParam.toData()) { result in
+        httpPostClient.post(to: url, with: addCheckInParam.toData()) { [weak self] result in
+            guard self != nil else { return }
             switch result {
             case .failure: completion(.failure(.unexpected))
             case .success(_): completion(.success(.success))
