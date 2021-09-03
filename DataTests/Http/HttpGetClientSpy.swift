@@ -10,20 +10,35 @@ import Data
 
 class HttpGetClientSpy: HttpGetClient {
     var url: URL?
-    var completion: ((Result<[Data], HttpError>) -> Void)?
+    var completionList: ((Result<[Data], HttpError>) -> Void)?
+    var completionOne: ((Result<Data, HttpError>) -> Void)?
     var data: Data?
     
-    func get(to url: URL, with data: Data?, completion: @escaping (Result<[Data], HttpError>) -> Void) {
+    func getList(to url: URL, with data: Data?, completion: @escaping (Result<[Data], HttpError>) -> Void) {
         self.url = url
-        self.completion = completion
-        self.data = data        
+        self.completionList = completion
+        self.data = data
+    }
+
+    func getOne(to url: URL, with data: Data?, completion: @escaping (Result<Data, HttpError>) -> Void) {
+        self.url = url
+        self.completionOne = completion
+        self.data = data
     }
     
-    func completeWithError(_ error: HttpError) {
-        completion?(.failure(error))
+    func completeWithErrorList(_ error: HttpError) {
+        completionList?(.failure(error))
     }
     
-    func completeWithData(_ data: [Data]) {
-        completion?(.success(data))
+    func completeWithErrorOne(_ error: HttpError) {
+        completionOne?(.failure(error))
+    }
+    
+    func completeWithDataList(_ data: [Data]) {
+        completionList?(.success(data))
+    }
+    
+    func completeWithDataOne(_ data: Data) {
+        completionOne?(.success(data))
     }
 }

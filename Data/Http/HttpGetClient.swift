@@ -8,5 +8,7 @@
 import Foundation
 
 public protocol HttpGetClient {
-    func get(to url: URL, with data: Data?, completion: @escaping (Result<[Data], HttpError>) -> Void)
+    func getList(to url: URL, with data: Data?, completion: @escaping (Result<[Data], HttpError>) -> Void)
+    
+    func getOne(to url: URL, with data: Data?, completion: @escaping (Result<Data, HttpError>) -> Void)
 }
