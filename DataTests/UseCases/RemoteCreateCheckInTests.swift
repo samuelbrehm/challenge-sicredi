@@ -41,6 +41,21 @@ class RemoteCreateChekInTests: XCTestCase {
         httpPostClientSpy.completeWithError(.noConnectivity)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_addCheckIn_should_complete_with_status_ok_if_api_complete_with_success() throws {
+        let (sut, httpPostClientSpy) = makeSut()
+        let exp = expectation(description: "waiting")
+        sut.addCheckIn(addCheckInParam: makeAddCheckInParam()) { result in
+            switch result {
+            case .failure(_): XCTFail("Expected success receive \(result) instead")
+            case .success(let statusResponse): XCTAssertEqual(statusResponse, .success)
+            }
+            
+            exp.fulfill()
+        }
+        httpPostClientSpy.completeWithSuccess(.ok)
+        wait(for: [exp], timeout: 1)
+    }
 }
 
 extension RemoteCreateChekInTests {

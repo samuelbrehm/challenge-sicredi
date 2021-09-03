@@ -21,7 +21,7 @@ public class RemoteCreateCheckIn: CreateCheckIn {
         httpPostClient.post(to: url, with: addCheckInParam.toData()) { result in
             switch result {
             case .failure: completion(.failure(.unexpected))
-            case .success(_): break
+            case .success(_): completion(.success(.success))
             }
         }
     }
