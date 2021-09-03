@@ -17,14 +17,29 @@ class RemoteCreateChekInTests: XCTestCase {
     func test_addCheckIn_should_call_httpClient_with_correct_url() throws {
         let url = makeURL()
         let (sut, httpPostClientSpy) = makeSut(url: url)
-        sut.addCheckIn(addCheckInParam: makeAddCheckInParam())
+        sut.addCheckIn(addCheckInParam: makeAddCheckInParam()) { _ in}
         XCTAssertEqual(httpPostClientSpy.url, url)
     }
     
     func test_addCheckIn_should_call_httpClient_correct_data_param() throws {
-        let (sut, httpGetClientSpy) = makeSut()
-        sut.addCheckIn(addCheckInParam: makeAddCheckInParam())
-        XCTAssertEqual(httpGetClientSpy.data, makeAddCheckInParam().toData())
+        let (sut, httpPostClientSpy) = makeSut()
+        sut.addCheckIn(addCheckInParam: makeAddCheckInParam()) { _ in }
+        XCTAssertEqual(httpPostClientSpy.data, makeAddCheckInParam().toData())
+    }
+    
+    func test_addCheckIn_should_complete_with_error_if_api_complete_with_error() throws {
+        let (sut, httpPostClientSpy) = makeSut()
+        let exp = expectation(description: "waiting")
+        sut.addCheckIn(addCheckInParam: makeAddCheckInParam()) { result in
+            switch result {
+            case .failure(let error): XCTAssertEqual(error, .unexpected)
+            case .success(_): XCTFail("Expected error receive \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        httpPostClientSpy.completeWithError(.noConnectivity)
+        wait(for: [exp], timeout: 1)
     }
 }
 
@@ -40,12 +55,21 @@ extension RemoteCreateChekInTests {
     class HttpPostClientSpy: HttpPostClient {
         var url: URL?
         var data: Data?
+        var completion: ((Result<HttpStatusResponse, HttpError>) -> Void)?
         
         func post(to url: URL, with data: Data?, completion: @escaping (Result<HttpStatusResponse, HttpError>) -> Void) {
             self.url = url
             self.data = data
+            self.completion = completion
         }
         
+        func completeWithError(_ error: HttpError) {
+            completion?(.failure(error))
+        }
+        
+        func completeWithSuccess(_ httpStatusResponse: HttpStatusResponse) {
+            completion?(.success(httpStatusResponse))
+        }
         
     }
 }

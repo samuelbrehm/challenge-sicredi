@@ -8,7 +8,7 @@
 import Foundation
 import Domain
 
-public class RemoteCreateCheckIn {
+public class RemoteCreateCheckIn: CreateCheckIn {
     private let httpPostClient: HttpPostClient
     private let url: URL
     
@@ -17,7 +17,12 @@ public class RemoteCreateCheckIn {
         self.url = url
     }
     
-    public func addCheckIn(addCheckInParam: AddCheckInParam) {
-        httpPostClient.post(to: url, with: addCheckInParam.toData()) { _ in }
+    public func addCheckIn(addCheckInParam: AddCheckInParam, completion: @escaping (Result<StatusResponse, DomainError>) -> Void) {
+        httpPostClient.post(to: url, with: addCheckInParam.toData()) { result in
+            switch result {
+            case .failure: completion(.failure(.unexpected))
+            case .success(_): break
+            }
+        }
     }
 }
