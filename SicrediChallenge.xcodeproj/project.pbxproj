@@ -12,7 +12,6 @@
 		628537C326E1625000C82896 /* EventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C226E1625000C82896 /* EventFactory.swift */; };
 		628537C526E1629B00C82896 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		628537C726E1652B00C82896 /* FactoriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C626E1652B00C82896 /* FactoriesTest.swift */; };
-		62933AAA26E25B390096EBCB /* EventDetailsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AA926E25B390096EBCB /* EventDetailsFactory.swift */; };
 		62933AAC26E26B120096EBCB /* RemoteGetDetailsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AAB26E26B120096EBCB /* RemoteGetDetailsEvent.swift */; };
 		62933AAE26E28CA00096EBCB /* RemoteCreateCheckInTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AAD26E28CA00096EBCB /* RemoteCreateCheckInTests.swift */; };
 		62933AB026E297740096EBCB /* CreateCheckInFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AAF26E297740096EBCB /* CreateCheckInFactory.swift */; };
@@ -74,7 +73,6 @@
 		628537C226E1625000C82896 /* EventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFactory.swift; sourceTree = "<group>"; };
 		628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeak.swift"; sourceTree = "<group>"; };
 		628537C626E1652B00C82896 /* FactoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoriesTest.swift; sourceTree = "<group>"; };
-		62933AA926E25B390096EBCB /* EventDetailsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsFactory.swift; sourceTree = "<group>"; };
 		62933AAB26E26B120096EBCB /* RemoteGetDetailsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDetailsEvent.swift; sourceTree = "<group>"; };
 		62933AAD26E28CA00096EBCB /* RemoteCreateCheckInTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCreateCheckInTests.swift; sourceTree = "<group>"; };
 		62933AAF26E297740096EBCB /* CreateCheckInFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInFactory.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				628537C226E1625000C82896 /* EventFactory.swift */,
 				628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */,
 				628537C626E1652B00C82896 /* FactoriesTest.swift */,
-				62933AA926E25B390096EBCB /* EventDetailsFactory.swift */,
 				62933AAF26E297740096EBCB /* CreateCheckInFactory.swift */,
 				62933ADE26E402100096EBCB /* Array+Encoder.swift */,
 			);
@@ -454,7 +451,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62933AAA26E25B390096EBCB /* EventDetailsFactory.swift in Sources */,
 				62933AAE26E28CA00096EBCB /* RemoteCreateCheckInTests.swift in Sources */,
 				628537C726E1652B00C82896 /* FactoriesTest.swift in Sources */,
 				628537C526E1629B00C82896 /* XCTestCase+MemoryLeak.swift in Sources */,
