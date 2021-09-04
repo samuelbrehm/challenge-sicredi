@@ -19,6 +19,7 @@
 		62933AB226E2990A0096EBCB /* HttpStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AB126E2990A0096EBCB /* HttpStatusResponse.swift */; };
 		62933AB426E299350096EBCB /* HttpPostClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AB326E299350096EBCB /* HttpPostClient.swift */; };
 		62933AB626E2996B0096EBCB /* RemoteCreateCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AB526E2996B0096EBCB /* RemoteCreateCheckIn.swift */; };
+		62933ADF26E402100096EBCB /* Array+Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933ADE26E402100096EBCB /* Array+Encoder.swift */; };
 		62A2A78C26DFC591000D45E8 /* GetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78B26DFC591000D45E8 /* GetListEvents.swift */; };
 		62A2A78E26DFEBA6000D45E8 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A78D26DFEBA6000D45E8 /* EventModel.swift */; };
 		62A2A79126DFEC65000D45E8 /* PeopleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A79026DFEC65000D45E8 /* PeopleModel.swift */; };
@@ -80,6 +81,7 @@
 		62933AB126E2990A0096EBCB /* HttpStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpStatusResponse.swift; sourceTree = "<group>"; };
 		62933AB326E299350096EBCB /* HttpPostClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpPostClient.swift; sourceTree = "<group>"; };
 		62933AB526E2996B0096EBCB /* RemoteCreateCheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCreateCheckIn.swift; sourceTree = "<group>"; };
+		62933ADE26E402100096EBCB /* Array+Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Encoder.swift"; sourceTree = "<group>"; };
 		62A2A78326DFB4BD000D45E8 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A2A78626DFB4BD000D45E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62A2A78B26DFC591000D45E8 /* GetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEvents.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				628537C626E1652B00C82896 /* FactoriesTest.swift */,
 				62933AA926E25B390096EBCB /* EventDetailsFactory.swift */,
 				62933AAF26E297740096EBCB /* CreateCheckInFactory.swift */,
+				62933ADE26E402100096EBCB /* Array+Encoder.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				628537C526E1629B00C82896 /* XCTestCase+MemoryLeak.swift in Sources */,
 				62933AB026E297740096EBCB /* CreateCheckInFactory.swift in Sources */,
 				628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */,
+				62933ADF26E402100096EBCB /* Array+Encoder.swift in Sources */,
 				628537C026E161C700C82896 /* HttpGetClientSpy.swift in Sources */,
 				62A2A7AA26DFF488000D45E8 /* RemoteGetListEventsTests.swift in Sources */,
 				628537C326E1625000C82896 /* EventFactory.swift in Sources */,

@@ -18,14 +18,17 @@ public class RemoteGetDetailsEvent: GetDetailsEvent {
     }
     
     public func getDetailsEvent(detailsEventParam: DetailsEventParam, completion: @escaping (Result<EventModel, DomainError>) -> Void) {
-        httpGetClient.getOne(to: url, with: detailsEventParam.toData()) { [weak self] result in
+        httpGetClient.get(to: url, with: detailsEventParam.toData()) { [weak self] result in
             guard self != nil else { return }
             switch result {
-            case .failure: completion(.failure(.unexpected))
             case .success(let eventData):
                 if let eventModel: EventModel = eventData.toModel() {
                     completion(.success(eventModel))
+                } else {
+                    completion(.failure(.unexpected))
                 }
+                
+            case .failure: completion(.failure(.unexpected))
             }
         }
     }

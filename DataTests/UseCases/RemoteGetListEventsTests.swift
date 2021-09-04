@@ -28,7 +28,7 @@ class RemoteGetListEventsTests: XCTestCase {
             
             exp.fulfill()
         }
-        httpGetClientSpy.completeWithErrorList(.noConnectivity)
+        httpGetClientSpy.completeWithError(.noConnectivity)
         wait(for: [exp], timeout: 1)
     }
     
@@ -44,8 +44,8 @@ class RemoteGetListEventsTests: XCTestCase {
             
             exp.fulfill()
         }
-        let expectedsEventToData = expectedsEvent.compactMap({ $0.toData() })
-        httpGetClientSpy.completeWithDataList(expectedsEventToData)
+        let expectedsEventToData = expectedsEvent.toData()
+        httpGetClientSpy.completeWithData(expectedsEventToData!)
         wait(for: [exp], timeout: 1)
     }
     
@@ -61,8 +61,8 @@ class RemoteGetListEventsTests: XCTestCase {
             
             exp.fulfill()
         }
-        let expectedsEventToData = expectedsEvent.compactMap({ $0.toData() })
-        httpGetClientSpy.completeWithDataList(expectedsEventToData)
+        let expectedsEventToData = expectedsEvent.toData()
+        httpGetClientSpy.completeWithData(expectedsEventToData!)
         wait(for: [exp], timeout: 1)
     }
     
@@ -73,7 +73,7 @@ class RemoteGetListEventsTests: XCTestCase {
         var resultExpected: Result<[EventModel], DomainError>?
         sut?.getListEvents() { resultExpected = $0}
         sut = nil
-        httpGetClientSpy.completeWithErrorList(.noConnectivity)
+        httpGetClientSpy.completeWithError(.noConnectivity)
         XCTAssertNil(resultExpected)
     }
 }
@@ -87,4 +87,3 @@ extension RemoteGetListEventsTests {
         return (sut, httpGetClientSpy)
     }
 }
-

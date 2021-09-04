@@ -18,13 +18,15 @@ public class RemoteGetListEvents: GetListEvents {
     }
     
     public func getListEvents(completion: @escaping (Result<[EventModel], DomainError>) -> Void) {
-        httpGetClient.getList(to: url, with: nil) { [weak self] result in
+        httpGetClient.get(to: url, with: nil) { [weak self] result in
             guard self != nil else { return }
             switch result {
-            case .success(let data):         
-                let eventData = data.filter({ !($0.isEmpty) })
-                let envetModelList: [EventModel] = eventData.compactMap({ $0.toModel() })
-                completion(.success(envetModelList))
+            case .success(let data):
+                if let eventsListModel: [EventModel] = data.toArrayModel() {
+                    completion(.success(eventsListModel))
+                } else {
+                    completion(.failure(.unexpected))
+                }
             case .failure: completion(.failure(.unexpected))
             }
             

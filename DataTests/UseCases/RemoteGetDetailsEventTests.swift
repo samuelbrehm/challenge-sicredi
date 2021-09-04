@@ -37,7 +37,7 @@ class RemoteGetDetailsEventTests: XCTestCase {
             
             exp.fulfill()
         }
-        httpGetClientSpy.completeWithErrorOne(.noConnectivity)
+        httpGetClientSpy.completeWithError(.noConnectivity)
         wait(for: [exp], timeout: 1)
     }
     
@@ -52,7 +52,7 @@ class RemoteGetDetailsEventTests: XCTestCase {
             }
             exp.fulfill()
         }
-        httpGetClientSpy.completeWithDataOne(expectedEvent.toData()!)
+        httpGetClientSpy.completeWithData(expectedEvent.toData()!)
         wait(for: [exp], timeout: 1)
     }
     
@@ -63,7 +63,7 @@ class RemoteGetDetailsEventTests: XCTestCase {
         var resultExpected: Result<EventModel, DomainError>?
         sut?.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { resultExpected = $0}
         sut = nil
-        httpGetClientSpy.completeWithErrorOne(.noConnectivity)
+        httpGetClientSpy.completeWithError(.noConnectivity)
         XCTAssertNil(resultExpected)
     }
 }
