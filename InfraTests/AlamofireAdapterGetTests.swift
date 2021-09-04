@@ -22,7 +22,7 @@ class AlamofireAdapterGet {
 
 class AlamofireAdapterGetTests: XCTestCase {
     
-    func test_() throws {
+    func test_get_should_make_call_request_with_correct_url_and_method() throws {
         let url = makeURL()
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [UrlProtocolStub.self]
