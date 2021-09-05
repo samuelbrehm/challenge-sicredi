@@ -9,7 +9,7 @@ import Foundation
 import Domain
 
 public class RemoteGetDetailsEvent: GetDetailsEvent {
-    private let url: URL
+    private var url: URL
     private let httpGetClient: HttpGetClient
     
     public init(url: URL, httpGetClient: HttpGetClient) {
@@ -17,15 +17,25 @@ public class RemoteGetDetailsEvent: GetDetailsEvent {
         self.httpGetClient = httpGetClient
     }
     
-    public func getDetailsEvent(detailsEventParam: DetailsEventParam, completion: @escaping (Result<EventModel, DomainError>) -> Void) {
-        httpGetClient.getOne(to: url, with: detailsEventParam.toData()) { [weak self] result in
+    public func getDetailsEvent(idEvent: String, completion: @escaping (Result<EventModel, DomainError>) -> Void) {
+        if !idEvent.isEmpty {
+            guard let urlWithParam: URL = URL(string: "\(url)/\(idEvent)") else {
+                completion(.failure(.unexpected))
+                return
+            }
+            self.url = urlWithParam
+        }
+        httpGetClient.get(to: url, with: nil) { [weak self] result in
             guard self != nil else { return }
             switch result {
-            case .failure: completion(.failure(.unexpected))
             case .success(let eventData):
                 if let eventModel: EventModel = eventData.toModel() {
                     completion(.success(eventModel))
+                } else {
+                    completion(.failure(.unexpected))
                 }
+                
+            case .failure: completion(.failure(.unexpected))
             }
         }
     }

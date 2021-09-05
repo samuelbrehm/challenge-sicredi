@@ -15,21 +15,22 @@ class RemoteGetDetailsEventTests: XCTestCase {
     func test_getDetailsEvent_should_call_httpClient_correct_url() throws {
         let url = makeURL()
         let (sut, httpGetClientSpy) = makeSut(url: url)
-        sut.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { _ in }
+        sut.getDetailsEvent(idEvent: "") { _ in }
         XCTAssertEqual(httpGetClientSpy.url, url)
     }
     
-    func test_getDetailsEvent_should_call_httpClient_correct_data_param() throws {
+    func test_getDetailsEvent_should_call_httpClient_correct_url_with_idEvent_param() throws {
         let url = makeURL()
-        let (sut, httpGetClientSpy) = makeSut(url: url)
-        sut.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { _ in }
-        XCTAssertEqual(httpGetClientSpy.data, makeDetailsEventParam().toData())
+        let (sut, httpGetClientSpy) = makeSut(url: makeURL())
+        sut.getDetailsEvent(idEvent: "any-id") { _ in }
+        let expectURL: URL = URL(string: "\(url)/any-id")!
+        XCTAssertEqual(httpGetClientSpy.url, expectURL)
     }
     
     func test_getDetailsEvent_should_complete_with_error_if_api_complete_with_error() throws {
         let (sut, httpGetClientSpy) = makeSut()
         let exp = expectation(description: "waiting")
-        sut.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { result in
+        sut.getDetailsEvent(idEvent: "") { result in
             switch result {
             case .failure(let error): XCTAssertEqual(error, .unexpected)
             case .success(_): XCTFail("Expected error receive \(result) instead")
@@ -37,7 +38,7 @@ class RemoteGetDetailsEventTests: XCTestCase {
             
             exp.fulfill()
         }
-        httpGetClientSpy.completeWithErrorOne(.noConnectivity)
+        httpGetClientSpy.completeWithError(.noConnectivity)
         wait(for: [exp], timeout: 1)
     }
     
@@ -45,14 +46,14 @@ class RemoteGetDetailsEventTests: XCTestCase {
         let (sut, httpGetClientSpy) = makeSut()
         let exp = expectation(description: "waiting")
         let expectedEvent: EventModel = makeEventModel()
-        sut.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { result in
+        sut.getDetailsEvent(idEvent: "") { result in
             switch result {
             case .failure(_): XCTFail("Expected success receive \(result) instead")
             case .success(let receivedEvent): XCTAssertEqual(receivedEvent, expectedEvent)
             }
             exp.fulfill()
         }
-        httpGetClientSpy.completeWithDataOne(expectedEvent.toData()!)
+        httpGetClientSpy.completeWithData(expectedEvent.toData()!)
         wait(for: [exp], timeout: 1)
     }
     
@@ -61,9 +62,9 @@ class RemoteGetDetailsEventTests: XCTestCase {
         let url: URL = makeURL()
         var sut: RemoteGetDetailsEvent? = RemoteGetDetailsEvent(url: url, httpGetClient: httpGetClientSpy)
         var resultExpected: Result<EventModel, DomainError>?
-        sut?.getDetailsEvent(detailsEventParam: makeDetailsEventParam()) { resultExpected = $0}
+        sut?.getDetailsEvent(idEvent: "") { resultExpected = $0}
         sut = nil
-        httpGetClientSpy.completeWithErrorOne(.noConnectivity)
+        httpGetClientSpy.completeWithError(.noConnectivity)
         XCTAssertNil(resultExpected)
     }
 }
