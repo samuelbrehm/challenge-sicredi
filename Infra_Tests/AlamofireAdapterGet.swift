@@ -55,31 +55,11 @@ class AlamofireAdapterGetTests: XCTestCase {
     }
     
     func test_get_should_complete_with_error_when_request_complete_with_error() throws {
-        let sut = makeSut()
-        let exp = expectation(description: "waiting")
-        let expectedResult: HttpError = .noConnectivity
-        UrlProtocolStub.simulate(data: nil, response: nil, error: makeError())
-        sut.get(to: makeURL(), with: makeValidData()) { result in
-            if case .failure(let errorReceived) = result {
-                XCTAssertEqual(expectedResult, errorReceived)
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1)
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: nil, error: makeError()))
     }
     
     func test_get_should_complete_with_data_when_request_completes_with_200() {
-        let sut = makeSut()
-        let exp = expectation(description: "waiting")
-        UrlProtocolStub.simulate(data: makeValidData(), response: makeHttpResponse(), error: nil)
-        let expectedResult: Data = makeValidData()
-        sut.get(to: makeURL(), with: makeValidData()) { result in
-            if case .success(let dataReceived) = result {
-                XCTAssertEqual(expectedResult, dataReceived)
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1)
+        expectResult(.success(makeValidData()), when: (data: makeValidData(), response: makeHttpResponse(), error: nil))
     }
 }
 
@@ -91,6 +71,21 @@ extension AlamofireAdapterGetTests {
         let sut = AlamofireAdapterGet(session: session)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
+    }
+    
+    func expectResult(_ expectedResult: Result<Data?, HttpError>, when stub: (data: Data?, response: HTTPURLResponse?, error: Error?), file: StaticString = #filePath, line: UInt = #line) {
+        let sut = makeSut()
+        UrlProtocolStub.simulate(data: stub.data, response: stub.response, error: stub.error)
+        let exp = expectation(description: "waiting")
+        sut.get(to: makeURL(), with: makeValidData()) { receivedResult in
+            switch (expectedResult, receivedResult) {
+            case (.failure(let expectedError), .failure(let receivedError)): XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            case (.success(let expectedData), .success(let receivedData)): XCTAssertEqual(expectedData, receivedData, file: file, line: line)
+            default: XCTFail("Expected \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1)
     }
 }
 
