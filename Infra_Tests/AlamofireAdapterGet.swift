@@ -20,7 +20,7 @@ class AlamofireAdapterGet {
         session.request(url, method: .get, parameters: data?.toJson()).responseData { response in
             switch response.result {
             case .failure: completion(.failure(.noConnectivity))
-            case .success: break
+            case .success(let data): completion(.success(data))
             }
         }
     }
@@ -62,6 +62,20 @@ class AlamofireAdapterGetTests: XCTestCase {
         sut.get(to: makeURL(), with: makeValidData()) { result in
             if case .failure(let errorReceived) = result {
                 XCTAssertEqual(expectedResult, errorReceived)
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func test_get_should_complete_with_data_when_request_completes_with_200() {
+        let sut = makeSut()
+        let exp = expectation(description: "waiting")
+        UrlProtocolStub.simulate(data: makeValidData(), response: makeHttpResponse(), error: nil)
+        let expectedResult: Data = makeValidData()
+        sut.get(to: makeURL(), with: makeValidData()) { result in
+            if case .success(let dataReceived) = result {
+                XCTAssertEqual(expectedResult, dataReceived)
             }
             exp.fulfill()
         }
