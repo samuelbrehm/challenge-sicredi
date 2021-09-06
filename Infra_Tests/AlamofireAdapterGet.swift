@@ -7,6 +7,7 @@
 
 import XCTest
 import Alamofire
+import Data
 
 class AlamofireAdapterGet {
     private let session: Session
@@ -15,8 +16,8 @@ class AlamofireAdapterGet {
         self.session = session
     }
     
-    func get(to url: URL) {
-        session.request(url, method: .get).resume()
+    func get(to url: URL, with data: Data?) {
+        session.request(url, method: .get, parameters: data?.toJson()).resume()
     }
 }
 
@@ -28,7 +29,7 @@ class AlamofireAdapterGetTests: XCTestCase {
         configuration.protocolClasses = [UrlProtocolStub.self]
         let session = Session(configuration: configuration)
         let sut = AlamofireAdapterGet(session: session)
-        sut.get(to: url)
+        sut.get(to: url, with: nil)
         let exp = expectation(description: "waiting")
         UrlProtocolStub.observeRequest { request in
             XCTAssertEqual(url, request.url)
