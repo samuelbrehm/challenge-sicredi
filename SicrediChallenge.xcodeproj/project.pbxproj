@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6252966926E68FC8009ECB3A /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */; };
 		628537C026E161C700C82896 /* HttpGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BF26E161C700C82896 /* HttpGetClientSpy.swift */; };
 		628537C326E1625000C82896 /* EventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C226E1625000C82896 /* EventFactory.swift */; };
@@ -607,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62C8B9C626E559F400E447BF /* FactoriesTest.swift in Sources */,
+				6252966926E68FC8009ECB3A /* XCTestCase+MemoryLeak.swift in Sources */,
 				62C8B9BA26E557EA00E447BF /* AlamofireAdapterGet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,10 +30,7 @@ class AlamofireAdapterGetTests: XCTestCase {
     
     func test_get_should_make_call_request_with_correct_url_and_method() throws {
         let url = makeURL()
-        let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [UrlProtocolStub.self]
-        let session = Session(configuration: configuration)
-        let sut = AlamofireAdapterGet(session: session)
+        let sut = makeSut()
         sut.get(to: url, with: nil) { _ in }
         let exp = expectation(description: "waiting")
         UrlProtocolStub.observeRequest { request in
@@ -45,13 +42,9 @@ class AlamofireAdapterGetTests: XCTestCase {
     }
     
     func test_get_should_make_call_request_with_correct_params() throws {
-        let url = makeURL()
-        let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [UrlProtocolStub.self]
-        let session = Session(configuration: configuration)
-        let sut = AlamofireAdapterGet(session: session)
+        let sut = makeSut()
         var expectedResult: HttpError?
-        sut.get(to: url, with: makeValidData()) { result in
+        sut.get(to: makeURL(), with: makeValidData()) { result in
             if case let .failure(error) = result {
                 expectedResult = error
             }
@@ -62,6 +55,17 @@ class AlamofireAdapterGetTests: XCTestCase {
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1)
+    }
+}
+
+extension AlamofireAdapterGetTests {
+    func makeSut(file: StaticString = #filePath, line: UInt = #line) -> AlamofireAdapterGet {
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [UrlProtocolStub.self]
+        let session = Session(configuration: configuration)
+        let sut = AlamofireAdapterGet(session: session)
+        checkMemoryLeak(for: sut, file: file, line: line)
+        return sut
     }
 }
 
