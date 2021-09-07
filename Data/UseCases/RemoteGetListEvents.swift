@@ -22,7 +22,7 @@ public class RemoteGetListEvents: GetListEvents {
             guard self != nil else { return }
             switch result {
             case .success(let data):
-                if let eventsListModel: [EventModel] = data.toArrayModel() {
+                if let eventsListModel: [EventModel] = data?.toArrayModel() {
                     completion(.success(eventsListModel))
                 } else {
                     completion(.failure(.unexpected))

@@ -29,7 +29,7 @@ public class RemoteGetDetailsEvent: GetDetailsEvent {
             guard self != nil else { return }
             switch result {
             case .success(let eventData):
-                if let eventModel: EventModel = eventData.toModel() {
+                if let eventModel: EventModel = eventData?.toModel() {
                     completion(.success(eventModel))
                 } else {
                     completion(.failure(.unexpected))
