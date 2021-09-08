@@ -18,28 +18,17 @@ class AlamofireAdapterPostTests: XCTestCase {
     
     func test_post_should_make_call_request_with_correct_url_and_method() throws {
         let url = makeURL()
-        let sut = makeSut()
-        let exp = expectation(description: "waiting_post")
-        sut.post(to: url, with: makeValidData()) { _ in }
-        UrlProtocolStub.observeRequest { request in
+        testRequestFor(url: url, data: makeValidData()) { request in
             XCTAssertEqual(url, request.url)
             XCTAssertEqual("POST", request.httpMethod)
             XCTAssertNotNil(request.httpBodyStream)
-            exp.fulfill()
         }
-        wait(for: [exp], timeout: 1)
     }
     
     func test_post_should_make_request_with_no_data() {
-        let url = makeURL()
-        let sut = makeSut()
-        let exp = expectation(description: "waiting_post")
-        sut.post(to: url, with: nil) { _ in }
-        UrlProtocolStub.observeRequest { request in
+        testRequestFor(data: nil) { request in
             XCTAssertNil(request.httpBodyStream)
-            exp.fulfill()
         }
-        wait(for: [exp], timeout: 1)
     }
     
     func test_post_should_complete_with_error_when_request_complete_with_error() throws {
