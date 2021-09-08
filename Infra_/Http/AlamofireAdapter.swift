@@ -18,9 +18,18 @@ public class AlamofireAdapter: HttpGetClient {
     
     public func post(to url: URL, with data: Data?, completion: @escaping (Result<HttpStatusResponse, HttpError>) -> Void) {
         session.request(url, method: .post, parameters: data?.toJson()).response { response in
+            guard let statusCode = response.response?.statusCode else {
+                return completion(.failure(.noConnectivity))
+            }
             switch response.result {
             case .failure: completion(.failure(.badRequest))
-            case .success: completion(.success(.ok))
+            case .success:
+                switch statusCode {
+                case 200...299:
+                    completion(.success(.ok))
+                default:
+                    completion(.failure(.noConnectivity))
+                }
             }
         }
     }

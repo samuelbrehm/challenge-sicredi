@@ -43,11 +43,20 @@ class AlamofireAdapterPostTests: XCTestCase {
     }
     
     func test_post_should_complete_with_error_when_request_complete_with_error() throws {
-        expectResult(.failure(.badRequest), when: (data: nil, response: nil, error: makeError()))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: nil, error: makeError()))
     }
     
     func test_post_should_complete_with_data_when_request_completes_with_200() {
+        expectResult(.success(.ok), when: (data: nil, response: makeHttpResponse(), error: nil))
         expectResult(.success(.ok), when: (data: makeValidData(), response: makeHttpResponse(), error: nil))
+    }
+    
+    func test_post_should_complete_with_error_on_all_invalid_cases() {
+        expectResult(.failure(.noConnectivity), when: (data: makeValidData(), response: makeHttpResponse(), error: makeError()))
+        expectResult(.failure(.noConnectivity), when: (data: makeValidData(), response: nil, error: makeError()))
+        expectResult(.failure(.noConnectivity), when: (data: makeValidData(), response: nil, error: nil))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: makeHttpResponse(), error: makeError()))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: nil, error: nil))
     }
 }
 
