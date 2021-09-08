@@ -27,6 +27,18 @@ class AlamofireAdapterPostTests: XCTestCase {
         }
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_post_should_make_request_with_no_data() {
+        let url = makeURL()
+        let sut = makeSut()
+        let exp = expectation(description: "waiting_post")
+        sut.post(to: url, with: nil) { _ in }
+        UrlProtocolStub.observeRequest { request in
+            XCTAssertNil(request.httpBodyStream)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1)
+    }
 }
 
 extension AlamofireAdapterPostTests {
@@ -37,5 +49,15 @@ extension AlamofireAdapterPostTests {
         let sut = AlamofireAdapter(session: session)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
+    }
+    
+    func testRequestFor(url: URL = makeURL(), data: Data?, action: @escaping (URLRequest) -> Void) {
+        let sut = makeSut()
+        let exp = expectation(description: "waiting_post")
+        sut.post(to: url, with: data) { _ in exp.fulfill() }
+        var request: URLRequest?
+        UrlProtocolStub.observeRequest { request = $0 }
+        wait(for: [exp], timeout: 1)
+        action(request!)
     }
 }
