@@ -20,7 +20,7 @@ public class AlamofireAdapter: HttpGetClient {
         session.request(url, method: .post, parameters: data?.toJson()).response { response in
             switch response.result {
             case .failure: completion(.failure(.badRequest))
-            case .success: break
+            case .success: completion(.success(.ok))
             }
         }
     }

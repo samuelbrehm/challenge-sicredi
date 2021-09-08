@@ -45,6 +45,10 @@ class AlamofireAdapterPostTests: XCTestCase {
     func test_post_should_complete_with_error_when_request_complete_with_error() throws {
         expectResult(.failure(.badRequest), when: (data: nil, response: nil, error: makeError()))
     }
+    
+    func test_post_should_complete_with_data_when_request_completes_with_200() {
+        expectResult(.success(.ok), when: (data: makeValidData(), response: makeHttpResponse(), error: nil))
+    }
 }
 
 extension AlamofireAdapterPostTests {
