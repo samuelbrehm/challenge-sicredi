@@ -24,8 +24,6 @@ public class RemoteGetListEvents: GetListEvents {
             case .success(let data):
                 if let eventsListModel: [EventModel] = data?.toArrayModel() {
                     completion(.success(eventsListModel))
-                } else {
-                    completion(.failure(.unexpected))
                 }
             case .failure: completion(.failure(.unexpected))
             }

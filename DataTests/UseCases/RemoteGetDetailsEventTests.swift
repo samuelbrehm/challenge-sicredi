@@ -13,7 +13,7 @@ import Data
 
 class RemoteGetDetailsEventTests: XCTestCase {
     func test_getDetailsEvent_should_call_httpClient_correct_url() throws {
-        let url = makeURL()
+        let url = makeURL().appendingPathComponent("/")
         let (sut, httpGetClientSpy) = makeSut(url: url)
         sut.getDetailsEvent(idEvent: "") { _ in }
         XCTAssertEqual(httpGetClientSpy.url, url)
@@ -22,8 +22,9 @@ class RemoteGetDetailsEventTests: XCTestCase {
     func test_getDetailsEvent_should_call_httpClient_correct_url_with_idEvent_param() throws {
         let url = makeURL()
         let (sut, httpGetClientSpy) = makeSut(url: makeURL())
-        sut.getDetailsEvent(idEvent: "any-id") { _ in }
-        let expectURL: URL = URL(string: "\(url)/any-id")!
+        let idEventTest: String = "any-id"
+        sut.getDetailsEvent(idEvent: idEventTest) { _ in }
+        let expectURL: URL = url.appendingPathComponent(idEventTest)
         XCTAssertEqual(httpGetClientSpy.url, expectURL)
     }
     

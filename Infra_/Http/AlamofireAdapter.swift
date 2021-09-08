@@ -51,8 +51,6 @@ public class AlamofireAdapter: HttpGetClient, HttpPostClient {
             case .failure: completion(.failure(.noConnectivity))
             case .success(let data):
                 switch statusCode {
-                case 204:
-                    completion(.success(nil))
                 case 200...299:
                     completion(.success(data))
                 case 401:
