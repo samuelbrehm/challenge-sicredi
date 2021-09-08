@@ -58,6 +58,20 @@ class AlamofireAdapterPostTests: XCTestCase {
         expectResult(.failure(.noConnectivity), when: (data: nil, response: makeHttpResponse(), error: makeError()))
         expectResult(.failure(.noConnectivity), when: (data: nil, response: nil, error: nil))
     }
+    
+    func test_post_should_complete_with_error_when_request_completes_with_non_200() {
+        expectResult(.failure(.badRequest), when: (data: nil, response: makeHttpResponse(statusCode: 400), error: nil))
+        expectResult(.failure(.badRequest), when: (data: nil, response: makeHttpResponse(statusCode: 450), error: nil))
+        expectResult(.failure(.badRequest), when: (data: nil, response: makeHttpResponse(statusCode: 499), error: nil))
+        expectResult(.failure(.serverError), when: (data: nil, response: makeHttpResponse(statusCode: 500), error: nil))
+        expectResult(.failure(.serverError), when: (data: nil, response: makeHttpResponse(statusCode: 550), error: nil))
+        expectResult(.failure(.serverError), when: (data: nil, response: makeHttpResponse(statusCode: 599), error: nil))
+        expectResult(.failure(.serverError), when: (data: nil, response: makeHttpResponse(statusCode: 500), error: nil))
+        expectResult(.failure(.unauthorized), when: (data: nil, response: makeHttpResponse(statusCode: 401), error: nil))
+        expectResult(.failure(.forbidden), when: (data: nil, response: makeHttpResponse(statusCode: 403), error: nil))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: makeHttpResponse(statusCode: 300), error: nil))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: makeHttpResponse(statusCode: 100), error: nil))
+    }
 }
 
 extension AlamofireAdapterPostTests {

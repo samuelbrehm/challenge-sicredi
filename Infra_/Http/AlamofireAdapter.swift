@@ -22,11 +22,19 @@ public class AlamofireAdapter: HttpGetClient {
                 return completion(.failure(.noConnectivity))
             }
             switch response.result {
-            case .failure: completion(.failure(.badRequest))
+            case .failure: completion(.failure(.noConnectivity))
             case .success:
                 switch statusCode {
                 case 200...299:
                     completion(.success(.ok))
+                case 401:
+                    completion(.failure(.unauthorized))
+                case 403:
+                    completion(.failure(.forbidden))
+                case 400...499:
+                    completion(.failure(.badRequest))
+                case 500...599:
+                    completion(.failure(.serverError))
                 default:
                     completion(.failure(.noConnectivity))
                 }
