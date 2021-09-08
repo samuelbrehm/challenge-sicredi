@@ -17,7 +17,12 @@ public class AlamofireAdapter: HttpGetClient {
     }
     
     public func post(to url: URL, with data: Data?, completion: @escaping (Result<HttpStatusResponse, HttpError>) -> Void) {
-        session.request(url, method: .post, parameters: data?.toJson()).resume()
+        session.request(url, method: .post, parameters: data?.toJson()).response { response in
+            switch response.result {
+            case .failure: completion(.failure(.badRequest))
+            case .success: break
+            }
+        }
     }
     
     public func get(to url: URL, with data: Data?, completion: @escaping (Result<Data?, HttpError>) -> Void) {
