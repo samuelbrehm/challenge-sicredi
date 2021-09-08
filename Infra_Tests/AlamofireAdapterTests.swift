@@ -8,42 +8,7 @@
 import XCTest
 import Alamofire
 import Data
-
-class AlamofireAdapterGet: HttpGetClient {
-    private let session: Session
-    
-    public init(session: Session = .default) {
-        self.session = session
-    }
-    
-    func get(to url: URL, with data: Data?, completion: @escaping (Result<Data?, HttpError>) -> Void) {
-        session.request(url, method: .get, parameters: data?.toJson()).responseData { response in
-            guard let statusCode = response.response?.statusCode else {
-                return completion(.failure(.noConnectivity))
-            }
-            switch response.result {
-            case .failure: completion(.failure(.noConnectivity))
-            case .success(let data):
-                switch statusCode {
-                case 204:
-                    completion(.success(nil))
-                case 200...299:
-                    completion(.success(data))
-                case 401:
-                    completion(.failure(.unauthorized))
-                case 403:
-                    completion(.failure(.forbidden))
-                case 400...499:
-                    completion(.failure(.badRequest))
-                case 500...599:
-                    completion(.failure(.serverError))
-                default:
-                    completion(.failure(.noConnectivity))
-                }
-            }
-        }
-    }
-}
+import Infra_
 
 class AlamofireAdapterGetTests: XCTestCase {
     
@@ -96,11 +61,11 @@ class AlamofireAdapterGetTests: XCTestCase {
 }
 
 extension AlamofireAdapterGetTests {
-    func makeSut(file: StaticString = #filePath, line: UInt = #line) -> AlamofireAdapterGet {
+    func makeSut(file: StaticString = #filePath, line: UInt = #line) -> AlamofireAdapter {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [UrlProtocolStub.self]
         let session = Session(configuration: configuration)
-        let sut = AlamofireAdapterGet(session: session)
+        let sut = AlamofireAdapter(session: session)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
     }
@@ -128,52 +93,5 @@ extension AlamofireAdapterGetTests {
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1)
-    }
-}
-
-class UrlProtocolStub: URLProtocol {
-    static var emit: ((URLRequest) -> Void)?
-    static var data: Data?
-    static var response: HTTPURLResponse?
-    static var error: Error?
-    
-    static func observeRequest(completion: @escaping (URLRequest) -> Void) {
-        UrlProtocolStub.emit = completion
-    }
-    
-    static func simulate(data: Data?, response: HTTPURLResponse?, error: Error?) {
-        UrlProtocolStub.data = data
-        UrlProtocolStub.response = response
-        UrlProtocolStub.error = error
-    }
-    
-    open override class func canInit(with request: URLRequest) -> Bool {
-        return true
-    }
-
-    open override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        return request
-    }
-    
-    open override func startLoading() {
-        UrlProtocolStub.emit?(request)
-        
-        if let data = UrlProtocolStub.data {
-            client?.urlProtocol(self, didLoad: data)
-        }
-        
-        if let response = UrlProtocolStub.response {
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-        }
-        
-        if let error = UrlProtocolStub.error {
-            client?.urlProtocol(self, didFailWithError: error)
-        }
-        
-        client?.urlProtocolDidFinishLoading(self)
-    }
-
-    open override func stopLoading() {
-        
     }
 }
