@@ -13,6 +13,8 @@ import Data
 import Infra_
 
 class AlamofireAdapterPostTests: XCTestCase {
+    private var configuration: URLSessionConfiguration = URLSessionConfiguration.default
+    private var session: Session = Session()
     
     func test_post_should_make_call_request_with_correct_url_and_method() throws {
         let url = makeURL()
@@ -43,9 +45,8 @@ class AlamofireAdapterPostTests: XCTestCase {
 
 extension AlamofireAdapterPostTests {
     func makeSut(file: StaticString = #filePath, line: UInt = #line) -> AlamofireAdapter {
-        let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [UrlProtocolStub.self]
-        let session = Session(configuration: configuration)
+        self.configuration.protocolClasses = [UrlProtocolStub.self]
+        self.session = Session(configuration: configuration)
         let sut = AlamofireAdapter(session: session)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
