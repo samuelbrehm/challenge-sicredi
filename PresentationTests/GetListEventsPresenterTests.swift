@@ -19,7 +19,8 @@ final class ListEventsPresenter {
     }
     
     func showEventsList() {
-        self.getListEvents.getListEvents { result in
+        self.getListEvents.getListEvents { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .failure: self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os eventos."))
             case .success: break
@@ -47,7 +48,7 @@ class GetListEventsPresenterTests: XCTestCase {
     func test_ListEvents_should_show_alert_error_if_getListEvents_complete_with_error() throws {
         let getListEventsSpy = GetListEventsSpy()
         let alertViewSpy = AlertViewSpy()
-        let sut = ListEventsPresenter(getListEvents: getListEventsSpy, alertView: alertViewSpy)
+        let sut = makeSut(getListEventsSpy: getListEventsSpy, alertViewSpy: alertViewSpy)
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { alertViewModel in
             XCTAssertEqual(alertViewModel, AlertViewModel(title: "Falha", message: "Erro ao carregar os eventos."))
@@ -61,6 +62,12 @@ class GetListEventsPresenterTests: XCTestCase {
 }
 
 extension GetListEventsPresenterTests {
+    func makeSut(getListEventsSpy: GetListEventsSpy = GetListEventsSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), file: StaticString = #filePath, line: UInt = #line) -> ListEventsPresenter {
+        let sut = ListEventsPresenter(getListEvents: getListEventsSpy, alertView: alertViewSpy)
+        checkMemoryLeak(for: sut, file: file, line: line)
+        return sut
+    }
+    
     class AlertViewSpy: AlertView {
         var emit: ((AlertViewModel) -> Void)?
         

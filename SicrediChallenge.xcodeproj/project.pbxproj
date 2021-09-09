@@ -11,6 +11,7 @@
 		6222C59B26EA39CF00754B81 /* GetListEventsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6222C59A26EA39CF00754B81 /* GetListEventsPresenterTests.swift */; };
 		6222C5A626EA498900754B81 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A2A78326DFB4BD000D45E8 /* Domain.framework */; };
 		6222C5A726EA498900754B81 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62A2A78326DFB4BD000D45E8 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6222C5AB26EA8C0B00754B81 /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		6252966926E68FC8009ECB3A /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */; };
 		628537C026E161C700C82896 /* HttpGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BF26E161C700C82896 /* HttpGetClientSpy.swift */; };
@@ -800,6 +801,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6222C5AB26EA8C0B00754B81 /* XCTestCase+MemoryLeak.swift in Sources */,
 				6222C59B26EA39CF00754B81 /* GetListEventsPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
