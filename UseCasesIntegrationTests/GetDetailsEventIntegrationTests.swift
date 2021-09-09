@@ -14,7 +14,7 @@ class GetDetailsEventsIntegrationTests: XCTestCase {
         let alamofireAdapter = AlamofireAdapter()
         let url: URL = URL(string: "http://5f5a8f24d44d640016169133.mockapi.io/api/events")!
         let sut = RemoteGetDetailsEvent(url: url, httpGetClient: alamofireAdapter)
-        let exp = expectation(description: "waiting_list_events")
+        let exp = expectation(description: "waiting_details_events")
         sut.getDetailsEvent(idEvent: "1") { result in
             switch result {
             case .failure: XCTFail("Expect success result got \(result) instead")

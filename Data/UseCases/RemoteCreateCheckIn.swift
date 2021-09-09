@@ -22,7 +22,7 @@ public class RemoteCreateCheckIn: CreateCheckIn {
             guard self != nil else { return }
             switch result {
             case .failure: completion(.failure(.unexpected))
-            case .success(_): completion(.success(.success))
+            case .success: completion(.success(.success))
             }
         }
     }
