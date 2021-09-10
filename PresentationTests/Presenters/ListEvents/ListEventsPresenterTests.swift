@@ -9,7 +9,7 @@ import XCTest
 import Domain
 import Presentation
 
-class GetListEventsPresenterTests: XCTestCase {
+class ListEventsPresenterTests: XCTestCase {
     func test_showEventsList_should_show_alert_error_if_getListEvents_complete_with_error() throws {
         let getListEventsSpy = GetListEventsSpy()
         let alertViewSpy = AlertViewSpy()
@@ -81,7 +81,7 @@ class GetListEventsPresenterTests: XCTestCase {
     }
 }
 
-extension GetListEventsPresenterTests {
+extension ListEventsPresenterTests {
     func makeSut(getListEventsSpy: GetListEventsSpy = GetListEventsSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), loadingViewSpy: LoadingViewSpy = LoadingViewSpy() ,eventsViewSpy: EventsViewSpy = EventsViewSpy() , file: StaticString = #filePath, line: UInt = #line) -> ListEventsPresenter {
         let sut = ListEventsPresenter(getListEvents: getListEventsSpy, alertView: alertViewSpy, loadingView: loadingViewSpy, eventsView: eventsViewSpy)
         checkMemoryLeak(for: sut, file: file, line: line)
