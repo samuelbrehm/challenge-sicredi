@@ -57,6 +57,9 @@
 		62C22DA926EB968C0085F513 /* EventsViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DA826EB968C0085F513 /* EventsViewSpy.swift */; };
 		62C22DAB26EB96BB0085F513 /* GetListEventsSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DAA26EB96BB0085F513 /* GetListEventsSpy.swift */; };
 		62C22DAE26EB98F90085F513 /* DetailsEventPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DAD26EB98F90085F513 /* DetailsEventPresenterTests.swift */; };
+		62C22DB126EBD5720085F513 /* DetailsEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DB026EBD5720085F513 /* DetailsEventPresenter.swift */; };
+		62C22DB326EBD5FF0085F513 /* GetDetailsEventSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DB226EBD5FF0085F513 /* GetDetailsEventSpy.swift */; };
+		62C22DB526EBD6290085F513 /* DetailsEventViewSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DB426EBD6290085F513 /* DetailsEventViewSpy.swift */; };
 		62C8B9B526E557EA00E447BF /* Infra_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62C8B9AC26E557EA00E447BF /* Infra_.framework */; };
 		62C8B9BA26E557EA00E447BF /* AlamofireAdapterGetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C8B9B926E557EA00E447BF /* AlamofireAdapterGetTests.swift */; };
 		62C8B9C526E5596100E447BF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 62C8B9C426E5596100E447BF /* Alamofire */; };
@@ -200,6 +203,9 @@
 		62C22DA826EB968C0085F513 /* EventsViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewSpy.swift; sourceTree = "<group>"; };
 		62C22DAA26EB96BB0085F513 /* GetListEventsSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEventsSpy.swift; sourceTree = "<group>"; };
 		62C22DAD26EB98F90085F513 /* DetailsEventPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsEventPresenterTests.swift; sourceTree = "<group>"; };
+		62C22DB026EBD5720085F513 /* DetailsEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsEventPresenter.swift; sourceTree = "<group>"; };
+		62C22DB226EBD5FF0085F513 /* GetDetailsEventSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEventSpy.swift; sourceTree = "<group>"; };
+		62C22DB426EBD6290085F513 /* DetailsEventViewSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsEventViewSpy.swift; sourceTree = "<group>"; };
 		62C8B9AC26E557EA00E447BF /* Infra_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Infra_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C8B9AF26E557EA00E447BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62C8B9B426E557EA00E447BF /* Infra_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Infra_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -485,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				62C22DAA26EB96BB0085F513 /* GetListEventsSpy.swift */,
+				62C22DB226EBD5FF0085F513 /* GetDetailsEventSpy.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -513,6 +520,7 @@
 				62C22DA426EB96360085F513 /* AlertViewSpy.swift */,
 				62C22DA626EB965D0085F513 /* LoadingViewSpy.swift */,
 				62C22DA826EB968C0085F513 /* EventsViewSpy.swift */,
+				62C22DB426EBD6290085F513 /* DetailsEventViewSpy.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -555,6 +563,7 @@
 		62C22DAF26EBC3CC0085F513 /* DetailsEvent */ = {
 			isa = PBXGroup;
 			children = (
+				62C22DB026EBD5720085F513 /* DetailsEventPresenter.swift */,
 			);
 			path = DetailsEvent;
 			sourceTree = "<group>";
@@ -899,6 +908,7 @@
 				62C22D9F26EB94E60085F513 /* AlertView.swift in Sources */,
 				62C22DA126EB95020085F513 /* LoadingView.swift in Sources */,
 				62C22DA326EB95270085F513 /* EventsView.swift in Sources */,
+				62C22DB126EBD5720085F513 /* DetailsEventPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,8 +922,10 @@
 				6222C5AC26EA9C0C00754B81 /* EventFactory.swift in Sources */,
 				62C22DAE26EB98F90085F513 /* DetailsEventPresenterTests.swift in Sources */,
 				6222C5AB26EA8C0B00754B81 /* XCTestCase+MemoryLeak.swift in Sources */,
+				62C22DB326EBD5FF0085F513 /* GetDetailsEventSpy.swift in Sources */,
 				62C22DA926EB968C0085F513 /* EventsViewSpy.swift in Sources */,
 				6222C59B26EA39CF00754B81 /* ListEventsPresenterTests.swift in Sources */,
+				62C22DB526EBD6290085F513 /* DetailsEventViewSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,35 +10,6 @@ import XCTest
 import Domain
 import Presentation
 
-final class DetailsEventPresenter {
-    private let getDetailsEvent: GetDetailsEvent
-    private let alertView: AlertView
-    private let loadingView: LoadingView
-    private let detailsEventView: DetailsEventView
-    
-    init(getDetailsEvent: GetDetailsEvent, alertView: AlertView, loadingView: LoadingView, detailsEventView: DetailsEventView) {
-        self.getDetailsEvent = getDetailsEvent
-        self.alertView = alertView
-        self.loadingView = loadingView
-        self.detailsEventView = detailsEventView
-    }
-    
-    public func showDetailsEvent(idEvent: String) {
-        self.loadingView.display(viewModel: LoadingViewModel(isLoading: true))
-        self.getDetailsEvent.getDetailsEvent(idEvent: idEvent) { [weak self] result in
-            guard let self = self else { return }
-            self.loadingView.display(viewModel: LoadingViewModel(isLoading: false))
-            switch result {
-            case .failure:
-                self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os dados do evento."))
-            case .success(let eventModel):
-                let eventViewModel: EventsViewModel = EventsViewModel().convertToEventsViewModel(eventModel: eventModel)
-                self.detailsEventView.showDetailsEvent(viewModel: eventViewModel)
-            }
-        }
-    }
-}
-
 class DetailsEventPresenterTests: XCTestCase {
     func test_showDetailsEvent_should_show_alert_error_if_getDetailsEvent_complete_with_error() throws {
         let getDetailsEventSpy = GetDetailsEventSpy()
@@ -98,33 +69,5 @@ extension DetailsEventPresenterTests {
         let sut = DetailsEventPresenter(getDetailsEvent: getDetailsEventSpy, alertView: alertViewSpy, loadingView: loadingViewSpy, detailsEventView: detailsEventViewSpy)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
-    }
-    
-    class GetDetailsEventSpy: GetDetailsEvent {
-        var completion: ((Result<EventModel, DomainError>) -> Void)?
-        
-        func getDetailsEvent(idEvent: String, completion: @escaping (Result<EventModel, DomainError>) -> Void) {
-            self.completion = completion
-        }
-        
-        func completeWithError(_ error: DomainError) {
-            self.completion?(.failure(error))
-        }
-        
-        func completeWithDetailsEvent(_ event: EventModel) {
-            self.completion?(.success(event))
-        }
-    }
-    
-    class DetailsEventViewSpy: DetailsEventView {
-        var emit: ((EventsViewModel) -> Void)?
-        
-        func observe(completion: @escaping (EventsViewModel) -> Void) {
-            self.emit = completion
-        }
-        
-        func showDetailsEvent(viewModel: EventsViewModel) {
-            self.emit?(viewModel)
-        }
     }
 }
