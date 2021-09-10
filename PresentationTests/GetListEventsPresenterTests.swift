@@ -25,8 +25,12 @@ final class ListEventsPresenter {
             switch result {
             case .failure: self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os eventos."))
             case .success(let listEvents):
-                let listEventsViewModel: [EventsViewModel] = EventsViewModel().convertToListEventModel(listEventsModel: listEvents)
-                self.eventsView.showEvents(viewModel: listEventsViewModel)
+                if listEvents.isEmpty {
+                    self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os eventos."))
+                } else {
+                    let listEventsViewModel: [EventsViewModel] = EventsViewModel().convertToListEventModel(listEventsModel: listEvents)
+                    self.eventsView.showEvents(viewModel: listEventsViewModel)                    
+                }
             }
         }
     }
@@ -99,6 +103,22 @@ class GetListEventsPresenterTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
+    func test_ListEvents_should_show_alert_error_if_getListEvents_complete_with_empty_array() throws {
+        let getListEventsSpy = GetListEventsSpy()
+        let eventsViewSpy = EventsViewSpy()
+        let alertViewSpy = AlertViewSpy()
+        let sut = makeSut(getListEventsSpy: getListEventsSpy, alertViewSpy: alertViewSpy, eventsViewSpy: eventsViewSpy)
+        let expectedsEvents: [EventModel] = []
+        let exp = expectation(description: "waiting")
+        alertViewSpy.observe { alertViewModel in
+            XCTAssertEqual(alertViewModel, AlertViewModel(title: "Falha", message: "Erro ao carregar os eventos."))
+            exp.fulfill()
+        }
+        sut.showEventsList()
+        getListEventsSpy.completeWithListEvents(expectedsEvents)
+        wait(for: [exp], timeout: 1)
+    }
+    
     func test_ListEvents_should_load_list_events_if_getListEvents_complete_with_success() throws {
         let getListEventsSpy = GetListEventsSpy()
         let eventsViewSpy = EventsViewSpy()
@@ -116,7 +136,6 @@ class GetListEventsPresenterTests: XCTestCase {
         getListEventsSpy.completeWithListEvents(expectedsEvents)
         wait(for: [exp], timeout: 1)
     }
-
 }
 
 extension GetListEventsPresenterTests {
