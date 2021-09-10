@@ -14,13 +14,13 @@ final class DetailsEventPresenter {
     private let getDetailsEvent: GetDetailsEvent
     private let alertView: AlertView
     private let loadingView: LoadingView
-    private let eventsView: EventsView
+    private let detailsEventView: DetailsEventView
     
-    init(getDetailsEvent: GetDetailsEvent, alertView: AlertView, loadingView: LoadingView, eventsView: EventsView) {
+    init(getDetailsEvent: GetDetailsEvent, alertView: AlertView, loadingView: LoadingView, detailsEventView: DetailsEventView) {
         self.getDetailsEvent = getDetailsEvent
         self.alertView = alertView
         self.loadingView = loadingView
-        self.eventsView = eventsView
+        self.detailsEventView = detailsEventView
     }
     
     public func showDetailsEvent(idEvent: String) {
@@ -29,7 +29,9 @@ final class DetailsEventPresenter {
             switch result {
             case .failure:
                 self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os dados do evento."))
-            case .success: break
+            case .success(let eventModel):
+                let eventViewModel: EventsViewModel = EventsViewModel(peoples: eventModel.peoples ?? [], date: eventModel.date ?? Date(), description: eventModel.description ?? "", image: eventModel.image ?? "", latitude: eventModel.latitude ?? 0.0, longitude: eventModel.longitude ?? 0.0, price: eventModel.price ?? 0.0, title: eventModel.title ?? "", id: eventModel.id ?? "")
+                self.detailsEventView.showDetailsEvent(viewModel: eventViewModel)
             }
         }
     }
@@ -49,11 +51,27 @@ class DetailsEventPresenterTests: XCTestCase {
         getDetailsEventSpy.completeWithError(.unexpected)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_showDetailsEvent_should_load_details_event_if_getDetailsEvent_complete_with_success() throws {
+        let getDetailsEventSpy = GetDetailsEventSpy()
+        let detailsEventViewSpy = DetailsEventViewSpy()
+        let sut = makeSut(getDetailsEventSpy: getDetailsEventSpy, detailsEventViewSpy: detailsEventViewSpy)
+        let expectedDetailsEvent: EventModel = makeEventModel()
+        let detailsEventConvertViewModel = EventsViewModel(peoples: expectedDetailsEvent.peoples!, date: expectedDetailsEvent.date!, description: expectedDetailsEvent.description!, image: expectedDetailsEvent.image!, latitude: expectedDetailsEvent.latitude!, longitude: expectedDetailsEvent.longitude!, price: expectedDetailsEvent.price!, title: expectedDetailsEvent.title!, id: expectedDetailsEvent.id!)
+        let exp = expectation(description: "waiting")
+        detailsEventViewSpy.observe { detailsEvent in
+            XCTAssertEqual(detailsEvent, detailsEventConvertViewModel)
+            exp.fulfill()
+        }
+        sut.showDetailsEvent(idEvent: "any-id")
+        getDetailsEventSpy.completeWithDetailsEvent(expectedDetailsEvent)
+        wait(for: [exp], timeout: 1)
+    }
 }
 
 extension DetailsEventPresenterTests {
-    func makeSut(getDetailsEventSpy: GetDetailsEventSpy = GetDetailsEventSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), loadingViewSpy: LoadingViewSpy = LoadingViewSpy() ,eventsViewSpy: EventsViewSpy = EventsViewSpy() , file: StaticString = #filePath, line: UInt = #line) -> DetailsEventPresenter {
-        let sut = DetailsEventPresenter(getDetailsEvent: getDetailsEventSpy, alertView: alertViewSpy, loadingView: loadingViewSpy, eventsView: eventsViewSpy)
+    func makeSut(getDetailsEventSpy: GetDetailsEventSpy = GetDetailsEventSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), loadingViewSpy: LoadingViewSpy = LoadingViewSpy(), detailsEventViewSpy: DetailsEventViewSpy = DetailsEventViewSpy() , file: StaticString = #filePath, line: UInt = #line) -> DetailsEventPresenter {
+        let sut = DetailsEventPresenter(getDetailsEvent: getDetailsEventSpy, alertView: alertViewSpy, loadingView: loadingViewSpy, detailsEventView: detailsEventViewSpy)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
     }
@@ -69,9 +87,20 @@ extension DetailsEventPresenterTests {
             self.completion?(.failure(error))
         }
         
-        func completeWithListEvents(_ event: EventModel) {
+        func completeWithDetailsEvent(_ event: EventModel) {
             self.completion?(.success(event))
         }
     }
     
+    class DetailsEventViewSpy: DetailsEventView {
+        var emit: ((EventsViewModel) -> Void)?
+        
+        func observe(completion: @escaping (EventsViewModel) -> Void) {
+            self.emit = completion
+        }
+        
+        func showDetailsEvent(viewModel: EventsViewModel) {
+            self.emit?(viewModel)
+        }
+    }
 }

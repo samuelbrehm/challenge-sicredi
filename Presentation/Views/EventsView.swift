@@ -12,6 +12,10 @@ public protocol EventsView {
     func showEvents(viewModel: [EventsViewModel])
 }
 
+public protocol DetailsEventView {
+    func showDetailsEvent(viewModel: EventsViewModel)
+}
+
 public struct EventsViewModel: Equatable {
     public var peoples: [PeopleModel]?
     public var date: Date?
