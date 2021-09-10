@@ -105,7 +105,7 @@ struct EventsViewModel: Equatable {
 
 class GetListEventsPresenterTests: XCTestCase {
 
-    func test_ListEvents_should_show_alert_error_if_getListEvents_complete_with_error() throws {
+    func test_showEventsList_should_show_alert_error_if_getListEvents_complete_with_error() throws {
         let getListEventsSpy = GetListEventsSpy()
         let alertViewSpy = AlertViewSpy()
         let sut = makeSut(getListEventsSpy: getListEventsSpy, alertViewSpy: alertViewSpy)
@@ -119,7 +119,7 @@ class GetListEventsPresenterTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_ListEvents_should_show_alert_error_if_getListEvents_complete_with_empty_array() throws {
+    func test_showEventsList_should_show_alert_error_if_getListEvents_complete_with_empty_array() throws {
         let getListEventsSpy = GetListEventsSpy()
         let eventsViewSpy = EventsViewSpy()
         let alertViewSpy = AlertViewSpy()
@@ -135,7 +135,7 @@ class GetListEventsPresenterTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_ListEvents_should_load_list_events_if_getListEvents_complete_with_success() throws {
+    func test_showEventsList_should_load_list_events_if_getListEvents_complete_with_success() throws {
         let getListEventsSpy = GetListEventsSpy()
         let eventsViewSpy = EventsViewSpy()
         let sut = makeSut(getListEventsSpy: getListEventsSpy, eventsViewSpy: eventsViewSpy)
@@ -153,7 +153,7 @@ class GetListEventsPresenterTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_ListEvents_should_show_loading_status_before_and_after_getListEvents() throws {
+    func test_showEventsList_should_show_loading_status_before_and_after_getListEvents() throws {
         let loadingViewSpy = LoadingViewSpy()
         let getListEventsSpy = GetListEventsSpy()
         let sut = makeSut(getListEventsSpy: getListEventsSpy, loadingViewSpy: loadingViewSpy)
