@@ -47,4 +47,10 @@ public struct EventsViewModel: Equatable {
         }
         return listViewModel
     }
+    
+    public func convertToEventsViewModel(eventModel: EventModel) -> EventsViewModel {
+        let eventViewModel: EventsViewModel = EventsViewModel(peoples: eventModel.peoples ?? [], date: eventModel.date ?? Date(), description: eventModel.description ?? "", image: eventModel.image ?? "", latitude: eventModel.latitude ?? 0.0, longitude: eventModel.longitude ?? 0.0, price: eventModel.price ?? 0.0, title: eventModel.title ?? "", id: eventModel.id ?? "")
+        
+        return eventViewModel
+    }
 }

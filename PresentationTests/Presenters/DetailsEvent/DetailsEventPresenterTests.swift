@@ -30,7 +30,7 @@ final class DetailsEventPresenter {
             case .failure:
                 self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os dados do evento."))
             case .success(let eventModel):
-                let eventViewModel: EventsViewModel = EventsViewModel(peoples: eventModel.peoples ?? [], date: eventModel.date ?? Date(), description: eventModel.description ?? "", image: eventModel.image ?? "", latitude: eventModel.latitude ?? 0.0, longitude: eventModel.longitude ?? 0.0, price: eventModel.price ?? 0.0, title: eventModel.title ?? "", id: eventModel.id ?? "")
+                let eventViewModel: EventsViewModel = EventsViewModel().convertToEventsViewModel(eventModel: eventModel)
                 self.detailsEventView.showDetailsEvent(viewModel: eventViewModel)
             }
         }
