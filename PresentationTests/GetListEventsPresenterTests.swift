@@ -11,17 +11,21 @@ import Domain
 final class ListEventsPresenter {
     private let getListEvents: GetListEvents
     private let alertView: AlertView
+    private let loadingView: LoadingView
     private let eventsView: EventsView
     
-    init(getListEvents: GetListEvents, alertView: AlertView, eventsView: EventsView) {
+    init(getListEvents: GetListEvents, alertView: AlertView, loadingView: LoadingView, eventsView: EventsView) {
         self.getListEvents = getListEvents
         self.alertView = alertView
+        self.loadingView = loadingView
         self.eventsView = eventsView
     }
     
     func showEventsList() {
+        self.loadingView.display(viewModel: LoadingViewModel(isLoading: true))
         self.getListEvents.getListEvents { [weak self] result in
             guard let self = self else { return }
+            self.loadingView.display(viewModel: LoadingViewModel(isLoading: false))
             switch result {
             case .failure: self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os eventos."))
             case .success(let listEvents):
@@ -29,7 +33,7 @@ final class ListEventsPresenter {
                     self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os eventos."))
                 } else {
                     let listEventsViewModel: [EventsViewModel] = EventsViewModel().convertToListEventModel(listEventsModel: listEvents)
-                    self.eventsView.showEvents(viewModel: listEventsViewModel)                    
+                    self.eventsView.showEvents(viewModel: listEventsViewModel)
                 }
             }
         }
@@ -47,6 +51,18 @@ struct AlertViewModel: Equatable {
     init(title: String, message: String) {
         self.title = title
         self.message = message
+    }
+}
+
+public protocol LoadingView {
+    func display(viewModel: LoadingViewModel)
+}
+
+public struct LoadingViewModel: Equatable {
+    public var isLoading: Bool
+
+    public init(isLoading: Bool) {
+        self.isLoading = isLoading
     }
 }
 
@@ -136,11 +152,33 @@ class GetListEventsPresenterTests: XCTestCase {
         getListEventsSpy.completeWithListEvents(expectedsEvents)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_ListEvents_should_show_loading_status_before_and_after_getListEvents() throws {
+        let loadingViewSpy = LoadingViewSpy()
+        let getListEventsSpy = GetListEventsSpy()
+        let sut = makeSut(getListEventsSpy: getListEventsSpy, loadingViewSpy: loadingViewSpy)
+        
+        let exp1 = expectation(description: "waiting")
+        loadingViewSpy.observe { viewModel in
+            XCTAssertEqual(viewModel, LoadingViewModel(isLoading: true))
+            exp1.fulfill()
+        }
+        sut.showEventsList()
+        wait(for: [exp1], timeout: 1)
+
+        let exp2 = expectation(description: "waiting")
+        loadingViewSpy.observe { viewModel in
+            XCTAssertEqual(viewModel, LoadingViewModel(isLoading: false))
+            exp2.fulfill()
+        }
+        getListEventsSpy.completeWithError(.unexpected)
+        wait(for: [exp2], timeout: 1)
+    }
 }
 
 extension GetListEventsPresenterTests {
-    func makeSut(getListEventsSpy: GetListEventsSpy = GetListEventsSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), eventsViewSpy: EventsViewSpy = EventsViewSpy() , file: StaticString = #filePath, line: UInt = #line) -> ListEventsPresenter {
-        let sut = ListEventsPresenter(getListEvents: getListEventsSpy, alertView: alertViewSpy, eventsView: eventsViewSpy)
+    func makeSut(getListEventsSpy: GetListEventsSpy = GetListEventsSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), loadingViewSpy: LoadingViewSpy = LoadingViewSpy() ,eventsViewSpy: EventsViewSpy = EventsViewSpy() , file: StaticString = #filePath, line: UInt = #line) -> ListEventsPresenter {
+        let sut = ListEventsPresenter(getListEvents: getListEventsSpy, alertView: alertViewSpy, loadingView: loadingViewSpy, eventsView: eventsViewSpy)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
     }
@@ -156,6 +194,19 @@ extension GetListEventsPresenterTests {
             self.emit?(viewModel)
         }
     }
+    
+    class LoadingViewSpy: LoadingView {
+        var emit: ((LoadingViewModel) -> Void)?
+        
+        func observe(completion: @escaping (LoadingViewModel) -> Void) {
+            self.emit = completion
+        }
+        
+        func display(viewModel: LoadingViewModel) {
+            self.emit?(viewModel)
+        }
+    }
+
     
     class GetListEventsSpy: GetListEvents {
         var completion: ((Result<[EventModel], DomainError>) -> Void)?
