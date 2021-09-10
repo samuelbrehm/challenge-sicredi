@@ -24,8 +24,10 @@ final class DetailsEventPresenter {
     }
     
     public func showDetailsEvent(idEvent: String) {
+        self.loadingView.display(viewModel: LoadingViewModel(isLoading: true))
         self.getDetailsEvent.getDetailsEvent(idEvent: idEvent) { [weak self] result in
             guard let self = self else { return }
+            self.loadingView.display(viewModel: LoadingViewModel(isLoading: false))
             switch result {
             case .failure:
                 self.alertView.showMessage(viewModel: AlertViewModel(title: "Falha", message: "Erro ao carregar os dados do evento."))
@@ -66,6 +68,28 @@ class DetailsEventPresenterTests: XCTestCase {
         sut.showDetailsEvent(idEvent: "any-id")
         getDetailsEventSpy.completeWithDetailsEvent(expectedDetailsEvent)
         wait(for: [exp], timeout: 1)
+    }
+    
+    func test_showEventsList_should_show_loading_status_before_and_after_getDetailstEvent() throws {
+        let loadingViewSpy = LoadingViewSpy()
+        let getDetailsEventSpy = GetDetailsEventSpy()
+        let sut = makeSut(getDetailsEventSpy: getDetailsEventSpy, loadingViewSpy: loadingViewSpy)
+        
+        let exp1 = expectation(description: "waiting")
+        loadingViewSpy.observe { viewModel in
+            XCTAssertEqual(viewModel, LoadingViewModel(isLoading: true))
+            exp1.fulfill()
+        }
+        sut.showDetailsEvent(idEvent: "any-id")
+        wait(for: [exp1], timeout: 1)
+
+        let exp2 = expectation(description: "waiting")
+        loadingViewSpy.observe { viewModel in
+            XCTAssertEqual(viewModel, LoadingViewModel(isLoading: false))
+            exp2.fulfill()
+        }
+        getDetailsEventSpy.completeWithError(.unexpected)
+        wait(for: [exp2], timeout: 1)
     }
 }
 
