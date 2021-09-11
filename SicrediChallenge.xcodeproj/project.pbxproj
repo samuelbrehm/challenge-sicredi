@@ -15,6 +15,12 @@
 		6222C5AC26EA9C0C00754B81 /* EventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C226E1625000C82896 /* EventFactory.swift */; };
 		622DDF3F26ED2DA000109F8D /* CheckInEventsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF3E26ED2DA000109F8D /* CheckInEventsPresenterTests.swift */; };
 		622DDF4026ED347F00109F8D /* CreateCheckInFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62933AAF26E297740096EBCB /* CreateCheckInFactory.swift */; };
+		622DDF4326ED5E4000109F8D /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4226ED5E4000109F8D /* EmailValidator.swift */; };
+		622DDF4626ED5E8300109F8D /* CheckInEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4526ED5E8300109F8D /* CheckInEventsPresenter.swift */; };
+		622DDF4826ED5ED700109F8D /* NewCheckInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4726ED5ED700109F8D /* NewCheckInRequest.swift */; };
+		622DDF4B26ED5F3900109F8D /* EmailValidatorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4A26ED5F3900109F8D /* EmailValidatorSpy.swift */; };
+		622DDF4D26ED5F6200109F8D /* CreateCheckInSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4C26ED5F6200109F8D /* CreateCheckInSpy.swift */; };
+		622DDF5026ED5FB500109F8D /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4F26ED5FB500109F8D /* Factories.swift */; };
 		6252966926E68FC8009ECB3A /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */; };
 		628537C026E161C700C82896 /* HttpGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BF26E161C700C82896 /* HttpGetClientSpy.swift */; };
@@ -159,6 +165,12 @@
 		6222C59A26EA39CF00754B81 /* ListEventsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsPresenterTests.swift; sourceTree = "<group>"; };
 		6222C59C26EA39CF00754B81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		622DDF3E26ED2DA000109F8D /* CheckInEventsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInEventsPresenterTests.swift; sourceTree = "<group>"; };
+		622DDF4226ED5E4000109F8D /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		622DDF4526ED5E8300109F8D /* CheckInEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInEventsPresenter.swift; sourceTree = "<group>"; };
+		622DDF4726ED5ED700109F8D /* NewCheckInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCheckInRequest.swift; sourceTree = "<group>"; };
+		622DDF4A26ED5F3900109F8D /* EmailValidatorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidatorSpy.swift; sourceTree = "<group>"; };
+		622DDF4C26ED5F6200109F8D /* CreateCheckInSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInSpy.swift; sourceTree = "<group>"; };
+		622DDF4F26ED5FB500109F8D /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDetailsEventTests.swift; sourceTree = "<group>"; };
 		628537BF26E161C700C82896 /* HttpGetClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGetClientSpy.swift; sourceTree = "<group>"; };
 		628537C226E1625000C82896 /* EventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFactory.swift; sourceTree = "<group>"; };
@@ -286,6 +298,7 @@
 		6222C58E26EA39CF00754B81 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				622DDF4126ED5E0600109F8D /* Validators */,
 				62C22D9B26EB943D0085F513 /* Views */,
 				62C22D9926EB941B0085F513 /* Presenters */,
 				6222C59026EA39CF00754B81 /* Info.plist */,
@@ -296,6 +309,8 @@
 		6222C59926EA39CF00754B81 /* PresentationTests */ = {
 			isa = PBXGroup;
 			children = (
+				622DDF4E26ED5FA900109F8D /* Helpers */,
+				622DDF4926ED5F2900109F8D /* Validators */,
 				62C22D9626EB93C40085F513 /* Presenters */,
 				62C22D9526EB93900085F513 /* UseCases */,
 				6222C59C26EA39CF00754B81 /* Info.plist */,
@@ -309,6 +324,39 @@
 				622DDF3E26ED2DA000109F8D /* CheckInEventsPresenterTests.swift */,
 			);
 			path = CheckInEvent;
+			sourceTree = "<group>";
+		};
+		622DDF4126ED5E0600109F8D /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				622DDF4226ED5E4000109F8D /* EmailValidator.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		622DDF4426ED5E6A00109F8D /* CheckInEvent */ = {
+			isa = PBXGroup;
+			children = (
+				622DDF4526ED5E8300109F8D /* CheckInEventsPresenter.swift */,
+				622DDF4726ED5ED700109F8D /* NewCheckInRequest.swift */,
+			);
+			path = CheckInEvent;
+			sourceTree = "<group>";
+		};
+		622DDF4926ED5F2900109F8D /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				622DDF4A26ED5F3900109F8D /* EmailValidatorSpy.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		622DDF4E26ED5FA900109F8D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				622DDF4F26ED5FB500109F8D /* Factories.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		6252966826E681A0009ECB3A /* Http */ = {
@@ -503,6 +551,7 @@
 			children = (
 				62C22DAA26EB96BB0085F513 /* GetListEventsSpy.swift */,
 				62C22DB226EBD5FF0085F513 /* GetDetailsEventSpy.swift */,
+				622DDF4C26ED5F6200109F8D /* CreateCheckInSpy.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -540,6 +589,7 @@
 		62C22D9926EB941B0085F513 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				622DDF4426ED5E6A00109F8D /* CheckInEvent */,
 				62C22DAF26EBC3CC0085F513 /* DetailsEvent */,
 				62C22D9A26EB94220085F513 /* ListEvents */,
 			);
@@ -918,9 +968,12 @@
 			files = (
 				62C22D9D26EB945B0085F513 /* ListEventsPresenter.swift in Sources */,
 				62C22D9F26EB94E60085F513 /* AlertView.swift in Sources */,
+				622DDF4826ED5ED700109F8D /* NewCheckInRequest.swift in Sources */,
 				62C22DA126EB95020085F513 /* LoadingView.swift in Sources */,
 				62C22DA326EB95270085F513 /* EventsView.swift in Sources */,
 				62C22DB126EBD5720085F513 /* DetailsEventPresenter.swift in Sources */,
+				622DDF4326ED5E4000109F8D /* EmailValidator.swift in Sources */,
+				622DDF4626ED5E8300109F8D /* CheckInEventsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -930,9 +983,12 @@
 			files = (
 				622DDF3F26ED2DA000109F8D /* CheckInEventsPresenterTests.swift in Sources */,
 				62C22DA726EB965D0085F513 /* LoadingViewSpy.swift in Sources */,
+				622DDF4D26ED5F6200109F8D /* CreateCheckInSpy.swift in Sources */,
+				622DDF5026ED5FB500109F8D /* Factories.swift in Sources */,
 				62C22DA526EB96360085F513 /* AlertViewSpy.swift in Sources */,
 				62C22DAB26EB96BB0085F513 /* GetListEventsSpy.swift in Sources */,
 				6222C5AC26EA9C0C00754B81 /* EventFactory.swift in Sources */,
+				622DDF4B26ED5F3900109F8D /* EmailValidatorSpy.swift in Sources */,
 				62C22DAE26EB98F90085F513 /* DetailsEventPresenterTests.swift in Sources */,
 				6222C5AB26EA8C0B00754B81 /* XCTestCase+MemoryLeak.swift in Sources */,
 				62C22DB326EBD5FF0085F513 /* GetDetailsEventSpy.swift in Sources */,
