@@ -51,21 +51,18 @@ class CheckInEventsPresenterTests: XCTestCase {
     func test_newCheckIn_should_call_addCheckIn_with_correct_params_values() throws {
         let createCheckInSpy = CreateCheckInSpy()
         let alertViewSpy = AlertViewSpy()
-        let emailValidatorSpy = EmailValidatorSpy()
-        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+        let sut = makeSut(createCheckInSpy: createCheckInSpy, alertViewSpy: alertViewSpy)
         sut.newCheckIn(viewModel: makeNewCheckInRequest())
         XCTAssertEqual(createCheckInSpy.addCheckInParam, makeAddCheckInParam())
     }
     
     func test_newCheckIn_should_show_error_if_validate_param_value_eventId_fail_when_call_addCheckIn() throws {
-        let createCheckInSpy = CreateCheckInSpy()
         let alertViewSpy = AlertViewSpy()
-        let emailValidatorSpy = EmailValidatorSpy()
-        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+        let sut = makeSut(alertViewSpy: alertViewSpy)
         let newCheckInRequest = NewCheckInRequest(eventId: "", name: "any-name", email: "any-email@email.com")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewErrorToParamEventId())
+            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "A identificação do evento é necessária."))
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: newCheckInRequest)
@@ -73,14 +70,12 @@ class CheckInEventsPresenterTests: XCTestCase {
     }
     
     func test_newCheckIn_should_show_error_if_validate_param_value_name_fail_when_call_addCheckIn() throws {
-        let createCheckInSpy = CreateCheckInSpy()
         let alertViewSpy = AlertViewSpy()
-        let emailValidatorSpy = EmailValidatorSpy()
-        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+        let sut = makeSut(alertViewSpy: alertViewSpy)
         let newCheckInRequest = NewCheckInRequest(eventId: "any-id", name: "", email: "any-email@email.com")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewErrorToParamName())
+            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "O campo nome é obrigatório."))
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: newCheckInRequest)
@@ -88,14 +83,12 @@ class CheckInEventsPresenterTests: XCTestCase {
     }
     
     func test_newCheckIn_should_show_error_if_validate_param_value_email_fail_when_call_addCheckIn() throws {
-        let createCheckInSpy = CreateCheckInSpy()
         let alertViewSpy = AlertViewSpy()
-        let emailValidatorSpy = EmailValidatorSpy()
-        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+        let sut = makeSut(alertViewSpy: alertViewSpy)
         let newCheckInRequest = NewCheckInRequest(eventId: "any-id", name: "any-name", email: "")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewErrorToParamEmailEmpty())
+            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "O campo email é obrigatório."))
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: newCheckInRequest)
@@ -103,14 +96,13 @@ class CheckInEventsPresenterTests: XCTestCase {
     }
     
     func test_newCheckIn_should_show_error_if_validate_param_value_email_isInvalid_fail_when_call_addCheckIn() throws {
-        let createCheckInSpy = CreateCheckInSpy()
         let alertViewSpy = AlertViewSpy()
         let emailValidatorSpy = EmailValidatorSpy()
-        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+        let sut = makeSut(alertViewSpy: alertViewSpy, emailValidatorSpy: emailValidatorSpy)
         let newCheckInRequest = NewCheckInRequest(eventId: "any-id", name: "any-name", email: "invalid-email@email.com")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewErrorToParamEmailInvalid())
+            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "O email é inválido."))
             exp.fulfill()
         }
         emailValidatorSpy.isValidEmail = false
@@ -138,28 +130,17 @@ struct NewCheckInRequest: Model {
 // MARK: - EXTENSION
 
 extension CheckInEventsPresenterTests {
-    func makeSut() {
-        
+    func makeSut(createCheckInSpy: CreateCheckInSpy = CreateCheckInSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), emailValidatorSpy: EmailValidatorSpy = EmailValidatorSpy()) -> CheckInEventsPresenter {
+        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+        return sut
     }
     
     func makeNewCheckInRequest() -> NewCheckInRequest {
         return NewCheckInRequest(eventId: "any-id", name: "any-name", email: "any-email@email.com")
     }
     
-    func makeAlertViewErrorToParamEventId() -> AlertViewModel {
-        return AlertViewModel(title: "Erro", message: "A identificação do evento é necessária.")
-    }
-    
-    func makeAlertViewErrorToParamName() -> AlertViewModel {
-        return AlertViewModel(title: "Erro", message: "O campo nome é obrigatório.")
-    }
-    
-    func makeAlertViewErrorToParamEmailEmpty() -> AlertViewModel {
-        return AlertViewModel(title: "Erro", message: "O campo email é obrigatório.")
-    }
-    
-    func makeAlertViewErrorToParamEmailInvalid() -> AlertViewModel {
-        return AlertViewModel(title: "Erro", message: "O email é inválido.")
+    func makeAlertViewError(title: String = "Erro", message: String) -> AlertViewModel {
+        return AlertViewModel(title: title, message: message)
     }
     
     class CreateCheckInSpy: CreateCheckIn {
