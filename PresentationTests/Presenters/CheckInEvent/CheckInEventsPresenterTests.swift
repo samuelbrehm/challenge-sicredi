@@ -12,23 +12,50 @@ import Presentation
 
 class CheckInEventsPresenter {
     private let createCheckIn: CreateCheckIn
+    private let alertView: AlertView
     
-    public init(createCheckIn: CreateCheckIn) {
+    public init(createCheckIn: CreateCheckIn, alertView: AlertView) {
         self.createCheckIn = createCheckIn
+        self.alertView = alertView
     }
     
     func newCheckIn(viewModel: NewCheckInRequest) {
-        self.createCheckIn.addCheckIn(addCheckInParam: viewModel.convertToAddCheckInParam()) { _ in }
-        
+        if let message = validateParams(to: viewModel) {
+            self.alertView.showMessage(viewModel: AlertViewModel(title: "Erro", message: message))
+        } else {
+            self.createCheckIn.addCheckIn(addCheckInParam: viewModel.convertToAddCheckInParam()) { _ in }
+        }
+    }
+    
+    private func validateParams(to viewModel: NewCheckInRequest) -> String? {
+        if viewModel.eventId.isEmpty {
+            return "A identificação do evento é necessária."
+        }
+        return nil
     }
 }
 
 class CheckInEventsPresenterTests: XCTestCase {
     func test_newCheckIn_should_call_addCheckIn_with_correct_params_values() throws {
         let createCheckInSpy = CreateCheckInSpy()
-        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy)
+        let alertViewSpy = AlertViewSpy()
+        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy)
         sut.newCheckIn(viewModel: makeNewCheckInRequest())
         XCTAssertEqual(createCheckInSpy.addCheckInParam, makeAddCheckInParam())
+    }
+    
+    func test_newCheckIn_should_show_error_if_validate_param_value_eventId_fail_when_call_addCheckIn() throws {
+        let createCheckInSpy = CreateCheckInSpy()
+        let alertViewSpy = AlertViewSpy()
+        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy)
+        let newCheckInRequest = NewCheckInRequest(eventId: "", name: "any-name", email: "any-email@email.com")
+        let exp = expectation(description: "waiting")
+        alertViewSpy.observe { [weak self] viewModel in
+            XCTAssertEqual(viewModel, self?.makeAlertViewErrorToParamEventId())
+            exp.fulfill()
+        }
+        sut.newCheckIn(viewModel: newCheckInRequest)
+        wait(for: [exp], timeout: 1)
     }
 }
 
@@ -48,6 +75,8 @@ struct NewCheckInRequest: Model {
     }
 }
 
+// MARK: - EXTENSION
+
 extension CheckInEventsPresenterTests {
     func makeSut() {
         
@@ -55,6 +84,10 @@ extension CheckInEventsPresenterTests {
     
     func makeNewCheckInRequest() -> NewCheckInRequest {
         return NewCheckInRequest(eventId: "any-id", name: "any-name", email: "any-email@email.com")
+    }
+    
+    func makeAlertViewErrorToParamEventId() -> AlertViewModel {
+        return AlertViewModel(title: "Erro", message: "A identificação do evento é necessária.")
     }
     
     class CreateCheckInSpy: CreateCheckIn {
