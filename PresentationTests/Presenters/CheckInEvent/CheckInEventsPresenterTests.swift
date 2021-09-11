@@ -30,6 +30,8 @@ class CheckInEventsPresenter {
     private func validateParams(to viewModel: NewCheckInRequest) -> String? {
         if viewModel.eventId.isEmpty {
             return "A identificação do evento é necessária."
+        } else if viewModel.name.isEmpty {
+            return "O campo nome é obrigatório."
         }
         return nil
     }
@@ -52,6 +54,20 @@ class CheckInEventsPresenterTests: XCTestCase {
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
             XCTAssertEqual(viewModel, self?.makeAlertViewErrorToParamEventId())
+            exp.fulfill()
+        }
+        sut.newCheckIn(viewModel: newCheckInRequest)
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func test_newCheckIn_should_show_error_if_validate_param_value_name_fail_when_call_addCheckIn() throws {
+        let createCheckInSpy = CreateCheckInSpy()
+        let alertViewSpy = AlertViewSpy()
+        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy)
+        let newCheckInRequest = NewCheckInRequest(eventId: "any-id", name: "", email: "any-email@email.com")
+        let exp = expectation(description: "waiting")
+        alertViewSpy.observe { [weak self] viewModel in
+            XCTAssertEqual(viewModel, self?.makeAlertViewErrorToParamName())
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: newCheckInRequest)
@@ -88,6 +104,10 @@ extension CheckInEventsPresenterTests {
     
     func makeAlertViewErrorToParamEventId() -> AlertViewModel {
         return AlertViewModel(title: "Erro", message: "A identificação do evento é necessária.")
+    }
+    
+    func makeAlertViewErrorToParamName() -> AlertViewModel {
+        return AlertViewModel(title: "Erro", message: "O campo nome é obrigatório.")
     }
     
     class CreateCheckInSpy: CreateCheckIn {
