@@ -13,20 +13,24 @@ import Presentation
 class CheckInEventsPresenter {
     private let createCheckIn: CreateCheckIn
     private let alertView: AlertView
+    private let loadingView: LoadingView
     private let emailValidator: EmailValidator
     
-    public init(createCheckIn: CreateCheckIn, alertView: AlertView, emailValidator: EmailValidator) {
+    public init(createCheckIn: CreateCheckIn, alertView: AlertView, loadingView: LoadingView, emailValidator: EmailValidator) {
         self.createCheckIn = createCheckIn
         self.alertView = alertView
+        self.loadingView = loadingView
         self.emailValidator = emailValidator
     }
     
     func newCheckIn(viewModel: NewCheckInRequest) {
+        self.loadingView.display(viewModel: LoadingViewModel(isLoading: true))
         if let message = validateParams(to: viewModel) {
             self.alertView.showMessage(viewModel: AlertViewModel(title: "Erro", message: message))
         } else {
             self.createCheckIn.addCheckIn(addCheckInParam: viewModel.convertToAddCheckInParam()) { [weak self] result in
                 guard let self = self else { return }
+                self.loadingView.display(viewModel: LoadingViewModel(isLoading: false))
                 switch result {
                 case .failure:
                     self.alertView.showMessage(viewModel: AlertViewModel(title: "Erro", message: "Erro ao carregar os dados do evento."))
@@ -145,6 +149,28 @@ class CheckInEventsPresenterTests: XCTestCase {
         createCheckInSpy.completionWithSuccess(.success)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_newCheckIn_should_show_loading_status_before_and_after_addCheckIn_fail() throws {
+        let createCheckInSpy = CreateCheckInSpy()
+        let loadingViewSpy = LoadingViewSpy()
+        let sut = makeSut(createCheckInSpy: createCheckInSpy, loadingViewSpy: loadingViewSpy)
+        
+        let exp1 = expectation(description: "waiting")
+        loadingViewSpy.observe { viewModel in
+            XCTAssertEqual(viewModel, LoadingViewModel(isLoading: true))
+            exp1.fulfill()
+        }
+        sut.newCheckIn(viewModel: makeNewCheckInRequest())
+        wait(for: [exp1], timeout: 1)
+        
+        let exp2 = expectation(description: "waiting")
+        loadingViewSpy.observe { viewModel in
+            XCTAssertEqual(viewModel, LoadingViewModel(isLoading: false))
+            exp2.fulfill()
+        }
+        createCheckInSpy.completionWithSuccess(.success)
+        wait(for: [exp2], timeout: 1)
+    }
 }
 
 struct NewCheckInRequest: Model {
@@ -166,8 +192,8 @@ struct NewCheckInRequest: Model {
 // MARK: - EXTENSION
 
 extension CheckInEventsPresenterTests {
-    func makeSut(createCheckInSpy: CreateCheckInSpy = CreateCheckInSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), emailValidatorSpy: EmailValidatorSpy = EmailValidatorSpy(), file: StaticString = #filePath, line: UInt = #line) -> CheckInEventsPresenter {
-        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+    func makeSut(createCheckInSpy: CreateCheckInSpy = CreateCheckInSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), loadingViewSpy: LoadingViewSpy = LoadingViewSpy(), emailValidatorSpy: EmailValidatorSpy = EmailValidatorSpy(), file: StaticString = #filePath, line: UInt = #line) -> CheckInEventsPresenter {
+        let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, loadingView: loadingViewSpy, emailValidator: emailValidatorSpy)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut
     }
