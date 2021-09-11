@@ -30,7 +30,8 @@ class CheckInEventsPresenter {
                 switch result {
                 case .failure:
                     self.alertView.showMessage(viewModel: AlertViewModel(title: "Erro", message: "Erro ao carregar os dados do evento."))
-                case .success: break
+                case .success:
+                    self.alertView.showMessage(viewModel: AlertViewModel(title:"Novo CheckIn", message: "CheckIn criado com sucesso."))
                 }
             }
         }
@@ -69,7 +70,7 @@ class CheckInEventsPresenterTests: XCTestCase {
         let newCheckInRequest = NewCheckInRequest(eventId: "", name: "any-name", email: "any-email@email.com")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "A identificação do evento é necessária."))
+            XCTAssertEqual(viewModel, self?.makeAlertViewExpected(message: "A identificação do evento é necessária."))
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: newCheckInRequest)
@@ -82,7 +83,7 @@ class CheckInEventsPresenterTests: XCTestCase {
         let newCheckInRequest = NewCheckInRequest(eventId: "any-id", name: "", email: "any-email@email.com")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "O campo nome é obrigatório."))
+            XCTAssertEqual(viewModel, self?.makeAlertViewExpected(message: "O campo nome é obrigatório."))
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: newCheckInRequest)
@@ -95,7 +96,7 @@ class CheckInEventsPresenterTests: XCTestCase {
         let newCheckInRequest = NewCheckInRequest(eventId: "any-id", name: "any-name", email: "")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "O campo email é obrigatório."))
+            XCTAssertEqual(viewModel, self?.makeAlertViewExpected(message: "O campo email é obrigatório."))
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: newCheckInRequest)
@@ -109,7 +110,7 @@ class CheckInEventsPresenterTests: XCTestCase {
         let newCheckInRequest = NewCheckInRequest(eventId: "any-id", name: "any-name", email: "invalid-email@email.com")
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "O email é inválido."))
+            XCTAssertEqual(viewModel, self?.makeAlertViewExpected(message: "O email é inválido."))
             exp.fulfill()
         }
         emailValidatorSpy.isValidEmail = false
@@ -123,11 +124,25 @@ class CheckInEventsPresenterTests: XCTestCase {
         let sut = makeSut(createCheckInSpy: createCheckInSpy, alertViewSpy: alertViewSpy)
         let exp = expectation(description: "waiting")
         alertViewSpy.observe { [weak self] viewModel in
-            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "Erro ao carregar os dados do evento."))
+            XCTAssertEqual(viewModel, self?.makeAlertViewExpected(message: "Erro ao carregar os dados do evento."))
             exp.fulfill()
         }
         sut.newCheckIn(viewModel: makeNewCheckInRequest())
         createCheckInSpy.completionWithError(.unexpected)
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func test_newCheckIn_should_show_alert_success_message_if_addCheckIn_complete_with_success() throws {
+        let createCheckInSpy = CreateCheckInSpy()
+        let alertViewSpy = AlertViewSpy()
+        let sut = makeSut(createCheckInSpy: createCheckInSpy, alertViewSpy: alertViewSpy)
+        let exp = expectation(description: "waiting")
+        alertViewSpy.observe { [weak self] viewModel in
+            XCTAssertEqual(viewModel, self?.makeAlertViewExpected(title: "Novo CheckIn", message: "CheckIn criado com sucesso."))
+            exp.fulfill()
+        }
+        sut.newCheckIn(viewModel: makeNewCheckInRequest())
+        createCheckInSpy.completionWithSuccess(.success)
         wait(for: [exp], timeout: 1)
     }
 }
@@ -161,7 +176,7 @@ extension CheckInEventsPresenterTests {
         return NewCheckInRequest(eventId: "any-id", name: "any-name", email: "any-email@email.com")
     }
     
-    func makeAlertViewError(title: String = "Erro", message: String) -> AlertViewModel {
+    func makeAlertViewExpected(title: String = "Erro", message: String) -> AlertViewModel {
         return AlertViewModel(title: title, message: message)
     }
     
