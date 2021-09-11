@@ -65,7 +65,7 @@ class DetailsEventPresenterTests: XCTestCase {
 }
 
 extension DetailsEventPresenterTests {
-    func makeSut(getDetailsEventSpy: GetDetailsEventSpy = GetDetailsEventSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), loadingViewSpy: LoadingViewSpy = LoadingViewSpy(), detailsEventViewSpy: DetailsEventViewSpy = DetailsEventViewSpy() , file: StaticString = #filePath, line: UInt = #line) -> DetailsEventPresenter {
+    func makeSut(getDetailsEventSpy: GetDetailsEventSpy = GetDetailsEventSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), loadingViewSpy: LoadingViewSpy = LoadingViewSpy(), detailsEventViewSpy: DetailsEventViewSpy = DetailsEventViewSpy(), file: StaticString = #filePath, line: UInt = #line) -> DetailsEventPresenter {
         let sut = DetailsEventPresenter(getDetailsEvent: getDetailsEventSpy, alertView: alertViewSpy, loadingView: loadingViewSpy, detailsEventView: detailsEventViewSpy)
         checkMemoryLeak(for: sut, file: file, line: line)
         return sut

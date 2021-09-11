@@ -25,7 +25,14 @@ class CheckInEventsPresenter {
         if let message = validateParams(to: viewModel) {
             self.alertView.showMessage(viewModel: AlertViewModel(title: "Erro", message: message))
         } else {
-            self.createCheckIn.addCheckIn(addCheckInParam: viewModel.convertToAddCheckInParam()) { _ in }
+            self.createCheckIn.addCheckIn(addCheckInParam: viewModel.convertToAddCheckInParam()) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .failure:
+                    self.alertView.showMessage(viewModel: AlertViewModel(title: "Erro", message: "Erro ao carregar os dados do evento."))
+                case .success: break
+                }
+            }
         }
     }
     
@@ -109,6 +116,20 @@ class CheckInEventsPresenterTests: XCTestCase {
         sut.newCheckIn(viewModel: newCheckInRequest)
         wait(for: [exp], timeout: 1)
     }
+    
+    func test_newCheckIn_should_show_error_if_addCheckIn_fail() throws {
+        let createCheckInSpy = CreateCheckInSpy()
+        let alertViewSpy = AlertViewSpy()
+        let sut = makeSut(createCheckInSpy: createCheckInSpy, alertViewSpy: alertViewSpy)
+        let exp = expectation(description: "waiting")
+        alertViewSpy.observe { [weak self] viewModel in
+            XCTAssertEqual(viewModel, self?.makeAlertViewError(message: "Erro ao carregar os dados do evento."))
+            exp.fulfill()
+        }
+        sut.newCheckIn(viewModel: makeNewCheckInRequest())
+        createCheckInSpy.completionWithError(.unexpected)
+        wait(for: [exp], timeout: 1)
+    }
 }
 
 struct NewCheckInRequest: Model {
@@ -130,8 +151,9 @@ struct NewCheckInRequest: Model {
 // MARK: - EXTENSION
 
 extension CheckInEventsPresenterTests {
-    func makeSut(createCheckInSpy: CreateCheckInSpy = CreateCheckInSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), emailValidatorSpy: EmailValidatorSpy = EmailValidatorSpy()) -> CheckInEventsPresenter {
+    func makeSut(createCheckInSpy: CreateCheckInSpy = CreateCheckInSpy(), alertViewSpy: AlertViewSpy = AlertViewSpy(), emailValidatorSpy: EmailValidatorSpy = EmailValidatorSpy(), file: StaticString = #filePath, line: UInt = #line) -> CheckInEventsPresenter {
         let sut = CheckInEventsPresenter(createCheckIn: createCheckInSpy, alertView: alertViewSpy, emailValidator: emailValidatorSpy)
+        checkMemoryLeak(for: sut, file: file, line: line)
         return sut
     }
     
