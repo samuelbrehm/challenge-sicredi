@@ -12,6 +12,8 @@ import Presentation
 final class GetListEventsController: UIViewController {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    public var showListEvents: (() -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,6 +38,10 @@ extension GetListEventsController: AlertView {
         alert.addAction(UIAlertAction(title: "Recarregar", style: .default))
         present(alert, animated: true)
     }
-    
-    
+}
+
+extension GetListEventsController: EventsView {
+    func showEvents(viewModel: [EventsViewModel]) {
+        
+    }
 }
