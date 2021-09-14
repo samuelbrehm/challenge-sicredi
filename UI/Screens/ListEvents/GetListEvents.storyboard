@@ -16,6 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9o9-TI-QSl">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="xDQ-7u-KV3">
                                 <rect key="frame" x="177" y="423" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="0.20076807287355133" colorSpace="custom" customColorSpace="sRGB"/>
@@ -29,11 +33,16 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="9o9-TI-QSl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="9hE-I4-l9E"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="9o9-TI-QSl" secondAttribute="bottom" id="FbP-f1-7gY"/>
                             <constraint firstItem="xDQ-7u-KV3" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="Tgs-pW-xWM"/>
+                            <constraint firstItem="9o9-TI-QSl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="go8-q9-ZVI"/>
                             <constraint firstItem="xDQ-7u-KV3" firstAttribute="centerY" secondItem="vDu-zF-Fre" secondAttribute="centerY" id="u6Q-cZ-wK9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9o9-TI-QSl" secondAttribute="trailing" id="x9W-ht-xzZ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="eventsTableView" destination="9o9-TI-QSl" id="gCF-sX-OMi"/>
                         <outlet property="loadingActivityIndicator" destination="xDQ-7u-KV3" id="Sxb-oh-q7B"/>
                     </connections>
                 </viewController>

@@ -27,6 +27,9 @@
 		6242C33926F00005004DDC9E /* Presentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6242C33E26F0017B004DDC9E /* GetListEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C33D26F0017B004DDC9E /* GetListEventsController.swift */; };
 		6242C34026F00249004DDC9E /* GetListEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6242C33F26F00249004DDC9E /* GetListEvents.storyboard */; };
+		6242C34626F0AC07004DDC9E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C34426F0AC07004DDC9E /* CardTableViewCell.swift */; };
+		6242C34726F0AC07004DDC9E /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6242C34526F0AC07004DDC9E /* CardTableViewCell.xib */; };
+		6242C34D26F0CF0E004DDC9E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6242C34C26F0CF0E004DDC9E /* Kingfisher */; };
 		6252966926E68FC8009ECB3A /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */; };
 		628537C026E161C700C82896 /* HttpGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BF26E161C700C82896 /* HttpGetClientSpy.swift */; };
@@ -209,6 +212,8 @@
 		6242C33026EFFE6D004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6242C33D26F0017B004DDC9E /* GetListEventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEventsController.swift; sourceTree = "<group>"; };
 		6242C33F26F00249004DDC9E /* GetListEvents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetListEvents.storyboard; sourceTree = "<group>"; };
+		6242C34426F0AC07004DDC9E /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
+		6242C34526F0AC07004DDC9E /* CardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardTableViewCell.xib; sourceTree = "<group>"; };
 		628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDetailsEventTests.swift; sourceTree = "<group>"; };
 		628537BF26E161C700C82896 /* HttpGetClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGetClientSpy.swift; sourceTree = "<group>"; };
 		628537C226E1625000C82896 /* EventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFactory.swift; sourceTree = "<group>"; };
@@ -287,6 +292,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6242C34D26F0CF0E004DDC9E /* Kingfisher in Frameworks */,
 				6242C33826F00005004DDC9E /* Presentation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,9 +422,8 @@
 		6242C32226EFFE6C004DDC9E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6242C34126F0A9BA004DDC9E /* Screens */,
 				6242C32426EFFE6C004DDC9E /* Info.plist */,
-				6242C33D26F0017B004DDC9E /* GetListEventsController.swift */,
-				6242C33F26F00249004DDC9E /* GetListEvents.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -430,6 +435,33 @@
 				6242C33026EFFE6D004DDC9E /* Info.plist */,
 			);
 			path = UITests;
+			sourceTree = "<group>";
+		};
+		6242C34126F0A9BA004DDC9E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				6242C34226F0A9D3004DDC9E /* ListEvents */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		6242C34226F0A9D3004DDC9E /* ListEvents */ = {
+			isa = PBXGroup;
+			children = (
+				6242C34326F0ABC3004DDC9E /* Card */,
+				6242C33D26F0017B004DDC9E /* GetListEventsController.swift */,
+				6242C33F26F00249004DDC9E /* GetListEvents.storyboard */,
+			);
+			path = ListEvents;
+			sourceTree = "<group>";
+		};
+		6242C34326F0ABC3004DDC9E /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				6242C34426F0AC07004DDC9E /* CardTableViewCell.swift */,
+				6242C34526F0AC07004DDC9E /* CardTableViewCell.xib */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 		6252966826E681A0009ECB3A /* Http */ = {
@@ -820,6 +852,9 @@
 				6242C33B26F00005004DDC9E /* PBXTargetDependency */,
 			);
 			name = UI;
+			packageProductDependencies = (
+				6242C34C26F0CF0E004DDC9E /* Kingfisher */,
+			);
 			productName = UI;
 			productReference = 6242C32126EFFE6C004DDC9E /* UI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1014,6 +1049,7 @@
 			mainGroup = 62A2A76926DFB197000D45E8;
 			packageReferences = (
 				62C8B9C326E5596100E447BF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				6242C34B26F0CF0E004DDC9E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 62A2A77426DFB197000D45E8 /* Products */;
 			projectDirPath = "";
@@ -1053,6 +1089,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6242C34026F00249004DDC9E /* GetListEvents.storyboard in Resources */,
+				6242C34726F0AC07004DDC9E /* CardTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6242C33E26F0017B004DDC9E /* GetListEventsController.swift in Sources */,
+				6242C34626F0AC07004DDC9E /* CardTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2022,6 +2060,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6242C34B26F0CF0E004DDC9E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.1;
+			};
+		};
 		62C8B9C326E5596100E447BF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -2033,6 +2079,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6242C34C26F0CF0E004DDC9E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6242C34B26F0CF0E004DDC9E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		62C8B9C426E5596100E447BF /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62C8B9C326E5596100E447BF /* XCRemoteSwiftPackageReference "Alamofire" */;
