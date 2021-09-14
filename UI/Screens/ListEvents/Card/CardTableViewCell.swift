@@ -41,6 +41,7 @@ class CardTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
     }
     
     public func setupCell(data: EventsViewModel) {

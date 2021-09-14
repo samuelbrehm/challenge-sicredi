@@ -9,16 +9,17 @@ import Foundation
 import UIKit
 import Presentation
 
-final class GetListEventsViewController: UIViewController, Storyboarded {
+public final class GetListEventsViewController: UIViewController, Storyboarded {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var eventsTableView: UITableView!
     
     
     public var loadListEvents: (() -> Void)?
-    var listEvents: [EventsViewModel]?
+    var listEvents: [EventsViewModel] = []
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureUI()
         self.configureEvents()
         self.configureTableView()
     }
@@ -28,10 +29,11 @@ final class GetListEventsViewController: UIViewController, Storyboarded {
     }
     
     private func configureUI() {
-        self.loadingActivityIndicator.layer.cornerRadius = 9
+        self.loadingActivityIndicator?.layer.cornerRadius = 9
     }
     
     private func configureTableView() {
+        self.eventsTableView.separatorStyle = .none
         self.eventsTableView.delegate = self
         self.eventsTableView.dataSource = self
         self.eventsTableView.register(CardTableViewCell.nib(), forCellReuseIdentifier: CardTableViewCell.identifier)
@@ -39,7 +41,7 @@ final class GetListEventsViewController: UIViewController, Storyboarded {
 }
 
 extension GetListEventsViewController: LoadingView {
-    func display(viewModel: LoadingViewModel) {
+    public func display(viewModel: LoadingViewModel) {
         if viewModel.isLoading {
             view.isUserInteractionEnabled = false
             self.loadingActivityIndicator.startAnimating()
@@ -52,7 +54,7 @@ extension GetListEventsViewController: LoadingView {
 }
 
 extension GetListEventsViewController: AlertView {
-    func showMessage(viewModel: AlertViewModel) {
+    public func showMessage(viewModel: AlertViewModel) {
         let alert = UIAlertController(title: viewModel.title, message: viewModel.message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Recarregar", style: .default, handler: { _ in
             self.loadListEvents?()
@@ -62,25 +64,25 @@ extension GetListEventsViewController: AlertView {
 }
 
 extension GetListEventsViewController: EventsView {
-    func showEvents(viewModel: [EventsViewModel]) {
+    public func showEvents(viewModel: [EventsViewModel]) {
         self.listEvents = viewModel
     }
 }
 
 extension GetListEventsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.listEvents?.count ?? 0
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.listEvents.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: CardTableViewCell = eventsTableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as? CardTableViewCell else { return UITableViewCell() }
         
-        cell.setupCell(data: self.listEvents?[indexPath.row] ?? EventsViewModel())
+        cell.setupCell(data: self.listEvents[indexPath.row])
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.layer.masksToBounds = true
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
