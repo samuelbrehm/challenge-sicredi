@@ -33,6 +33,6 @@ class GetListEventsControllerTests: XCTestCase {
     func test_controller_implements_eventsView() throws {
         let sb = UIStoryboard(name: "GetListEvents", bundle: Bundle(for: GetListEventsController.self))
         let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
-        XCTAssertNotNil(sut as EventsView as EventsView)
+        XCTAssertNotNil(sut as EventsView)
     }
 }
