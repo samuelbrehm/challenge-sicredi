@@ -17,4 +17,10 @@ class GetListEventsControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(sut.loadingActivityIndicator.isAnimating, false)
     }
+    
+    func test_controller_implements_loadingView() throws {
+        let sb = UIStoryboard(name: "GetListEvents", bundle: Bundle(for: GetListEventsController.self))
+        let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
+        XCTAssertNotNil(sut as LoadingView)
+    }
 }

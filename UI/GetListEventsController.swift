@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Presentation
 
 final class GetListEventsController: UIViewController {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
@@ -14,4 +15,17 @@ final class GetListEventsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+}
+
+extension GetListEventsController: LoadingView {
+    func display(viewModel: LoadingViewModel) {
+        if viewModel.isLoading {
+            view.isUserInteractionEnabled = false
+            self.loadingActivityIndicator.startAnimating()
+        } else {
+            view.isUserInteractionEnabled = true
+            self.loadingActivityIndicator.stopAnimating()
+        }
+    }
+    
 }
