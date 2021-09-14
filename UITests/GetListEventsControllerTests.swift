@@ -12,27 +12,30 @@ import UIKit
 
 class GetListEventsControllerTests: XCTestCase {
     func test_loading_is_hidden_on_start() throws {
-        let sb = UIStoryboard(name: "GetListEvents", bundle: Bundle(for: GetListEventsController.self))
-        let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
-        sut.loadViewIfNeeded()
+        let sut = makeSut()
         XCTAssertEqual(sut.loadingActivityIndicator.isAnimating, false)
     }
     
     func test_controller_implements_loadingView() throws {
-        let sb = UIStoryboard(name: "GetListEvents", bundle: Bundle(for: GetListEventsController.self))
-        let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
+        let sut = makeSut()
         XCTAssertNotNil(sut as LoadingView)
     }
     
     func test_controller_implements_alertView() throws {
-        let sb = UIStoryboard(name: "GetListEvents", bundle: Bundle(for: GetListEventsController.self))
-        let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
+        let sut = makeSut()
         XCTAssertNotNil(sut as AlertView)
     }
     
     func test_controller_implements_eventsView() throws {
-        let sb = UIStoryboard(name: "GetListEvents", bundle: Bundle(for: GetListEventsController.self))
-        let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
+        let sut = makeSut()
         XCTAssertNotNil(sut as EventsView)
+    }
+}
+
+extension GetListEventsControllerTests {
+    func makeSut() -> GetListEventsViewController {
+        let sut = GetListEventsViewController.instantiate()
+        sut.loadViewIfNeeded()
+        return sut
     }
 }

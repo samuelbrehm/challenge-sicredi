@@ -25,11 +25,12 @@
 		6242C32F26EFFE6D004DDC9E /* GetListEventsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C32E26EFFE6D004DDC9E /* GetListEventsControllerTests.swift */; };
 		6242C33826F00005004DDC9E /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; };
 		6242C33926F00005004DDC9E /* Presentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6242C33E26F0017B004DDC9E /* GetListEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C33D26F0017B004DDC9E /* GetListEventsController.swift */; };
+		6242C33E26F0017B004DDC9E /* GetListEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C33D26F0017B004DDC9E /* GetListEventsViewController.swift */; };
 		6242C34026F00249004DDC9E /* GetListEvents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6242C33F26F00249004DDC9E /* GetListEvents.storyboard */; };
 		6242C34626F0AC07004DDC9E /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C34426F0AC07004DDC9E /* CardTableViewCell.swift */; };
 		6242C34726F0AC07004DDC9E /* CardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6242C34526F0AC07004DDC9E /* CardTableViewCell.xib */; };
 		6242C34D26F0CF0E004DDC9E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6242C34C26F0CF0E004DDC9E /* Kingfisher */; };
+		6242C35026F0D6D0004DDC9E /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C34F26F0D6D0004DDC9E /* Storyboarded.swift */; };
 		6252966926E68FC8009ECB3A /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */; };
 		628537C026E161C700C82896 /* HttpGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BF26E161C700C82896 /* HttpGetClientSpy.swift */; };
@@ -210,10 +211,11 @@
 		6242C32926EFFE6C004DDC9E /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6242C32E26EFFE6D004DDC9E /* GetListEventsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEventsControllerTests.swift; sourceTree = "<group>"; };
 		6242C33026EFFE6D004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6242C33D26F0017B004DDC9E /* GetListEventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEventsController.swift; sourceTree = "<group>"; };
+		6242C33D26F0017B004DDC9E /* GetListEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEventsViewController.swift; sourceTree = "<group>"; };
 		6242C33F26F00249004DDC9E /* GetListEvents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetListEvents.storyboard; sourceTree = "<group>"; };
 		6242C34426F0AC07004DDC9E /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		6242C34526F0AC07004DDC9E /* CardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardTableViewCell.xib; sourceTree = "<group>"; };
+		6242C34F26F0D6D0004DDC9E /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDetailsEventTests.swift; sourceTree = "<group>"; };
 		628537BF26E161C700C82896 /* HttpGetClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGetClientSpy.swift; sourceTree = "<group>"; };
 		628537C226E1625000C82896 /* EventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFactory.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 		6242C32226EFFE6C004DDC9E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6242C34E26F0D6B4004DDC9E /* Helpers */,
 				6242C34126F0A9BA004DDC9E /* Screens */,
 				6242C32426EFFE6C004DDC9E /* Info.plist */,
 			);
@@ -449,7 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				6242C34326F0ABC3004DDC9E /* Card */,
-				6242C33D26F0017B004DDC9E /* GetListEventsController.swift */,
+				6242C33D26F0017B004DDC9E /* GetListEventsViewController.swift */,
 				6242C33F26F00249004DDC9E /* GetListEvents.storyboard */,
 			);
 			path = ListEvents;
@@ -462,6 +465,14 @@
 				6242C34526F0AC07004DDC9E /* CardTableViewCell.xib */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		6242C34E26F0D6B4004DDC9E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6242C34F26F0D6D0004DDC9E /* Storyboarded.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		6252966826E681A0009ECB3A /* Http */ = {
@@ -1186,8 +1197,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6242C33E26F0017B004DDC9E /* GetListEventsController.swift in Sources */,
+				6242C33E26F0017B004DDC9E /* GetListEventsViewController.swift in Sources */,
 				6242C34626F0AC07004DDC9E /* CardTableViewCell.swift in Sources */,
+				6242C35026F0D6D0004DDC9E /* Storyboarded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Presentation
 
-final class GetListEventsController: UIViewController {
+final class GetListEventsViewController: UIViewController, Storyboarded {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var eventsTableView: UITableView!
     
@@ -38,7 +38,7 @@ final class GetListEventsController: UIViewController {
     }
 }
 
-extension GetListEventsController: LoadingView {
+extension GetListEventsViewController: LoadingView {
     func display(viewModel: LoadingViewModel) {
         if viewModel.isLoading {
             view.isUserInteractionEnabled = false
@@ -51,7 +51,7 @@ extension GetListEventsController: LoadingView {
     
 }
 
-extension GetListEventsController: AlertView {
+extension GetListEventsViewController: AlertView {
     func showMessage(viewModel: AlertViewModel) {
         let alert = UIAlertController(title: viewModel.title, message: viewModel.message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Recarregar", style: .default, handler: { _ in
@@ -61,13 +61,13 @@ extension GetListEventsController: AlertView {
     }
 }
 
-extension GetListEventsController: EventsView {
+extension GetListEventsViewController: EventsView {
     func showEvents(viewModel: [EventsViewModel]) {
         self.listEvents = viewModel
     }
 }
 
-extension GetListEventsController: UITableViewDelegate, UITableViewDataSource {
+extension GetListEventsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.listEvents?.count ?? 0
     }
