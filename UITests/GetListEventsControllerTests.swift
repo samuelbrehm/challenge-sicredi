@@ -23,4 +23,10 @@ class GetListEventsControllerTests: XCTestCase {
         let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
         XCTAssertNotNil(sut as LoadingView)
     }
+    
+    func test_controller_implements_alertView() throws {
+        let sb = UIStoryboard(name: "GetListEvents", bundle: Bundle(for: GetListEventsController.self))
+        let sut = sb.instantiateViewController(identifier: "GetListEventsController") as! GetListEventsController
+        XCTAssertNotNil(sut as AlertView)
+    }
 }

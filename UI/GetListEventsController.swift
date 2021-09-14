@@ -29,3 +29,13 @@ extension GetListEventsController: LoadingView {
     }
     
 }
+
+extension GetListEventsController: AlertView {
+    func showMessage(viewModel: AlertViewModel) {
+        let alert = UIAlertController(title: viewModel.title, message: viewModel.message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Recarregar", style: .default))
+        present(alert, animated: true)
+    }
+    
+    
+}
