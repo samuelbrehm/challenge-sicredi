@@ -30,13 +30,13 @@ class CardTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     static let identifier: String = "CardTableViewCell"
     
     static public func nib() -> UINib {
-        return UINib(nibName: self.identifier, bundle: nil)
+        return UINib(nibName: self.identifier, bundle: Bundle(for: CardTableViewCell.self))
     }
     
     override func awakeFromNib() {

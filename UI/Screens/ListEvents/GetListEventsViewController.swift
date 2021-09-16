@@ -66,6 +66,7 @@ extension GetListEventsViewController: AlertView {
 extension GetListEventsViewController: EventsView {
     public func showEvents(viewModel: [EventsViewModel]) {
         self.listEvents = viewModel
+        self.eventsTableView.reloadData()
     }
 }
 
@@ -86,5 +87,9 @@ extension GetListEventsViewController: UITableViewDelegate, UITableViewDataSourc
         cell.contentView.layer.masksToBounds = true
         let radius = cell.contentView.layer.cornerRadius
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 600
     }
 }
