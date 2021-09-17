@@ -18,19 +18,19 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFK-k7-op3">
-                        <rect key="frame" x="3" y="0.0" width="547" height="422"/>
+                        <rect key="frame" x="1" y="0.0" width="551" height="422"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G0Q-ci-0Jx">
-                                <rect key="frame" x="0.0" y="0.0" width="547" height="260"/>
+                                <rect key="frame" x="0.0" y="0.0" width="551" height="260"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="260" id="V4u-VV-W0S"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tkp-LP-A1J">
-                                <rect key="frame" x="0.0" y="260" width="547" height="162"/>
+                                <rect key="frame" x="0.0" y="260" width="551" height="162"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BML-EQ-3Oj">
-                                        <rect key="frame" x="12" y="12" width="523" height="20.5"/>
+                                        <rect key="frame" x="12" y="12" width="527" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -42,13 +42,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="00/00/00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMg-Y5-kMT">
-                                        <rect key="frame" x="122.5" y="44.5" width="412.5" height="20"/>
+                                        <rect key="frame" x="122.5" y="44.5" width="416.5" height="20"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toque e veja mais detalhes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQV-KS-ALg">
-                                        <rect key="frame" x="12" y="88.5" width="523" height="27"/>
+                                        <rect key="frame" x="12" y="88.5" width="527" height="27"/>
                                         <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.49991835029999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="27" id="8zm-PA-2bL"/>
@@ -96,8 +96,8 @@
                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="eFK-k7-op3" secondAttribute="bottom" id="3o8-KQ-GyU"/>
-                    <constraint firstItem="eFK-k7-op3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="7dl-Au-NOj"/>
-                    <constraint firstAttribute="trailing" secondItem="eFK-k7-op3" secondAttribute="trailing" constant="3" id="gnW-43-2ZI"/>
+                    <constraint firstItem="eFK-k7-op3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="1" id="7dl-Au-NOj"/>
+                    <constraint firstAttribute="trailing" secondItem="eFK-k7-op3" secondAttribute="trailing" constant="1" id="gnW-43-2ZI"/>
                     <constraint firstItem="eFK-k7-op3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uok-UM-v7l"/>
                 </constraints>
             </tableViewCellContentView>

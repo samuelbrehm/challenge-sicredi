@@ -53,6 +53,12 @@ class CardTableViewCell: UITableViewCell {
                 .transition(.fade(1)),
             ])
         self.eventTitleLabel.text = data.title
+        if let date = data.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMMM - HH:mm 'h'"
+            let dateEventFormatted  = dateFormatter.string(from: date)
+            self.eventDateLabel.text = dateEventFormatted
+        }
     }
     
 }
