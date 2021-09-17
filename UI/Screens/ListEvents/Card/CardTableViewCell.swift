@@ -12,22 +12,10 @@ import Kingfisher
 class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var eventDescriptionLabel: UILabel!
     @IBOutlet weak var eventDateLabel: UILabel!
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        backgroundColor = .clear
-        layer.masksToBounds = false
-        layer.shadowOpacity = 0.23
-        layer.shadowRadius = 4
-        layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowColor = UIColor.black.cgColor
-        
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 6
-    }
+    @IBOutlet weak var wrappedView: UIView!
+    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var detailsLabel: UILabel!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -41,7 +29,14 @@ class CardTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.configureUI()
+    }
+    
+    private func configureUI() {
         self.selectionStyle = .none
+        self.eventImageView.layer.cornerRadius = 6.0
+        self.detailsLabel.layer.masksToBounds = true
+        self.detailsLabel.layer.cornerRadius = 12.0
     }
     
     public func setupCell(data: EventsViewModel) {
@@ -49,7 +44,6 @@ class CardTableViewCell: UITableViewCell {
             self.eventImageView.kf.setImage(with: URL(string: imageUrl))
         }
         self.eventTitleLabel.text = data.title
-        self.eventDescriptionLabel.text = data.description
     }
     
 }
