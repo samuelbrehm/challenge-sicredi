@@ -40,9 +40,18 @@ class CardTableViewCell: UITableViewCell {
     }
     
     public func setupCell(data: EventsViewModel) {
-        if let imageUrl = data.image {
-            self.eventImageView.kf.setImage(with: URL(string: imageUrl))
-        }
+        let url: URL = URL(string: data.image ?? "")!
+        let placeholder: UIImage = UIImage(named: "event4")!
+        
+        let processor = DownsamplingImageProcessor(size: self.eventImageView.bounds.size)
+                     |> RoundCornerImageProcessor(cornerRadius: 20)
+        self.eventImageView.kf.indicatorType = .activity
+        
+        self.eventImageView.kf.setImage(with: url, placeholder: placeholder, options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+            ])
         self.eventTitleLabel.text = data.title
     }
     
