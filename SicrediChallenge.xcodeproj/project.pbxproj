@@ -579,6 +579,7 @@
 		6237C6CE26F520C200191D05 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6242C3C226F0E6C3004DDC9E /* GetListEventsFactory.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -606,6 +607,13 @@
 				6237C6D626F5247900191D05 /* WeakVarProxy.swift */,
 			);
 			path = Proxies;
+			sourceTree = "<group>";
+		};
+		6237C6DA26F530A500191D05 /* Env */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Env;
 			sourceTree = "<group>";
 		};
 		6242C32226EFFE6C004DDC9E /* UI */ = {
@@ -683,6 +691,7 @@
 		6242C39526F0E4E0004DDC9E /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				6237C6DA26F530A500191D05 /* Env */,
 				6237C6D526F5245A00191D05 /* Proxies */,
 				6242C3C126F0E6A5004DDC9E /* Factories */,
 				6242C39626F0E4E0004DDC9E /* AppDelegate.swift */,
@@ -700,7 +709,6 @@
 				6237C6CE26F520C200191D05 /* Controller */,
 				6237C6CF26F520CD00191D05 /* Http */,
 				6237C6D026F520D800191D05 /* Infra */,
-				6242C3C226F0E6C3004DDC9E /* GetListEventsFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
