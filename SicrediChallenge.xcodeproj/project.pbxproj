@@ -25,6 +25,7 @@
 		6237C6D426F5218800191D05 /* RemoteGetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6D326F5218800191D05 /* RemoteGetListEvents.swift */; };
 		6237C6D726F5247900191D05 /* WeakVarProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6D626F5247900191D05 /* WeakVarProxy.swift */; };
 		6237C6D926F5304300191D05 /* APiUrlFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6D826F5304300191D05 /* APiUrlFactory.swift */; };
+		6237C6DD26F5434800191D05 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6DC26F5434800191D05 /* MainQueueDispatchDecorator.swift */; };
 		6242C32A26EFFE6D004DDC9E /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6242C32126EFFE6C004DDC9E /* UI.framework */; };
 		6242C32F26EFFE6D004DDC9E /* GetListEventsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C32E26EFFE6D004DDC9E /* GetListEventsControllerTests.swift */; };
 		6242C33826F00005004DDC9E /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; };
@@ -319,6 +320,7 @@
 		6237C6D326F5218800191D05 /* RemoteGetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetListEvents.swift; sourceTree = "<group>"; };
 		6237C6D626F5247900191D05 /* WeakVarProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakVarProxy.swift; sourceTree = "<group>"; };
 		6237C6D826F5304300191D05 /* APiUrlFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APiUrlFactory.swift; sourceTree = "<group>"; };
+		6237C6DC26F5434800191D05 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		6242C32126EFFE6C004DDC9E /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6242C32426EFFE6C004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6242C32926EFFE6C004DDC9E /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -609,11 +611,12 @@
 			path = Proxies;
 			sourceTree = "<group>";
 		};
-		6237C6DA26F530A500191D05 /* Env */ = {
+		6237C6DB26F5432D00191D05 /* Decorators */ = {
 			isa = PBXGroup;
 			children = (
+				6237C6DC26F5434800191D05 /* MainQueueDispatchDecorator.swift */,
 			);
-			path = Env;
+			path = Decorators;
 			sourceTree = "<group>";
 		};
 		6242C32226EFFE6C004DDC9E /* UI */ = {
@@ -691,7 +694,7 @@
 		6242C39526F0E4E0004DDC9E /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				6237C6DA26F530A500191D05 /* Env */,
+				6237C6DB26F5432D00191D05 /* Decorators */,
 				6237C6D526F5245A00191D05 /* Proxies */,
 				6242C3C126F0E6A5004DDC9E /* Factories */,
 				6242C39626F0E4E0004DDC9E /* AppDelegate.swift */,
@@ -1580,6 +1583,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6237C6DD26F5434800191D05 /* MainQueueDispatchDecorator.swift in Sources */,
 				6237C6D426F5218800191D05 /* RemoteGetListEvents.swift in Sources */,
 				6242C3C326F0E6C3004DDC9E /* GetListEventsFactory.swift in Sources */,
 				6237C6D226F5211700191D05 /* AlamofireAdapterFactory.swift in Sources */,
