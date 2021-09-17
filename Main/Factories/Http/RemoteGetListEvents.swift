@@ -10,7 +10,6 @@ import Domain
 import Data
 
 func makeGetListEvents() -> GetListEvents {
-    let url = URL(string: "http://5f5a8f24d44d640016169133.mockapi.io/api/events")!
-    let remoteGetListEvents = RemoteGetListEvents(url: url, httpGetClient: makeAlamofireAdapter())
+    let remoteGetListEvents = RemoteGetListEvents(url: makeApiBaseUrl(), httpGetClient: makeAlamofireAdapter())
     return remoteGetListEvents
 }
