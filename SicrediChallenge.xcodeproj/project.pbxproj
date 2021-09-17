@@ -21,6 +21,8 @@
 		622DDF4B26ED5F3900109F8D /* EmailValidatorSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4A26ED5F3900109F8D /* EmailValidatorSpy.swift */; };
 		622DDF4D26ED5F6200109F8D /* CreateCheckInSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4C26ED5F6200109F8D /* CreateCheckInSpy.swift */; };
 		622DDF5026ED5FB500109F8D /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622DDF4F26ED5FB500109F8D /* Factories.swift */; };
+		6237C6D226F5211700191D05 /* AlamofireAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6D126F5211700191D05 /* AlamofireAdapterFactory.swift */; };
+		6237C6D426F5218800191D05 /* RemoteGetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6D326F5218800191D05 /* RemoteGetListEvents.swift */; };
 		6242C32A26EFFE6D004DDC9E /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6242C32126EFFE6C004DDC9E /* UI.framework */; };
 		6242C32F26EFFE6D004DDC9E /* GetListEventsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C32E26EFFE6D004DDC9E /* GetListEventsControllerTests.swift */; };
 		6242C33826F00005004DDC9E /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; };
@@ -311,6 +313,8 @@
 		622DDF4A26ED5F3900109F8D /* EmailValidatorSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidatorSpy.swift; sourceTree = "<group>"; };
 		622DDF4C26ED5F6200109F8D /* CreateCheckInSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInSpy.swift; sourceTree = "<group>"; };
 		622DDF4F26ED5FB500109F8D /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
+		6237C6D126F5211700191D05 /* AlamofireAdapterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAdapterFactory.swift; sourceTree = "<group>"; };
+		6237C6D326F5218800191D05 /* RemoteGetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetListEvents.swift; sourceTree = "<group>"; };
 		6242C32126EFFE6C004DDC9E /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6242C32426EFFE6C004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6242C32926EFFE6C004DDC9E /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -568,6 +572,29 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		6237C6CE26F520C200191D05 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6237C6CF26F520CD00191D05 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				6237C6D326F5218800191D05 /* RemoteGetListEvents.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		6237C6D026F520D800191D05 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				6237C6D126F5211700191D05 /* AlamofireAdapterFactory.swift */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
 		6242C32226EFFE6C004DDC9E /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,6 +683,9 @@
 		6242C3C126F0E6A5004DDC9E /* Factories */ = {
 			isa = PBXGroup;
 			children = (
+				6237C6CE26F520C200191D05 /* Controller */,
+				6237C6CF26F520CD00191D05 /* Http */,
+				6237C6D026F520D800191D05 /* Infra */,
 				6242C3C226F0E6C3004DDC9E /* GetListEventsFactory.swift */,
 			);
 			path = Factories;
@@ -1528,7 +1558,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6237C6D426F5218800191D05 /* RemoteGetListEvents.swift in Sources */,
 				6242C3C326F0E6C3004DDC9E /* GetListEventsFactory.swift in Sources */,
+				6237C6D226F5211700191D05 /* AlamofireAdapterFactory.swift in Sources */,
 				6242C39726F0E4E0004DDC9E /* AppDelegate.swift in Sources */,
 				6242C39926F0E4E0004DDC9E /* SceneDelegate.swift in Sources */,
 			);

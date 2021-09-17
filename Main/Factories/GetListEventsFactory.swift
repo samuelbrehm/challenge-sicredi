@@ -10,14 +10,12 @@ import UI
 import Presentation
 import Data
 import Infra_
+import Domain
 
 class GetListEventsFactory {
     static func makeController() -> GetListEventsViewController {
         let controller =  GetListEventsViewController.instantiate()
-        let alamofireAdapter = AlamofireAdapter()
-        let url = URL(string: "http://5f5a8f24d44d640016169133.mockapi.io/api/events")!
-        let remoteGetListEvents = RemoteGetListEvents(url: url, httpGetClient: alamofireAdapter)
-        let presenter = ListEventsPresenter(getListEvents: remoteGetListEvents, alertView: controller, loadingView: controller, eventsView: controller)
+        let presenter = ListEventsPresenter(getListEvents: makeGetListEvents(), alertView: controller, loadingView: controller, eventsView: controller)
         controller.loadListEvents = presenter.showEventsList
         
         return controller
