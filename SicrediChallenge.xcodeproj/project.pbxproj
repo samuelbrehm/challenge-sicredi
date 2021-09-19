@@ -93,6 +93,8 @@
 		62A2A7C426E03F56000D45E8 /* RemoteGetListEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A7C326E03F56000D45E8 /* RemoteGetListEvents.swift */; };
 		62A2A7C626E04A01000D45E8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A7C526E04A01000D45E8 /* Model.swift */; };
 		62A2A7C926E04F68000D45E8 /* ExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2A7C826E04F68000D45E8 /* ExtensionHelpers.swift */; };
+		62ADECE226F76CF700C0E2B3 /* GetDetailsEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62ADECE126F76CF700C0E2B3 /* GetDetailsEvent.storyboard */; };
+		62ADECE426F76D2800C0E2B3 /* GetDetailsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECE326F76D2800C0E2B3 /* GetDetailsEvent.swift */; };
 		62C22D9D26EB945B0085F513 /* ListEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22D9C26EB945B0085F513 /* ListEventsPresenter.swift */; };
 		62C22D9F26EB94E60085F513 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22D9E26EB94E60085F513 /* AlertView.swift */; };
 		62C22DA126EB95020085F513 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DA026EB95020085F513 /* LoadingView.swift */; };
@@ -382,6 +384,8 @@
 		62A2A7C326E03F56000D45E8 /* RemoteGetListEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetListEvents.swift; sourceTree = "<group>"; };
 		62A2A7C526E04A01000D45E8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		62A2A7C826E04F68000D45E8 /* ExtensionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelpers.swift; sourceTree = "<group>"; };
+		62ADECE126F76CF700C0E2B3 /* GetDetailsEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GetDetailsEvent.storyboard; sourceTree = "<group>"; };
+		62ADECE326F76D2800C0E2B3 /* GetDetailsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEvent.swift; sourceTree = "<group>"; };
 		62C22D9C26EB945B0085F513 /* ListEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsPresenter.swift; sourceTree = "<group>"; };
 		62C22D9E26EB94E60085F513 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		62C22DA026EB95020085F513 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -641,6 +645,7 @@
 		6242C34126F0A9BA004DDC9E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				62ADECE026F76CD700C0E2B3 /* DetailsEvent */,
 				6242C34226F0A9D3004DDC9E /* ListEvents */,
 			);
 			path = Screens;
@@ -911,6 +916,15 @@
 				62A2A7C826E04F68000D45E8 /* ExtensionHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		62ADECE026F76CD700C0E2B3 /* DetailsEvent */ = {
+			isa = PBXGroup;
+			children = (
+				62ADECE126F76CF700C0E2B3 /* GetDetailsEvent.storyboard */,
+				62ADECE326F76D2800C0E2B3 /* GetDetailsEvent.swift */,
+			);
+			path = DetailsEvent;
 			sourceTree = "<group>";
 		};
 		62C22D9526EB93900085F513 /* UseCases */ = {
@@ -1428,6 +1442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62ADECE226F76CF700C0E2B3 /* GetDetailsEvent.storyboard in Resources */,
 				6242C34026F00249004DDC9E /* GetListEvents.storyboard in Resources */,
 				6242C34726F0AC07004DDC9E /* CardTableViewCell.xib in Resources */,
 			);
@@ -1549,6 +1564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62ADECE426F76D2800C0E2B3 /* GetDetailsEvent.swift in Sources */,
 				6242C33E26F0017B004DDC9E /* GetListEventsViewController.swift in Sources */,
 				6242C34626F0AC07004DDC9E /* CardTableViewCell.swift in Sources */,
 				6242C35026F0D6D0004DDC9E /* Storyboarded.swift in Sources */,
