@@ -23,7 +23,7 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
     public var loadDetailsEvents: ((_ idEvent: String) -> Void)?
-    public var detailsEvent: EventsViewModel?
+    public var detailsEvent: EventsViewModel = EventsViewModel()
     public var idEvent: String = ""
     
     public override func viewDidLoad() {
@@ -61,5 +61,11 @@ extension GetDetailsEventViewController: AlertView {
             self.loadDetailsEvents?(self.idEvent)
         }))
         present(alert, animated: true)
+    }
+}
+
+extension GetDetailsEventViewController: DetailsEventView {
+    public func showDetailsEvent(viewModel: EventsViewModel) {
+        self.detailsEvent = viewModel
     }
 }

@@ -26,6 +26,11 @@ class GetDetailsEventControllerTests: XCTestCase {
         let sut = makeSut()
         XCTAssertNotNil(sut as AlertView)
     }
+    
+    func test_controller_implements_detailsEventView() throws {
+        let sut = makeSut()
+        XCTAssertNotNil(sut as DetailsEventView)
+    }
 }
 
 extension GetDetailsEventControllerTests {
