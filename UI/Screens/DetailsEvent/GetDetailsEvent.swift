@@ -22,6 +22,10 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     @IBOutlet weak var locationEventMap: MKMapView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    public var loadDetailsEvents: ((_ idEvent: String) -> Void)?
+    public var detailsEvent: EventsViewModel?
+    public var idEvent: String = ""
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
@@ -48,5 +52,14 @@ extension GetDetailsEventViewController: LoadingView {
             self.loadingActivityIndicator.stopAnimating()
         }
     }
-    
+}
+
+extension GetDetailsEventViewController: AlertView {
+    public func showMessage(viewModel: AlertViewModel) {
+        let alert = UIAlertController(title: viewModel.title, message: viewModel.message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Recarregar", style: .default, handler: { _ in
+            self.loadDetailsEvents?(self.idEvent)
+        }))
+        present(alert, animated: true)
+    }
 }
