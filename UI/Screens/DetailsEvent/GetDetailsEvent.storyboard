@@ -22,7 +22,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpA-pX-glQ" userLabel="wrapped content view">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ag-N9-hbK">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ag-N9-hbK">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="260" id="7xN-ZH-s5c"/>
@@ -109,6 +109,15 @@
                                                     <constraint firstAttribute="height" constant="250" id="FIk-CE-oyp"/>
                                                 </constraints>
                                             </mapView>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Cnk-uF-Jfc">
+                                                <rect key="frame" x="177" y="379" width="60" height="60"/>
+                                                <color key="backgroundColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="JBM-uf-FC3"/>
+                                                    <constraint firstAttribute="height" constant="60" id="USN-py-Hnh"/>
+                                                </constraints>
+                                                <color key="color" systemColor="systemGreenColor"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -122,9 +131,11 @@
                                             <constraint firstAttribute="trailing" secondItem="wwo-g0-2oL" secondAttribute="trailing" constant="90" id="SSk-Nt-Spw"/>
                                             <constraint firstItem="8ag-N9-hbK" firstAttribute="top" secondItem="IpA-pX-glQ" secondAttribute="top" id="VeT-pH-6Ca"/>
                                             <constraint firstItem="CM1-VE-Jrk" firstAttribute="top" secondItem="WtA-pN-qWb" secondAttribute="bottom" constant="24" id="Yqc-9d-TmC"/>
+                                            <constraint firstItem="Cnk-uF-Jfc" firstAttribute="centerX" secondItem="IpA-pX-glQ" secondAttribute="centerX" id="Yss-I3-iAm"/>
                                             <constraint firstItem="wwo-g0-2oL" firstAttribute="leading" secondItem="IpA-pX-glQ" secondAttribute="leading" constant="90" id="ZAc-s6-4R5"/>
                                             <constraint firstItem="WtA-pN-qWb" firstAttribute="top" secondItem="aG9-hV-1uv" secondAttribute="bottom" constant="12" id="Za7-FV-e80"/>
                                             <constraint firstItem="kIt-x8-Dxr" firstAttribute="top" secondItem="CM1-VE-Jrk" secondAttribute="bottom" constant="12" id="afd-m5-wxi"/>
+                                            <constraint firstItem="Cnk-uF-Jfc" firstAttribute="centerY" secondItem="IpA-pX-glQ" secondAttribute="centerY" id="ahB-K5-p8l"/>
                                             <constraint firstAttribute="trailing" secondItem="CM1-VE-Jrk" secondAttribute="trailing" constant="24" id="cFk-Vy-drp"/>
                                             <constraint firstAttribute="trailing" secondItem="kIt-x8-Dxr" secondAttribute="trailing" id="cZ0-00-UiK"/>
                                             <constraint firstItem="Ods-m3-vwT" firstAttribute="top" secondItem="Wlv-2M-cwS" secondAttribute="bottom" constant="6" id="e0a-MV-7n4"/>
@@ -163,6 +174,16 @@
                             <constraint firstItem="af1-Pd-Ht3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ulQ-fg-HW4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dayEventLabel" destination="yMa-gD-R7W" id="DV2-kB-gyg"/>
+                        <outlet property="descriptionEventLabel" destination="WtA-pN-qWb" id="sCx-c8-pC6"/>
+                        <outlet property="eventImageView" destination="8ag-N9-hbK" id="Gef-ua-7cb"/>
+                        <outlet property="loadingActivityIndicator" destination="Cnk-uF-Jfc" id="mPZ-S9-BQe"/>
+                        <outlet property="locationEventMap" destination="kIt-x8-Dxr" id="w36-Jj-27g"/>
+                        <outlet property="monthEventLabel" destination="zG8-lt-Ux1" id="PYh-ES-Uwk"/>
+                        <outlet property="titleEventLabel" destination="Xor-jd-5nb" id="xRt-H5-9MX"/>
+                        <outlet property="wrapperContetDateView" destination="wwo-g0-2oL" id="mnE-QS-rOs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -175,6 +196,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
