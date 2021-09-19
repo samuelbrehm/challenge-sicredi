@@ -37,3 +37,16 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
         self.wrapperContetDateView.layer.cornerRadius = 6.0
     }
 }
+
+extension GetDetailsEventViewController: LoadingView {
+    public func display(viewModel: LoadingViewModel) {
+        if viewModel.isLoading {
+            view.isUserInteractionEnabled = false
+            self.loadingActivityIndicator.startAnimating()
+        } else {
+            view.isUserInteractionEnabled = true
+            self.loadingActivityIndicator.stopAnimating()
+        }
+    }
+    
+}
