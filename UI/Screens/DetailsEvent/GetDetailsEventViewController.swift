@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 import Presentation
+import Kingfisher
 
 public final class GetDetailsEventViewController: UIViewController, Storyboarded {
     
@@ -29,6 +30,13 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
+        self.loadRemoteDetailsEvent()
+        
+    }
+    
+    private func loadRemoteDetailsEvent() {
+        self.idEvent = "1"
+        self.loadDetailsEvents?(self.idEvent)
     }
     
     private func configureUI() {
@@ -39,6 +47,28 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
         self.wrapperContetDateView.layer.shadowOpacity = 1.0
         self.wrapperContetDateView.layer.masksToBounds = false
         self.wrapperContetDateView.layer.cornerRadius = 6.0
+    }
+    
+    private func configureEventViewModel() {
+        let url: URL = URL(string: self.detailsEvent.image ?? "")!
+        let placeholder: UIImage = UIImage(named: "event4")!
+        
+        let processor = DownsamplingImageProcessor(size: self.eventImageView.bounds.size)
+                     |> RoundCornerImageProcessor(cornerRadius: 20)
+        self.eventImageView.kf.indicatorType = .activity
+        
+        self.eventImageView.kf.setImage(with: url, placeholder: placeholder, options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+            ])
+        self.titleEventLabel.text = self.detailsEvent.title
+        if let date = self.detailsEvent.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMMM - HH:mm 'h'"
+            let dateEventFormatted  = dateFormatter.string(from: date)
+            self.monthEventLabel.text = dateEventFormatted
+        }
     }
 }
 
@@ -67,5 +97,6 @@ extension GetDetailsEventViewController: AlertView {
 extension GetDetailsEventViewController: DetailsEventView {
     public func showDetailsEvent(viewModel: EventsViewModel) {
         self.detailsEvent = viewModel
+        self.configureEventViewModel()
     }
 }

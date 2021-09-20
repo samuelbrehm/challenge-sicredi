@@ -25,3 +25,13 @@ extension MainQueueDispatchDecorator: GetListEvents where T: GetListEvents {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: GetDetailsEvent where T: GetDetailsEvent {
+    public func getDetailsEvent(idEvent: String, completion: @escaping (Result<EventModel, DomainError>) -> Void) {
+        instance.getDetailsEvent(idEvent: idEvent) { result in
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+    }
+}

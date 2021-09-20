@@ -34,3 +34,9 @@ extension WeakVarProxy: EventsView where T: EventsView {
         instance?.showEvents(viewModel: viewModel)
     }
 }
+
+extension WeakVarProxy: DetailsEventView where T: DetailsEventView {
+    func showDetailsEvent(viewModel: EventsViewModel) {
+        instance?.showDetailsEvent(viewModel: viewModel)
+    }
+}
