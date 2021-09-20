@@ -97,7 +97,7 @@
 		62ADECE426F76D2800C0E2B3 /* GetDetailsEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECE326F76D2800C0E2B3 /* GetDetailsEventViewController.swift */; };
 		62ADECE626F7DEB000C0E2B3 /* GetDetailsEventControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECE526F7DEB000C0E2B3 /* GetDetailsEventControllerTests.swift */; };
 		62ADECEB26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECEA26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift */; };
-		62ADECED26F8B02D00C0E2B3 /* RemoteGetDetailsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECEC26F8B02D00C0E2B3 /* RemoteGetDetailsEvent.swift */; };
+		62ADECED26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECEC26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift */; };
 		62C22D9D26EB945B0085F513 /* ListEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22D9C26EB945B0085F513 /* ListEventsPresenter.swift */; };
 		62C22D9F26EB94E60085F513 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22D9E26EB94E60085F513 /* AlertView.swift */; };
 		62C22DA126EB95020085F513 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DA026EB95020085F513 /* LoadingView.swift */; };
@@ -391,7 +391,7 @@
 		62ADECE326F76D2800C0E2B3 /* GetDetailsEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEventViewController.swift; sourceTree = "<group>"; };
 		62ADECE526F7DEB000C0E2B3 /* GetDetailsEventControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEventControllerTests.swift; sourceTree = "<group>"; };
 		62ADECEA26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEventFactory.swift; sourceTree = "<group>"; };
-		62ADECEC26F8B02D00C0E2B3 /* RemoteGetDetailsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDetailsEvent.swift; sourceTree = "<group>"; };
+		62ADECEC26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDEtailsEvent.swift; sourceTree = "<group>"; };
 		62C22D9C26EB945B0085F513 /* ListEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsPresenter.swift; sourceTree = "<group>"; };
 		62C22D9E26EB94E60085F513 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		62C22DA026EB95020085F513 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -602,7 +602,7 @@
 			children = (
 				6237C6D326F5218800191D05 /* RemoteGetListEvents.swift */,
 				6237C6D826F5304300191D05 /* APiUrlFactory.swift */,
-				62ADECEC26F8B02D00C0E2B3 /* RemoteGetDetailsEvent.swift */,
+				62ADECEC26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -1635,7 +1635,7 @@
 			files = (
 				6237C6DD26F5434800191D05 /* MainQueueDispatchDecorator.swift in Sources */,
 				6237C6D426F5218800191D05 /* RemoteGetListEvents.swift in Sources */,
-				62ADECED26F8B02D00C0E2B3 /* RemoteGetDetailsEvent.swift in Sources */,
+				62ADECED26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift in Sources */,
 				6242C3C326F0E6C3004DDC9E /* GetListEventsFactory.swift in Sources */,
 				6237C6D226F5211700191D05 /* AlamofireAdapterFactory.swift in Sources */,
 				62ADECEB26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift in Sources */,
