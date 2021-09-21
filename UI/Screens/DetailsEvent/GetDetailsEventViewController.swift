@@ -46,14 +46,14 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
         let placeholder: UIImage = UIImage(named: "event4")!
         
         let processor = DownsamplingImageProcessor(size: self.eventImageView.bounds.size)
-                     |> RoundCornerImageProcessor(cornerRadius: 20)
+            |> RoundCornerImageProcessor(cornerRadius: 20)
         self.eventImageView.kf.indicatorType = .activity
         
         self.eventImageView.kf.setImage(with: url, placeholder: placeholder, options: [
-                .processor(processor),
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-            ])
+            .processor(processor),
+            .scaleFactor(UIScreen.main.scale),
+            .transition(.fade(1)),
+        ])
         self.titleEventLabel.text = self.detailsEvent.title
         if let date = self.detailsEvent.date {
             let dateFormatter = DateFormatter()
@@ -61,6 +61,52 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
             let dateEventFormatted  = dateFormatter.string(from: date)
             self.dateEventLabel.text = dateEventFormatted
         }
+        self.descriptionEventLabel.text = self.detailsEvent.description
+        if let latitude = self.detailsEvent.latitude, let longitude = self.detailsEvent.longitude {
+            self.setLocationEventOnMap(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    private func setLocationEventOnMap(latitude: Double, longitude: Double) {
+        let center = CLLocationCoordinate2DMake(latitude, longitude)
+        let span = MKCoordinateSpan(latitudeDelta: 0.006, longitudeDelta: 0.006)
+        let region = MKCoordinateRegion(center: center, span: span)
+        self.locationEventMap.setRegion(region, animated: true)
+//        let (locality, subLocality, thoroughfare, subThoroughfare) = self.getAddressEventWithCoordinates(latitude: latitude, longitude: longitude)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = center
+//        annotation.title = locality
+//        annotation.subtitle = "\(thoroughfare ?? ""), \(subThoroughfare ?? "") - \(subLocality ?? "")"
+        self.locationEventMap.addAnnotation(annotation)
+    }
+    
+    private func getAddressEventWithCoordinates(latitude: Double, longitude: Double) -> (locality: String?, subLocality: String?, thoroughfare: String?, subThoroughfare: String?) {
+        var centerAddress : CLLocationCoordinate2D = CLLocationCoordinate2D()
+        let geoCoder: CLGeocoder = CLGeocoder()
+        
+        let latitude: Double = latitude
+        let longitude: Double = longitude
+        centerAddress.latitude = latitude
+        centerAddress.longitude = longitude
+        let location: CLLocation = CLLocation(latitude: centerAddress.latitude, longitude: centerAddress.longitude)
+        
+        var locality: String?
+        var subLocality: String?
+        var thoroughfare: String?
+        var subThoroughfare: String?
+        
+        geoCoder.reverseGeocodeLocation(location) { (placemarks, _) in
+            let placemarks = placemarks! as [CLPlacemark]
+            if placemarks.count > 0 {
+                let placemark = placemarks[0]
+                locality = placemark.locality ?? ""
+                subLocality = placemark.subLocality ?? ""
+                thoroughfare = placemark.thoroughfare ?? ""
+                subThoroughfare = placemark.subThoroughfare ?? ""
+            }
+        }
+        return (locality, subLocality, thoroughfare, subThoroughfare)
     }
 }
 
