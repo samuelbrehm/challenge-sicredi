@@ -60,6 +60,7 @@
 		6242C3C326F0E6C3004DDC9E /* GetListEventsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C3C226F0E6C3004DDC9E /* GetListEventsFactory.swift */; };
 		6252966926E68FC8009ECB3A /* XCTestCase+MemoryLeak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C426E1629B00C82896 /* XCTestCase+MemoryLeak.swift */; };
 		625A694826FA1F560095F06F /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625A694726FA1F560095F06F /* UIColor+Hex.swift */; };
+		625A694A26FA20390095F06F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625A694926FA20390095F06F /* Color.swift */; };
 		628537BC26E15E1000C82896 /* RemoteGetDetailsEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */; };
 		628537C026E161C700C82896 /* HttpGetClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537BF26E161C700C82896 /* HttpGetClientSpy.swift */; };
 		628537C326E1625000C82896 /* EventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628537C226E1625000C82896 /* EventFactory.swift */; };
@@ -351,6 +352,7 @@
 		6242C3A426F0E4E3004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6242C3C226F0E6C3004DDC9E /* GetListEventsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEventsFactory.swift; sourceTree = "<group>"; };
 		625A694726FA1F560095F06F /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		625A694926FA20390095F06F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		628537BB26E15E1000C82896 /* RemoteGetDetailsEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDetailsEventTests.swift; sourceTree = "<group>"; };
 		628537BF26E161C700C82896 /* HttpGetClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGetClientSpy.swift; sourceTree = "<group>"; };
 		628537C226E1625000C82896 /* EventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFactory.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 			children = (
 				6242C34F26F0D6D0004DDC9E /* Storyboarded.swift */,
 				625A694726FA1F560095F06F /* UIColor+Hex.swift */,
+				625A694926FA20390095F06F /* Color.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1605,6 +1608,7 @@
 				6242C34626F0AC07004DDC9E /* CardTableViewCell.swift in Sources */,
 				6242C35026F0D6D0004DDC9E /* Storyboarded.swift in Sources */,
 				625A694826FA1F560095F06F /* UIColor+Hex.swift in Sources */,
+				625A694A26FA20390095F06F /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
