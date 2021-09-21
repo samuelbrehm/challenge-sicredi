@@ -20,6 +20,7 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     @IBOutlet weak var descriptionEventLabel: UILabel!
     @IBOutlet weak var locationEventMap: MKMapView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var addressLabel: UILabel!
     
     public var loadDetailsEvents: ((_ idEvent: String) -> Void)?
     public var detailsEvent: EventsViewModel = EventsViewModel()
@@ -64,6 +65,7 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
         self.descriptionEventLabel.text = self.detailsEvent.description
         if let latitude = self.detailsEvent.latitude, let longitude = self.detailsEvent.longitude {
             self.setLocationEventOnMap(latitude: latitude, longitude: longitude)
+            self.setAddressEventWithCoordinates(latitude: latitude, longitude: longitude)
         }
     }
     
@@ -72,16 +74,12 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
         let span = MKCoordinateSpan(latitudeDelta: 0.006, longitudeDelta: 0.006)
         let region = MKCoordinateRegion(center: center, span: span)
         self.locationEventMap.setRegion(region, animated: true)
-//        let (locality, subLocality, thoroughfare, subThoroughfare) = self.getAddressEventWithCoordinates(latitude: latitude, longitude: longitude)
-
         let annotation = MKPointAnnotation()
         annotation.coordinate = center
-//        annotation.title = locality
-//        annotation.subtitle = "\(thoroughfare ?? ""), \(subThoroughfare ?? "") - \(subLocality ?? "")"
         self.locationEventMap.addAnnotation(annotation)
     }
     
-    private func getAddressEventWithCoordinates(latitude: Double, longitude: Double) -> (locality: String?, subLocality: String?, thoroughfare: String?, subThoroughfare: String?) {
+    private func setAddressEventWithCoordinates(latitude: Double, longitude: Double) {
         var centerAddress : CLLocationCoordinate2D = CLLocationCoordinate2D()
         let geoCoder: CLGeocoder = CLGeocoder()
         
@@ -91,22 +89,15 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
         centerAddress.longitude = longitude
         let location: CLLocation = CLLocation(latitude: centerAddress.latitude, longitude: centerAddress.longitude)
         
-        var locality: String?
-        var subLocality: String?
-        var thoroughfare: String?
-        var subThoroughfare: String?
-        
         geoCoder.reverseGeocodeLocation(location) { (placemarks, _) in
-            let placemarks = placemarks! as [CLPlacemark]
-            if placemarks.count > 0 {
-                let placemark = placemarks[0]
-                locality = placemark.locality ?? ""
-                subLocality = placemark.subLocality ?? ""
-                thoroughfare = placemark.thoroughfare ?? ""
-                subThoroughfare = placemark.subThoroughfare ?? ""
+            let pm = placemarks! as [CLPlacemark]
+            if pm.count > 0 {
+                let pm = placemarks![0]
+                if let thoroughfare = pm.thoroughfare, let subThoroughfare = pm.subThoroughfare, let subLocality = pm.subLocality, let locality = pm.locality, let postalCode = pm.postalCode {
+                    self.addressLabel.text = "Endereço -> \(thoroughfare), \(subThoroughfare) - Bairro: \(subLocality) - \(locality).\nCEP \(postalCode)"
+                }
             }
         }
-        return (locality, subLocality, thoroughfare, subThoroughfare)
     }
 }
 

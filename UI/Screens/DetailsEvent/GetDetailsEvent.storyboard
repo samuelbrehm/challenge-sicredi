@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zI-mW-a2l" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="886.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ag-N9-hbK">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
@@ -71,6 +71,12 @@
                                                     <constraint firstAttribute="height" constant="250" id="Wp0-jQ-Wgs"/>
                                                 </constraints>
                                             </mapView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endereço: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmz-hR-kLk">
+                                                <rect key="frame" x="24" y="819" width="366" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" cyan="1" magenta="1" yellow="1" black="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -84,12 +90,13 @@
                                             <constraint firstItem="Ods-m3-vwT" firstAttribute="leading" secondItem="2zI-mW-a2l" secondAttribute="leading" constant="24" id="KCL-IL-xdu"/>
                                             <constraint firstAttribute="trailing" secondItem="Ods-m3-vwT" secondAttribute="trailing" constant="24" id="KTE-iQ-Ucn"/>
                                             <constraint firstAttribute="trailing" secondItem="zG8-lt-Ux1" secondAttribute="trailing" constant="24" id="KYd-1L-u8p"/>
+                                            <constraint firstItem="tmz-hR-kLk" firstAttribute="top" secondItem="kIt-x8-Dxr" secondAttribute="bottom" constant="9" id="Mlk-iW-Wew"/>
                                             <constraint firstAttribute="trailing" secondItem="aG9-hV-1uv" secondAttribute="trailing" constant="24" id="N8v-7H-7YC"/>
+                                            <constraint firstAttribute="trailing" secondItem="tmz-hR-kLk" secondAttribute="trailing" constant="24" id="P8T-kb-XWH"/>
                                             <constraint firstItem="zG8-lt-Ux1" firstAttribute="leading" secondItem="2zI-mW-a2l" secondAttribute="leading" constant="24" id="Qnz-KN-ZBQ"/>
                                             <constraint firstItem="CM1-VE-Jrk" firstAttribute="leading" secondItem="2zI-mW-a2l" secondAttribute="leading" constant="24" id="UgD-QE-2nP"/>
                                             <constraint firstItem="zG8-lt-Ux1" firstAttribute="top" secondItem="Ods-m3-vwT" secondAttribute="bottom" constant="9" id="Vdn-q6-9CY"/>
                                             <constraint firstAttribute="trailing" secondItem="8ag-N9-hbK" secondAttribute="trailing" id="XsG-eY-5CM"/>
-                                            <constraint firstAttribute="bottom" secondItem="kIt-x8-Dxr" secondAttribute="bottom" constant="32" id="ajE-P2-VXo"/>
                                             <constraint firstItem="Ods-m3-vwT" firstAttribute="top" secondItem="Xor-jd-5nb" secondAttribute="bottom" constant="24" id="awj-sw-rYR"/>
                                             <constraint firstAttribute="trailing" secondItem="CM1-VE-Jrk" secondAttribute="trailing" constant="24" id="cJB-C0-dZK"/>
                                             <constraint firstItem="CM1-VE-Jrk" firstAttribute="top" secondItem="WtA-pN-qWb" secondAttribute="bottom" constant="24" id="kry-TN-m0f"/>
@@ -97,6 +104,8 @@
                                             <constraint firstItem="Xor-jd-5nb" firstAttribute="leading" secondItem="2zI-mW-a2l" secondAttribute="leading" constant="24" id="l1h-dv-Fhu"/>
                                             <constraint firstItem="Xor-jd-5nb" firstAttribute="top" secondItem="8ag-N9-hbK" secondAttribute="bottom" constant="24" id="s1f-eT-Gec"/>
                                             <constraint firstAttribute="trailing" secondItem="Xor-jd-5nb" secondAttribute="trailing" constant="24" id="tsq-gl-46C"/>
+                                            <constraint firstAttribute="bottom" secondItem="tmz-hR-kLk" secondAttribute="bottom" constant="48" id="xFf-j2-iK7"/>
+                                            <constraint firstItem="tmz-hR-kLk" firstAttribute="leading" secondItem="2zI-mW-a2l" secondAttribute="leading" constant="24" id="xZX-gQ-OVN"/>
                                             <constraint firstItem="kIt-x8-Dxr" firstAttribute="leading" secondItem="2zI-mW-a2l" secondAttribute="leading" id="yYG-MY-Ntj"/>
                                             <constraint firstItem="aG9-hV-1uv" firstAttribute="leading" secondItem="2zI-mW-a2l" secondAttribute="leading" constant="24" id="yda-Xf-k4Z"/>
                                         </constraints>
@@ -132,6 +141,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="tmz-hR-kLk" id="alp-Qc-2Fg"/>
                         <outlet property="dateEventLabel" destination="zG8-lt-Ux1" id="Ajc-Ti-8SD"/>
                         <outlet property="descriptionEventLabel" destination="WtA-pN-qWb" id="sCx-c8-pC6"/>
                         <outlet property="eventImageView" destination="8ag-N9-hbK" id="Gef-ua-7cb"/>
