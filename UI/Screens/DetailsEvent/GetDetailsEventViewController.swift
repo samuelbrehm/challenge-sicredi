@@ -42,6 +42,8 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     
     private func configureUI() {
         self.loadingActivityIndicator?.layer.cornerRadius = 9
+        self.title = "Todas Informações do Evento"
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func configureEventViewModel() {

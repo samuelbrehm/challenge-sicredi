@@ -32,6 +32,8 @@ public final class GetListEventsViewController: UIViewController, Storyboarded {
     
     private func configureUI() {
         self.loadingActivityIndicator?.layer.cornerRadius = 9
+        self.title = "Todos Eventos"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureTableView() {

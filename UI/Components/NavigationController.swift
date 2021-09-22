@@ -27,7 +27,8 @@ public final class NavigationController: UINavigationController {
     
     private func setup() {
         navigationBar.barTintColor = Color.primary
-        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationBar.tintColor = UIColor.white
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.label]
         navigationBar.isTranslucent = true
     }
     
