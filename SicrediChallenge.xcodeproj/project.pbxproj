@@ -101,6 +101,7 @@
 		62ADECE626F7DEB000C0E2B3 /* GetDetailsEventControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECE526F7DEB000C0E2B3 /* GetDetailsEventControllerTests.swift */; };
 		62ADECEB26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECEA26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift */; };
 		62ADECED26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ADECEC26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift */; };
+		62BA149D26FAD43600CA09AA /* GetListEventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BA149C26FAD43600CA09AA /* GetListEventsRouter.swift */; };
 		62C22D9D26EB945B0085F513 /* ListEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22D9C26EB945B0085F513 /* ListEventsPresenter.swift */; };
 		62C22D9F26EB94E60085F513 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22D9E26EB94E60085F513 /* AlertView.swift */; };
 		62C22DA126EB95020085F513 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C22DA026EB95020085F513 /* LoadingView.swift */; };
@@ -398,6 +399,7 @@
 		62ADECE526F7DEB000C0E2B3 /* GetDetailsEventControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEventControllerTests.swift; sourceTree = "<group>"; };
 		62ADECEA26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailsEventFactory.swift; sourceTree = "<group>"; };
 		62ADECEC26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGetDEtailsEvent.swift; sourceTree = "<group>"; };
+		62BA149C26FAD43600CA09AA /* GetListEventsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListEventsRouter.swift; sourceTree = "<group>"; };
 		62C22D9C26EB945B0085F513 /* ListEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsPresenter.swift; sourceTree = "<group>"; };
 		62C22D9E26EB94E60085F513 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		62C22DA026EB95020085F513 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 				6242C34326F0ABC3004DDC9E /* Card */,
 				6242C33D26F0017B004DDC9E /* GetListEventsViewController.swift */,
 				6242C33F26F00249004DDC9E /* GetListEvents.storyboard */,
+				62BA149C26FAD43600CA09AA /* GetListEventsRouter.swift */,
 			);
 			path = ListEvents;
 			sourceTree = "<group>";
@@ -1620,6 +1623,7 @@
 				6242C35026F0D6D0004DDC9E /* Storyboarded.swift in Sources */,
 				625A694826FA1F560095F06F /* UIColor+Hex.swift in Sources */,
 				625A694D26FA211C0095F06F /* NavigationController.swift in Sources */,
+				62BA149D26FAD43600CA09AA /* GetListEventsRouter.swift in Sources */,
 				625A694A26FA20390095F06F /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,17 +24,23 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     
     public var loadDetailsEvents: ((_ idEvent: String) -> Void)?
     public var detailsEvent: EventsViewModel = EventsViewModel()
-    public var idEvent: String = ""
+    private var idEvent: String = ""
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
         self.loadRemoteDetailsEvent()
-        
+        print("viewDidLoad - \(idEvent)")
+    }
+    
+    public func setIdEvent(idEvent: String) {
+        self.idEvent = idEvent
+        print("setIdEvent - \(idEvent)")
     }
     
     private func loadRemoteDetailsEvent() {
-        self.idEvent = "1"
+//        self.idEvent = "1"
+        print("loadRemoteDetailsEvent - \(idEvent)")
         self.loadDetailsEvents?(self.idEvent)
     }
     

@@ -17,6 +17,8 @@ public final class GetListEventsViewController: UIViewController, Storyboarded {
     public var loadListEvents: (() -> Void)?
     var listEvents: [EventsViewModel] = []
     
+    public var navigateDetailsEvent: ((String) -> Void)?
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()

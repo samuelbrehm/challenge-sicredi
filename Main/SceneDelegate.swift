@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,7 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = GetDetailsEventFactory.makeController()
+        let navigation = NavigationController()
+        let getListEventsViewController = GetListEventsFactory.makeController(navigation: navigation)
+        navigation.setRootViewController(getListEventsViewController)
+        window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
 
