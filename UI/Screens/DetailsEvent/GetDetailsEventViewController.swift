@@ -98,7 +98,7 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
             if pm.count > 0 {
                 let pm = placemarks![0]
                 if let thoroughfare = pm.thoroughfare, let subThoroughfare = pm.subThoroughfare, let subLocality = pm.subLocality, let locality = pm.locality, let postalCode = pm.postalCode {
-                    self.addressLabel.text = "Endereço -> \(thoroughfare), \(subThoroughfare) - Bairro: \(subLocality) - \(locality).\nCEP \(postalCode)"
+                    self.addressLabel.text = "Endereço: \(thoroughfare), \(subThoroughfare)\nBairro: \(subLocality) - \(locality).\nCEP \(postalCode)"
                 }
             }
         }
