@@ -94,4 +94,10 @@ extension GetListEventsViewController: UITableViewDelegate, UITableViewDataSourc
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 414
     }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let idEventSelected = self.listEvents[indexPath.row].id {
+            self.navigateDetailsEvent?(idEventSelected)
+        }
+    }
 }
