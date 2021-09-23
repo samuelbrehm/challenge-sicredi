@@ -42,6 +42,8 @@ public final class CreateCheckInEventViewController: UIViewController, Storyboar
         self.nameTextField.layer.borderColor = Color.primaryBorderTextField.cgColor
         self.nameTextField.layer.borderWidth = 1
         self.nameTextField.layer.cornerRadius = 4.0
+        
+        hideKeyboardOnTap()
     }
     
     @IBAction func tappedConfirmButton(_ sender: UIButton) {
