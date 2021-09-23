@@ -16,6 +16,11 @@ class CreateCheckInEventViewControllerTests: XCTestCase {
         let sut = makeSut()
         XCTAssertEqual(sut.loadingActivityIndicator.isAnimating, false)
     }
+    
+    func test_controller_implements_loadingView() throws {
+        let sut = makeSut()
+        XCTAssertNotNil(sut as LoadingView)
+    }
 }
 
 extension CreateCheckInEventViewControllerTests {

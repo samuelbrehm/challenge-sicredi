@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Presentation
 
 public final class CreateCheckInEventViewController: UIViewController, Storyboarded {
     
@@ -39,5 +40,17 @@ public final class CreateCheckInEventViewController: UIViewController, Storyboar
     }
     
     @IBAction func tappedBackButton(_ sender: UIButton) {
+    }
+}
+
+extension CreateCheckInEventViewController: LoadingView {
+    public func display(viewModel: LoadingViewModel) {
+        if viewModel.isLoading {
+            view.isUserInteractionEnabled = false
+            self.loadingActivityIndicator.startAnimating()
+        } else {
+            view.isUserInteractionEnabled = true
+            self.loadingActivityIndicator.stopAnimating()
+        }
     }
 }
