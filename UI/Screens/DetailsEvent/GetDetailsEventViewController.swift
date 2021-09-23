@@ -21,6 +21,7 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     @IBOutlet weak var locationEventMap: MKMapView!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var checkInButton: UIButton!
     
     public var loadDetailsEvents: ((_ idEvent: String) -> Void)?
     public var detailsEvent: EventsViewModel = EventsViewModel()
@@ -36,14 +37,20 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
         self.idEvent = idEvent
     }
     
+    @IBAction func tappedCheckInButton(_ sender: UIButton) {
+    }
+
     private func loadRemoteDetailsEvent() {
         self.loadDetailsEvents?(self.idEvent)
     }
     
     private func configureUI() {
         self.loadingActivityIndicator?.layer.cornerRadius = 9
+        
         self.title = "Todas Informações do Evento"
         navigationController?.navigationBar.prefersLargeTitles = false
+        
+        self.checkInButton.layer.cornerRadius = 9.0
     }
     
     private func configureEventViewModel() {
