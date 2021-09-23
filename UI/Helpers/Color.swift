@@ -10,4 +10,5 @@ import UIKit
 
 struct Color {
     static let primary = UIColor(hex: "#64E291")
+    static let primaryBorderTextField = UIColor(hex: "#71EFA3")
 }

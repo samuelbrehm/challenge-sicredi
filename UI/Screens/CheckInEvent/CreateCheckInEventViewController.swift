@@ -25,6 +25,14 @@ public final class CreateCheckInEventViewController: UIViewController, Storyboar
         
         self.confirmButton.layer.cornerRadius = 9.0
         self.backButton.layer.cornerRadius = 9.0
+        
+        self.emailTextField.layer.borderColor = Color.primaryBorderTextField.cgColor
+        self.emailTextField.layer.borderWidth = 1
+        self.emailTextField.layer.cornerRadius = 9.0
+        
+        self.nameTextField.layer.borderColor = Color.primaryBorderTextField.cgColor
+        self.nameTextField.layer.borderWidth = 1
+        self.nameTextField.layer.cornerRadius = 9.0
     }
     
     @IBAction func tappedConfirmButton(_ sender: UIButton) {
