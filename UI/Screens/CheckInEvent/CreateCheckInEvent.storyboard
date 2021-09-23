@@ -18,13 +18,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CheckIn" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYF-8A-fgS">
-                                <rect key="frame" x="24" y="56" width="366" height="29"/>
+                                <rect key="frame" x="24" y="68" width="366" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite seu e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AuT-5s-IWV">
-                                <rect key="frame" x="24" y="154" width="366" height="42"/>
+                                <rect key="frame" x="24" y="166" width="366" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="0gg-Lz-0W1"/>
                                 </constraints>
@@ -32,7 +31,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite seu nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PFc-tG-WOv">
-                                <rect key="frame" x="24" y="247" width="366" height="42"/>
+                                <rect key="frame" x="24" y="259" width="366" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="sND-LS-DdR"/>
                                 </constraints>
@@ -40,7 +39,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTp-CR-3hx">
-                                <rect key="frame" x="24" y="342" width="366" height="45"/>
+                                <rect key="frame" x="24" y="354" width="366" height="45"/>
                                 <color key="backgroundColor" red="0.16078431372549018" green="0.73333333333333328" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="VAu-JJ-GjW"/>
@@ -53,19 +52,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GpL-dW-G3C">
-                                <rect key="frame" x="24" y="127" width="366" height="21"/>
+                                <rect key="frame" x="24" y="139" width="366" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJV-Gi-dMj">
-                                <rect key="frame" x="24" y="220" width="366" height="21"/>
+                                <rect key="frame" x="24" y="232" width="366" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evy-vb-6bp">
-                                <rect key="frame" x="24" y="411" width="366" height="42"/>
+                                <rect key="frame" x="24" y="423" width="366" height="42"/>
                                 <color key="backgroundColor" red="0.84705882352941175" green="0.22745098039215686" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="rvz-fh-jFV"/>
@@ -88,14 +87,14 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lJV-Gi-dMj" firstAttribute="leading" secondItem="AuT-5s-IWV" secondAttribute="leading" id="3jv-a3-dEq"/>
                             <constraint firstItem="T0h-3k-elz" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="4oL-DZ-nwj"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="GpL-dW-G3C" secondAttribute="trailing" constant="24" id="C8k-Qa-qNT"/>
                             <constraint firstItem="T0h-3k-elz" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="FdK-7F-KDj"/>
                             <constraint firstItem="DTp-CR-3hx" firstAttribute="top" secondItem="PFc-tG-WOv" secondAttribute="bottom" constant="53" id="Gcs-II-ugQ"/>
-                            <constraint firstItem="KYF-8A-fgS" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="12" id="HAs-DK-hEb"/>
+                            <constraint firstItem="KYF-8A-fgS" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="HAs-DK-hEb"/>
                             <constraint firstItem="evy-vb-6bp" firstAttribute="leading" secondItem="DTp-CR-3hx" secondAttribute="leading" id="L3H-aG-9g7"/>
                             <constraint firstItem="PFc-tG-WOv" firstAttribute="top" secondItem="lJV-Gi-dMj" secondAttribute="bottom" constant="6" id="UOA-PS-9En"/>
                             <constraint firstItem="DTp-CR-3hx" firstAttribute="leading" secondItem="PFc-tG-WOv" secondAttribute="leading" id="VDI-qQ-Ul0"/>
@@ -129,6 +128,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
