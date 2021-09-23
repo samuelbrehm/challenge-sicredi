@@ -28,6 +28,7 @@
 		6237C6DD26F5434800191D05 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6DC26F5434800191D05 /* MainQueueDispatchDecorator.swift */; };
 		624127B326FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 624127B226FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard */; };
 		624127B526FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */; };
+		624127B826FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127B726FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift */; };
 		6242C32A26EFFE6D004DDC9E /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6242C32126EFFE6C004DDC9E /* UI.framework */; };
 		6242C32F26EFFE6D004DDC9E /* GetListEventsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C32E26EFFE6D004DDC9E /* GetListEventsControllerTests.swift */; };
 		6242C33826F00005004DDC9E /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; };
@@ -334,6 +335,7 @@
 		6237C6DC26F5434800191D05 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		624127B226FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCheckInEvent.storyboard; sourceTree = "<group>"; };
 		624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInEventViewController.swift; sourceTree = "<group>"; };
+		624127B726FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInEventViewControllerTests.swift; sourceTree = "<group>"; };
 		6242C32126EFFE6C004DDC9E /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6242C32426EFFE6C004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6242C32926EFFE6C004DDC9E /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -650,6 +652,14 @@
 				624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */,
 			);
 			path = CheckInEvent;
+			sourceTree = "<group>";
+		};
+		624127B626FCC873006CF7A5 /* CreateCheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				624127B726FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift */,
+			);
+			path = CreateCheckIn;
 			sourceTree = "<group>";
 		};
 		6242C32226EFFE6C004DDC9E /* UI */ = {
@@ -972,6 +982,7 @@
 		62ADECE726F7DEBE00C0E2B3 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				624127B626FCC873006CF7A5 /* CreateCheckIn */,
 				62ADECE826F7DEC800C0E2B3 /* DetailsEvent */,
 				62ADECE926F7DED200C0E2B3 /* ListEvents */,
 			);
@@ -1650,6 +1661,7 @@
 			files = (
 				62ADECE626F7DEB000C0E2B3 /* GetDetailsEventControllerTests.swift in Sources */,
 				6242C32F26EFFE6D004DDC9E /* GetListEventsControllerTests.swift in Sources */,
+				624127B826FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
