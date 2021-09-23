@@ -29,6 +29,9 @@
 		624127B326FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 624127B226FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard */; };
 		624127B526FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */; };
 		624127B826FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127B726FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift */; };
+		624127BA26FCFB6E006CF7A5 /* CreateCheckInEventFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127B926FCFB6E006CF7A5 /* CreateCheckInEventFactory.swift */; };
+		624127BC26FCFD52006CF7A5 /* EmailValidatorAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127BB26FCFD52006CF7A5 /* EmailValidatorAdapterFactory.swift */; };
+		624127BE26FCFDC6006CF7A5 /* RemoteCreateCheckInEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127BD26FCFDC6006CF7A5 /* RemoteCreateCheckInEvent.swift */; };
 		6242C32A26EFFE6D004DDC9E /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6242C32126EFFE6C004DDC9E /* UI.framework */; };
 		6242C32F26EFFE6D004DDC9E /* GetListEventsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C32E26EFFE6D004DDC9E /* GetListEventsControllerTests.swift */; };
 		6242C33826F00005004DDC9E /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; };
@@ -336,6 +339,9 @@
 		624127B226FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCheckInEvent.storyboard; sourceTree = "<group>"; };
 		624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInEventViewController.swift; sourceTree = "<group>"; };
 		624127B726FCC8A2006CF7A5 /* CreateCheckInEventViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInEventViewControllerTests.swift; sourceTree = "<group>"; };
+		624127B926FCFB6E006CF7A5 /* CreateCheckInEventFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInEventFactory.swift; sourceTree = "<group>"; };
+		624127BB26FCFD52006CF7A5 /* EmailValidatorAdapterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidatorAdapterFactory.swift; sourceTree = "<group>"; };
+		624127BD26FCFDC6006CF7A5 /* RemoteCreateCheckInEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCreateCheckInEvent.swift; sourceTree = "<group>"; };
 		6242C32126EFFE6C004DDC9E /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6242C32426EFFE6C004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6242C32926EFFE6C004DDC9E /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -607,6 +613,7 @@
 			children = (
 				6242C3C226F0E6C3004DDC9E /* GetListEventsFactory.swift */,
 				62ADECEA26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift */,
+				624127B926FCFB6E006CF7A5 /* CreateCheckInEventFactory.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -617,6 +624,7 @@
 				6237C6D326F5218800191D05 /* RemoteGetListEvents.swift */,
 				6237C6D826F5304300191D05 /* APiUrlFactory.swift */,
 				62ADECEC26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift */,
+				624127BD26FCFDC6006CF7A5 /* RemoteCreateCheckInEvent.swift */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -625,6 +633,7 @@
 			isa = PBXGroup;
 			children = (
 				6237C6D126F5211700191D05 /* AlamofireAdapterFactory.swift */,
+				624127BB26FCFD52006CF7A5 /* EmailValidatorAdapterFactory.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -1685,13 +1694,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				624127BC26FCFD52006CF7A5 /* EmailValidatorAdapterFactory.swift in Sources */,
 				6237C6DD26F5434800191D05 /* MainQueueDispatchDecorator.swift in Sources */,
 				6237C6D426F5218800191D05 /* RemoteGetListEvents.swift in Sources */,
+				624127BE26FCFDC6006CF7A5 /* RemoteCreateCheckInEvent.swift in Sources */,
 				62ADECED26F8B02D00C0E2B3 /* RemoteGetDEtailsEvent.swift in Sources */,
 				6242C3C326F0E6C3004DDC9E /* GetListEventsFactory.swift in Sources */,
 				6237C6D226F5211700191D05 /* AlamofireAdapterFactory.swift in Sources */,
 				62ADECEB26F8AEE700C0E2B3 /* GetDetailsEventFactory.swift in Sources */,
 				6242C39726F0E4E0004DDC9E /* AppDelegate.swift in Sources */,
+				624127BA26FCFB6E006CF7A5 /* CreateCheckInEventFactory.swift in Sources */,
 				6237C6D726F5247900191D05 /* WeakVarProxy.swift in Sources */,
 				6237C6D926F5304300191D05 /* APiUrlFactory.swift in Sources */,
 				6242C39926F0E4E0004DDC9E /* SceneDelegate.swift in Sources */,

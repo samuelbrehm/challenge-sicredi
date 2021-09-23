@@ -35,3 +35,13 @@ extension MainQueueDispatchDecorator: GetDetailsEvent where T: GetDetailsEvent {
         }
     }
 }
+
+extension MainQueueDispatchDecorator: CreateCheckIn where T: CreateCheckIn {
+    public func addCheckIn(addCheckInParam: AddCheckInParam, completion: @escaping (Result<StatusResponse, DomainError>) -> Void) {
+        instance.addCheckIn(addCheckInParam: addCheckInParam) { result in
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+    }
+}
