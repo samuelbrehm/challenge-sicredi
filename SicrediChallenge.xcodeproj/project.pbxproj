@@ -26,6 +26,8 @@
 		6237C6D726F5247900191D05 /* WeakVarProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6D626F5247900191D05 /* WeakVarProxy.swift */; };
 		6237C6D926F5304300191D05 /* APiUrlFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6D826F5304300191D05 /* APiUrlFactory.swift */; };
 		6237C6DD26F5434800191D05 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6237C6DC26F5434800191D05 /* MainQueueDispatchDecorator.swift */; };
+		624127B326FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 624127B226FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard */; };
+		624127B526FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */; };
 		6242C32A26EFFE6D004DDC9E /* UI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6242C32126EFFE6C004DDC9E /* UI.framework */; };
 		6242C32F26EFFE6D004DDC9E /* GetListEventsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6242C32E26EFFE6D004DDC9E /* GetListEventsControllerTests.swift */; };
 		6242C33826F00005004DDC9E /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6222C58D26EA39CF00754B81 /* Presentation.framework */; };
@@ -330,6 +332,8 @@
 		6237C6D626F5247900191D05 /* WeakVarProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakVarProxy.swift; sourceTree = "<group>"; };
 		6237C6D826F5304300191D05 /* APiUrlFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APiUrlFactory.swift; sourceTree = "<group>"; };
 		6237C6DC26F5434800191D05 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
+		624127B226FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateCheckInEvent.storyboard; sourceTree = "<group>"; };
+		624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCheckInEventViewController.swift; sourceTree = "<group>"; };
 		6242C32126EFFE6C004DDC9E /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6242C32426EFFE6C004DDC9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6242C32926EFFE6C004DDC9E /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -639,6 +643,15 @@
 			path = Decorators;
 			sourceTree = "<group>";
 		};
+		624127B126FCB381006CF7A5 /* CheckInEvent */ = {
+			isa = PBXGroup;
+			children = (
+				624127B226FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard */,
+				624127B426FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift */,
+			);
+			path = CheckInEvent;
+			sourceTree = "<group>";
+		};
 		6242C32226EFFE6C004DDC9E /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +675,7 @@
 		6242C34126F0A9BA004DDC9E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				624127B126FCB381006CF7A5 /* CheckInEvent */,
 				62ADECE026F76CD700C0E2B3 /* DetailsEvent */,
 				6242C34226F0A9D3004DDC9E /* ListEvents */,
 			);
@@ -1498,6 +1512,7 @@
 				62ADECE226F76CF700C0E2B3 /* GetDetailsEvent.storyboard in Resources */,
 				6242C34026F00249004DDC9E /* GetListEvents.storyboard in Resources */,
 				6242C34726F0AC07004DDC9E /* CardTableViewCell.xib in Resources */,
+				624127B326FCB3AE006CF7A5 /* CreateCheckInEvent.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1623,6 +1638,7 @@
 				6242C35026F0D6D0004DDC9E /* Storyboarded.swift in Sources */,
 				625A694826FA1F560095F06F /* UIColor+Hex.swift in Sources */,
 				625A694D26FA211C0095F06F /* NavigationController.swift in Sources */,
+				624127B526FCB3EF006CF7A5 /* CreateCheckInEventViewController.swift in Sources */,
 				62BA149D26FAD43600CA09AA /* GetListEventsRouter.swift in Sources */,
 				625A694A26FA20390095F06F /* Color.swift in Sources */,
 			);
