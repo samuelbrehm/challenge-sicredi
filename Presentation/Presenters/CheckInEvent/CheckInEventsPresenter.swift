@@ -25,6 +25,7 @@ public class CheckInEventsPresenter {
         self.loadingView.display(viewModel: LoadingViewModel(isLoading: true))
         if let message = validateParams(to: viewModel) {
             self.alertView.showMessage(viewModel: AlertViewModel(title: "Erro", message: message))
+            self.loadingView.display(viewModel: LoadingViewModel(isLoading: false))
         } else {
             self.createCheckIn.addCheckIn(addCheckInParam: viewModel.convertToAddCheckInParam()) { [weak self] result in
                 guard let self = self else { return }
