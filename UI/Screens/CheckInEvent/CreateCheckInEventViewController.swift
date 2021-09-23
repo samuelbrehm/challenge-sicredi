@@ -17,8 +17,16 @@ public final class CreateCheckInEventViewController: UIViewController, Storyboar
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
+    private var idEvent: String = ""
+    
+    public var createCheckIn: ((_ viewModel: NewCheckInRequest) -> Void)?
+    
     public override func viewDidLoad() {
         self.configureUI()
+    }
+    
+    public func setIdEvent(idEvent: String) {
+        self.idEvent = idEvent
     }
     
     private func configureUI() {
@@ -37,6 +45,8 @@ public final class CreateCheckInEventViewController: UIViewController, Storyboar
     }
     
     @IBAction func tappedConfirmButton(_ sender: UIButton) {
+        let viewModel = NewCheckInRequest(eventId: self.idEvent, name: nameTextField.text ?? "", email: emailTextField.text ?? "")
+        self.createCheckIn?(viewModel)
     }
     
     @IBAction func tappedBackButton(_ sender: UIButton) {
@@ -58,7 +68,7 @@ extension CreateCheckInEventViewController: LoadingView {
 extension CreateCheckInEventViewController: AlertView {
     public func showMessage(viewModel: AlertViewModel) {
         let alert = UIAlertController(title: viewModel.title, message: viewModel.message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Recarregar", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: viewModel.title == "Erro" ? "Tente novamente" : "Ok", style: .default, handler: { _ in
             
         }))
         present(alert, animated: true)
