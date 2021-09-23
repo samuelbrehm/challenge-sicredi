@@ -7,7 +7,14 @@
 
 import Foundation
 
-func makeApiBaseUrl() -> URL {
-    let apiBaseUrl: String = "http://5f5a8f24d44d640016169133.mockapi.io/api/events"
-    return URL(string: apiBaseUrl)!
+final class APIUrlFactory {
+    enum PathUrl: String {
+        case events = "events"
+        case checkin = "checkin"
+    }
+    
+    static func makeApiBaseUrl(path: PathUrl) -> URL {
+        let apiBaseUrl: String = "http://5f5a8f24d44d640016169133.mockapi.io/api/\(path)"
+        return URL(string: apiBaseUrl)!
+    }
 }

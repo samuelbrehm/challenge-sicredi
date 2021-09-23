@@ -44,6 +44,10 @@ public final class NavigationController: UINavigationController {
         hideBackButtonText()
     }
     
+    public func present(_ viewControllerToPresent: UIViewController) {
+        present(viewControllerToPresent, animated: true, completion: nil)
+    }
+    
     public func hideBackButtonText() {
         currentViewController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
     }

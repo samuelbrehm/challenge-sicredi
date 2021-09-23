@@ -50,6 +50,7 @@ public final class CreateCheckInEventViewController: UIViewController, Storyboar
     }
     
     @IBAction func tappedBackButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -69,7 +70,9 @@ extension CreateCheckInEventViewController: AlertView {
     public func showMessage(viewModel: AlertViewModel) {
         let alert = UIAlertController(title: viewModel.title, message: viewModel.message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: viewModel.title == "Erro" ? "Tente novamente" : "Ok", style: .default, handler: { _ in
-            
+            if viewModel.title != "Erro" {
+                self.dismiss(animated: true, completion: nil)
+            }
         }))
         present(alert, animated: true)
     }

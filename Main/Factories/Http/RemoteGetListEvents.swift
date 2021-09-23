@@ -10,6 +10,6 @@ import Domain
 import Data
 
 func makeGetListEvents() -> GetListEvents {
-    let remoteGetListEvents = RemoteGetListEvents(url: makeApiBaseUrl(), httpGetClient: makeAlamofireAdapter())
+    let remoteGetListEvents = RemoteGetListEvents(url: APIUrlFactory.makeApiBaseUrl(path: .events), httpGetClient: makeAlamofireAdapter())
     return MainQueueDispatchDecorator(remoteGetListEvents)
 }

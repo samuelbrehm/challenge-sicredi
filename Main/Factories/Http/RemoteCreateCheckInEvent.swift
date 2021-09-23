@@ -10,6 +10,6 @@ import Domain
 import Data
 
 func makeCreateCheckIn() -> CreateCheckIn {
-    let remoteCreateCheckInEvent = RemoteCreateCheckIn(httpPostClient: makeAlamofireAdapter(), url: makeApiBaseUrl())
+    let remoteCreateCheckInEvent = RemoteCreateCheckIn(httpPostClient: makeAlamofireAdapter(), url: APIUrlFactory.makeApiBaseUrl(path: .checkin))
     return MainQueueDispatchDecorator(remoteCreateCheckInEvent)
 }

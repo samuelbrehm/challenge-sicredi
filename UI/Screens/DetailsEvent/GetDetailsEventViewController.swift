@@ -25,6 +25,8 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     
     public var loadDetailsEvents: ((_ idEvent: String) -> Void)?
     public var detailsEvent: EventsViewModel = EventsViewModel()
+    public var navigateCheckInEvent: ((String) -> Void)?
+    
     private var idEvent: String = ""
     
     public override func viewDidLoad() {
@@ -38,6 +40,7 @@ public final class GetDetailsEventViewController: UIViewController, Storyboarded
     }
     
     @IBAction func tappedCheckInButton(_ sender: UIButton) {
+        self.navigateCheckInEvent?(self.idEvent)
     }
 
     private func loadRemoteDetailsEvent() {

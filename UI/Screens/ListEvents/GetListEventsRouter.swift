@@ -9,15 +9,15 @@ import Foundation
 
 public final class GetListEventsRouter {
     private let navigation: NavigationController
-    private let getDetailsEventFactory: () -> GetDetailsEventViewController
+    private let getDetailsEventFactory: (NavigationController) -> GetDetailsEventViewController
     
-    public init(navigation: NavigationController, getDetailsEventFactory: @escaping () -> GetDetailsEventViewController) {
+    public init(navigation: NavigationController, getDetailsEventFactory: @escaping (NavigationController) -> GetDetailsEventViewController) {
         self.navigation = navigation
         self.getDetailsEventFactory = getDetailsEventFactory
     }
     
     public func goToGetDetailsEvent(idEvent: String) {
-        let detailsEventController = getDetailsEventFactory()
+        let detailsEventController = getDetailsEventFactory(navigation)
         detailsEventController.setIdEvent(idEvent: idEvent)
         navigation.pushViewController(detailsEventController)
     }
